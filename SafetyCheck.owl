@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#"
+     xml:base="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#impacts -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#impacts">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#isImpactedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#isImpactedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#impacts"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#atLatitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#atLatitude">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#atLongitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#atLongitude">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLatitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLatitude">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLongitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLongitude">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasMagnitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasMagnitude">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#StrongEarthquake -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#StrongEarthquake">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#WeakEarthquake -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#WeakEarthquake">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
