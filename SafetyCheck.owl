@@ -30,6 +30,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#impacts -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#impacts">
@@ -81,15 +90,6 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLatitude">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
         <rdfs:range rdf:resource="&xsd;float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#hasLocation">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -156,6 +156,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#StrongEarthquake">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#WeakEarthquake"/>
     </owl:Class>
     
 
@@ -165,6 +166,80 @@
     <owl:Class rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#WeakEarthquake">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Earthquake"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Arizona -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Arizona">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <atLongitude rdf:datatype="&xsd;float">-111.0</atLongitude>
+        <atLatitude rdf:datatype="&xsd;float">33.0</atLatitude>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Bharat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Bharat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <hasName rdf:datatype="&xsd;string">Bharat Singh</hasName>
+        <hasLocation rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#California"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#California -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#California">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Region"/>
+        <atLongitude rdf:datatype="&xsd;float">-120.0</atLongitude>
+        <atLatitude rdf:datatype="&xsd;float">37.0</atLatitude>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Entry1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Entry1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#StrongEarthquake"/>
+        <hasLatitude rdf:datatype="&xsd;float">-111.0</hasLatitude>
+        <hasLatitude rdf:datatype="&xsd;float">33.0</hasLatitude>
+        <hasMagnitude rdf:datatype="&xsd;float">4.5</hasMagnitude>
+        <impacts rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Harish"/>
+        <impacts rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Yogesh"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Harish -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Harish">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <hasName rdf:datatype="&xsd;string">Harish Malik</hasName>
+        <hasLocation rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Arizona"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Yogesh -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Yogesh">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Person"/>
+        <hasName rdf:datatype="&xsd;string">Yogesh Pandey</hasName>
+        <hasLocation rdf:resource="http://www.semanticweb.org/yogeshpandey/ontologies/2015/10/SafetyCheck#Arizona"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
