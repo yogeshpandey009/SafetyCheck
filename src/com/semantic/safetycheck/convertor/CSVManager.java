@@ -6,20 +6,15 @@ import java.util.ArrayList;
 
 public class CSVManager {
 
-	public static void main(String[] args) {
-		loadCSV();
-	}
-	
 	private static final String FILE_PATH = "./files/all_month.csv";
 	
-	private static void loadCSV(){
+	public static ArrayList<ArrayList<String>> loadCSV(){
+		ArrayList<ArrayList<String>> allRowAndColData = null;
 		try {
-			ArrayList<ArrayList<String>> allRowAndColData = null;
 	        ArrayList<String> oneRowData = null;
 	        String currentLine;
 	        FileInputStream fis = new FileInputStream(FILE_PATH);
 	        DataInputStream myInput = new DataInputStream(fis);
-	        int i = 0;
 	        allRowAndColData = new ArrayList<ArrayList<String>>();
 	        while ((currentLine = myInput.readLine()) != null) {
 	            oneRowData = new ArrayList<String>();
@@ -29,13 +24,14 @@ public class CSVManager {
 	                //System.out.println(oneRowArray[j]);
 	            }
 	            allRowAndColData.add(oneRowData);
-	            System.out.println();
-	            i++;
 	        }
+	        fis.close();
+	        myInput.close();
 		} catch (Exception e) {
 			System.out.println("Error while loading CSV file");
 			e.printStackTrace();
 		}
+		return allRowAndColData;
 	}
 	
 }
