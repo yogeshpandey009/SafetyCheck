@@ -1,3 +1,4 @@
+package com.semantic.safetycheck.app;
 import java.io.IOException;
 import java.io.InputStream;
 
