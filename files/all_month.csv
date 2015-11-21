@@ -1,0 +1,11 @@
+time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type
+2015-11-12T00:22:32.520Z,33.4433333,-116.4345,12.11,0.79,ml,26,149,0.08019,0.15,ci,ci37271567,2015-11-12T00:26:21.112Z,"22km NNW of Borrego Springs, California",earthquake
+2015-11-12T00:17:39.540Z,35.652832,-120.5196686,23.39,2.4,md,8,223,0.2158,0.27,nc,nc72554456,2015-11-12T00:19:11.560Z,"13km W of Shandon, California",earthquake
+2015-11-12T00:09:19.590Z,38.5865,-117.154,0.3,1.7,ml,11,241.6,1.075,,nn,nn00518639,2015-11-12T00:11:16.856Z,"58km N of Tonopah, Nevada",earthquake
+2015-11-12T00:06:56.490Z,33.3656667,-116.366,10.81,1.25,ml,35,93,0.1062,0.24,ci,ci37271559,2015-11-12T00:18:15.320Z,"12km N of Borrego Springs, California",earthquake
+2015-11-11T23:57:24.562Z,38.8366,-118.9802,5.2,1.2,ml,13,129.42,0.251,0.1991,nn,nn00518636,2015-11-12T00:19:05.175Z,"22km SE of Yerington, Nevada",earthquake
+2015-11-11T23:44:59.720Z,33.173,-115.6015,2.84,1.72,ml,22,86,0.02035,0.2,ci,ci37271543,2015-11-11T23:48:50.163Z,"10km WNW of Calipatria, California",earthquake
+2015-11-11T23:42:52.000Z,63.3139,-151.3521,37.2,1.7,ml,,,,0.89,ak,ak11857996,2015-11-11T23:52:15.981Z,"120km W of Cantwell, Alaska",earthquake
+2015-11-11T23:36:18.760Z,-7.2496,128.9485,121.49,5.7,mb,,31,2.441,1.04,us,us10003xni,2015-11-12T00:29:18.473Z,"272km WNW of Saumlaki, Indonesia",earthquake
+2015-11-11T23:24:48.710Z,33.8985,-116.7158333,-0.3,0.85,ml,14,85,0.1506,0.26,ci,ci37271527,2015-11-11T23:28:49.985Z,"7km ESE of Cabazon, California",earthquake
+2015-11-11T22:39:17.160Z,38.8411674,-122.8238297,1.54,0.46,md,5,110,0.009461,0.03,nc,nc72554426,2015-11-11T22:40:51.840Z,"9km WNW of Cobb, California",earthquake
