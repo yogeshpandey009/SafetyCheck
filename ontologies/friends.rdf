@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY owl "http://www.w3.org/2002/07/owl#" > 
+	 <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" > 
+	 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" > 
+	 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" > 
+	 <!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" > 
+]> 
+<rdf:RDF
+	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	 xmlns:owl="http://www.w3.org/2002/07/owl#" 
+	 xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+	 xmlns:sc="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
+
+	 <NamedIndividual rdf:about="&sc;friend1">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Mukund Manikarnike</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend2">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Vidur S. Bhatnagar</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Philadelphia, Pennsylvania</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend3">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Nishant Arora</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">New Delhi, India</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend4">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Bharat Singh</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend5">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Harikrishnan Mulangat</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend6">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend7">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Harish Malik</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </NamedIndividual>
+
+	 <NamedIndividual rdf:about="&sc;friend8">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Puneet Jain</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </NamedIndividual>
+
+</rdf:RDF>
