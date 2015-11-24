@@ -3,14 +3,11 @@ import facebook
 import requests
 
 
-def get_all_friends():
-    token = 'CAACEdEose0cBABiEVZBaQjZAWkiCjrZBpnWfAzgWrqNRZAED1IGdjB3U02X7qazzkw9F9SvttfVTtQGdbYMEZBObATpOaiGvOL40KAhz0gOnyzD1FmpnuNrTsdXZAmPuIlWZCpj1UPu74gBSVKiyRYkZAmgoRWHB9N2G7MY0mSmJssZCVRK4NLMHxjde6T4yIAMaNQSA4fIUXKryHczkrGbJu'
+def get_all_friends(token, allfriends):
     graph = facebook.GraphAPI(token)
     #profile = graph.get_object("me")
     #friends = graph.get_connections("me","friends")
     friends = graph.get_object('me/friends',fields='id,name,location')
-    
-    allfriends = []
     
     # Wrap this block in a while loop so we can keep paginating requests until
     # finished.
@@ -19,10 +16,10 @@ def get_all_friends():
             try:
                 name = friend["name"]            
                 loc = friend["location"]["name"]
-                allfriends.append({
+                allfriends[friend["id"]] = {
                     "name": name,
                     "location": loc
-                })
+                }
             except KeyError:
                 pass
         try:
@@ -35,7 +32,6 @@ def get_all_friends():
             break
     
     #print allfriends
-    return allfriends
 
 
 def create_friends_instances(friends):
@@ -55,7 +51,7 @@ def create_friends_instances(friends):
     instances.append("\t xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\" \n")
     instances.append("\t xmlns:sc=\"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\">\n\n")
     i = 1
-    for friend in friends:
+    for key, friend in friends.iteritems():
         instances += create_friend_rdf(friend, i)
         i += 1
     instances.append("</rdf:RDF>")
@@ -73,8 +69,17 @@ def create_friend_rdf(friend, i):
     
 
 if __name__ == "__main__":
-    friends = get_all_friends()
-    instances = create_friends_instances(friends)
+    tokens = ['CAACEdEose0cBAHH9oFSY88PKZB6TJlouzHHbb2Nh3H3Tp5wZACSk0olkITiSeEZAeUSjeuyZAHMnpaGxZAEidsnKgriKnwl8sX6IfQNIx023ZASZAlz4MbqAtfLDj0OZAW7r74Sm6ByDz9fC8YZCza2QDZBqFYzpOdUMUGlZBVB13ZAm2wni1rKwjKqf8KX7vjmZA47sCWw7LdBXegcHidwIqE0qR',
+    'CAACEdEose0cBANnJZAmDvvdKQHhJMoT0866uGLYuadYAnZAIy7luZAacgZCU8fgg0qg3ALh3rP6foT913L8G21ZCq1aTYhLgPKmHpIDeBoq9rJMo5uwTy7QcLSzXokIlzDgNzpYJhM5ZB87zYoErC8k0FKTTcS88R80ZA1cTMGWLAZCx3ujPu2NLALWgHeVI7rNE51V4cH9hsZBS9vcbDYTqE',
+    'CAACEdEose0cBABxIAG86QNfZBNfGrMhpZBFAYt7pxwbIftZASLusU61qCixFEvBmNQwxRIQuSv0q2D8DqAk13ZBTcK59y6gRHyzThHwUrZAmxccGyHaTiI8sZC7Rt27XVrlByp7Kw2cn0LZAGQTupnX7Or3EcNEIcBozaLC1GrPFGS7AyCp3CfeE1OlsNSRmtoZD', 
+    'CAACEdEose0cBADVZCclh7Eg5PBAangEtlH7X1x1Jh7dTDWMKX2NaTnOGTuQq07wxjUSHN7cYP3rCmgOzVZADPbYZBldQJZC83FNHekaOZBQ1zNo8F9fOxZBZCmxUw8NXOYTcVAXoms9PC0VrT2H7Y8HqttABfUsn6sA88rf4ViMp0K1PWZBMRmEdub49lPj2i1wZD',
+    'CAACEdEose0cBAMtmMlYHxbl2dxxuJaSK9Kxv1gbXKpPGSplhkqPROis2vYuZAZCIchGcFOdt6rGW5s8hl3vtMZAPQ9DZCJ7zvubJPgoPl1TpFalKeHZCz9JJ7sT0alUYAFqVBu6KQxPDZAT34ZALKDXOUo7MxsDZCSxgYU3RA1qR7WGo8gCvwANHSmj9s9eNJMvQ87eCzjao3DqEpX2o8O9F',
+    'CAACEdEose0cBANbAiDztBM6r2gpM59zlCCDnOGLTkUCRR02HT8kT52mKKVR3xSvHMfmAZBYF9LkshVjMyHoC9OyQQEeK2zig8g8Gx5CcRftSrxH07ChHuZBSRi9lLCXAZB4e64Tl4DsFJj79LHNLhLxLLmgV8vBIVSrE85qhwxwVf3yvfK7UzmZAItTFsEaUtlizRiXfqmzXDZBh2Bvb4']
+    allfriends = {}
+    for token in tokens:
+        get_all_friends(token, allfriends)
+        
+    instances = create_friends_instances(allfriends)
     print instances
     text_file = open("friends.rdf", "w")
     text_file.write(instances)
