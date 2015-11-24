@@ -17,11 +17,11 @@ try:
         reader = csv.reader(f)
         x = 1
         for row in reader:
-            rdf.write("	<NamedIndividual rdf:about=\"&sc;city" + str(x) + "\">\n")
+            rdf.write("	<rdfd:Description rdf:about=\"&sc;city" + str(x) + "\">\n")
             rdf.write("		<sc:city rdf:datatype=\"&xsd;string\">" + row[0] + "</sc:city>\n")
             rdf.write("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + row[1] + "</sc:atLatitude>\n")
             rdf.write("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + row[2] + "</sc:atLongitude>\n")
-            rdf.write("	</NamedIndividual>\n\n")
+            rdf.write("	</rdf:Description>\n\n")
             x = x+1
 
     rdf.write("</rdf:RDF>")
