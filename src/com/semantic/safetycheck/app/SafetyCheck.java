@@ -21,7 +21,7 @@ public class SafetyCheck {
 
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 
-	public static void main(String... args) throws IOException {
+	public static void main(String... args) {
 		SafetyCheck s = new SafetyCheck();
 		Model data = s.populateData();
 		s.listEarthquakes(data);
@@ -32,12 +32,26 @@ public class SafetyCheck {
 		//s.listAll(data);
 	}
 
-	private Model populateData() throws IOException {
+	private Model populateData() {
+		Model data = ModelFactory.createOntologyModel();
 		InputStream owlFile = FileManager.get().open(
 				"ontologies/SafetyCheck.owl");
-		Model data = ModelFactory.createOntologyModel();
+		InputStream friendsFile = FileManager.get().open(
+				"ontologies/friends.rdf");
 		data.read(owlFile, defaultNameSpace);
-		owlFile.close();
+		data.read(friendsFile, defaultNameSpace);
+		try {
+			owlFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			friendsFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return data;
 	}
 
