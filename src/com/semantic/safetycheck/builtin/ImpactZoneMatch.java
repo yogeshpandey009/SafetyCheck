@@ -18,7 +18,7 @@ public class ImpactZoneMatch extends BaseBuiltin {
 	 * number is flexible.
 	 */
 	public int getArgLength() {
-		return 2;
+		return 5;
 	}
 
 	/**
@@ -40,15 +40,25 @@ public class ImpactZoneMatch extends BaseBuiltin {
 		// BindingEnvironment env = context.getEnv();
 		Node n1 = getArg(0, args, context);
 		Node n2 = getArg(1, args, context);
-		if (n1.isLiteral() && n2.isLiteral()) {
+		Node n3 = getArg(2, args, context);
+		Node n4 = getArg(3, args, context);
+		Node n5 = getArg(4, args, context);
+		if (n1.isLiteral() && n2.isLiteral() && n3.isLiteral() && n4.isLiteral() && n5.isLiteral()) {
 			Object v1 = n1.getLiteralValue();
 			Object v2 = n2.getLiteralValue();
+			Object v3 = n3.getLiteralValue();
+			Object v4 = n4.getLiteralValue();
+			Object v5 = n5.getLiteralValue();
 
-			if (v1 instanceof Float && v2 instanceof Float) {
+			if (v1 instanceof Float && v2 instanceof Float && v3 instanceof Float && v4 instanceof Float && v5 instanceof Float) {
 				Float s1 = (Float) v1;
 				Float s2 = (Float) v2;
+				Float s3 = (Float) v3;
+				Float s4 = (Float) v4;
+				Float s5 = (Float) v5;
 				Float diff = Math.abs(s1 - s2);
-				if (diff < 100) {
+				Float diff2 = Math.abs(s3 - s4);
+				if (diff < (100*s5) && diff2 < (100*s5)) {
 					return true;
 					// return env.bind(args[2], n2);
 				}

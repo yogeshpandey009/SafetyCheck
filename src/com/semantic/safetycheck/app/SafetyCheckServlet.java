@@ -1,6 +1,13 @@
 package com.semantic.safetycheck.app;
+
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -20,11 +27,16 @@ import com.hp.hpl.jena.util.FileManager;
 import com.semantic.safetycheck.builtin.ImpactZoneMatch;
 import com.semantic.safetycheck.builtin.MatchLiteral;
 
-public class SafetyCheck {
-
+/**
+ * Servlet implementation class SafetyCheckServlet
+ */
+@WebServlet("/SafetyCheckServlet")
+public class SafetyCheckServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 
-	public static void main(String... args) {
+	@Override
+	public void init(){
 		Model data = populateData();
 		//listEarthquakes(data);
 		//listPersons(data);
@@ -34,6 +46,29 @@ public class SafetyCheck {
 		InfModel inf_data = addJenaRules(data);
 		listPersons(inf_data);
 		//listAll(inf_data);
+	}
+	
+    /**
+     * Default constructor. 
+     */
+    public SafetyCheckServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 	
 	public static void registerCustomBuiltins() {
@@ -223,11 +258,5 @@ public class SafetyCheck {
 		// InfModel inf = ModelFactory.createInfModel(reasoner, model);
 		return inf;
 	}
-
-	// private void bindReasoner(Model schema) {
-	// Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
-	// reasoner = reasoner.bindSchema(schema);
-	// inferredFriends = ModelFactory.createInfModel(reasoner, _friends);
-	// }
 
 }
