@@ -46,7 +46,7 @@ public class SafetyCheck {
 		InputStream friendsFile = FileManager.get().open(
 				"ontologies/friends.rdf");
 		data.read(owlFile, defaultNameSpace);
-		//data.read(friendsFile, defaultNameSpace);
+		data.read(friendsFile, defaultNameSpace);
 		try {
 			owlFile.close();
 		} catch (IOException e) {
@@ -114,7 +114,7 @@ public class SafetyCheck {
 				if(soln.get("?region") != null) {
 					System.out.print(" latitude "
 							+ soln.getLiteral("?lat").getString());
-					System.out.print(" longitude "
+					System.out.println(" longitude "
 							+ soln.getLiteral("?lon").getString());
 				}
 				
