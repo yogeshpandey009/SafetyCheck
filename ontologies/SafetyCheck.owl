@@ -206,9 +206,17 @@
         <rdf:type rdf:resource="&sc;Region"/>
         <sc:hasLongitude rdf:datatype="&xsd;float">110.0</sc:hasLongitude>
         <sc:hasLatitude rdf:datatype="&xsd;float">120.0</sc:hasLatitude>
-        <sc:hasLocationName>Tempe</sc:hasLocationName>
+        <sc:hasLocationName rdf:datatype="&xsd;string">Tempe</sc:hasLocationName>
     </NamedIndividual>
     
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#California -->
+
+    <NamedIndividual rdf:about="&sc;California">
+        <rdf:type rdf:resource="&sc;Region"/>
+        <sc:hasLongitude rdf:datatype="&xsd;float">154.0</sc:hasLongitude>
+        <sc:hasLatitude rdf:datatype="&xsd;float">100.0</sc:hasLatitude>
+        <sc:hasLocationName rdf:datatype="&xsd;string">California</sc:hasLocationName>
+    </NamedIndividual>
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Yogesh -->

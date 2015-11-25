@@ -1,2 +1,2 @@
 @prefix sc: <http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#>.
-[rule1: (?person rdf:type sc:Person) (?region rdf:type sc:Region) (?person sc:hasLocation ?loc) (?region sc:hasLocationName ?loc) -> (?person sc:locatedAt ?region)]
+[rule1: (?person rdf:type sc:Person) (?region rdf:type sc:Region) (?person sc:hasLocation ?ploc) (?region sc:hasLocationName ?rloc) fuzzyMatch(?ploc, ?rloc)-> (?person sc:locatedAt ?region)]

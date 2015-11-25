@@ -13,9 +13,11 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.reasoner.Reasoner;
+import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
+import com.semantic.safetycheck.buildin.FuzzyMatchLiteral;
 
 public class SafetyCheck {
 
@@ -27,9 +29,14 @@ public class SafetyCheck {
 		s.listEarthquakes(data);
 		s.listPersons(data);
 		s.listRegions(data);
+		s.registerCustomBuiltins();
 		InfModel inf_data = s.addJenaRules(data);
 		s.listPersons(inf_data);
 		//s.listAll(data);
+	}
+	
+	private void registerCustomBuiltins() {
+		BuiltinRegistry.theRegistry.register(new FuzzyMatchLiteral());
 	}
 
 	private Model populateData() {
@@ -39,7 +46,7 @@ public class SafetyCheck {
 		InputStream friendsFile = FileManager.get().open(
 				"ontologies/friends.rdf");
 		data.read(owlFile, defaultNameSpace);
-		data.read(friendsFile, defaultNameSpace);
+		//data.read(friendsFile, defaultNameSpace);
 		try {
 			owlFile.close();
 		} catch (IOException e) {
