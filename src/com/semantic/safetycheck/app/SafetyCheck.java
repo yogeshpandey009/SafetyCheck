@@ -17,6 +17,7 @@ import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
+import com.semantic.safetycheck.builtin.ImpactZoneMatch;
 import com.semantic.safetycheck.builtin.MatchLiteral;
 
 public class SafetyCheck {
@@ -25,17 +26,19 @@ public class SafetyCheck {
 
 	public static void main(String... args) {
 		Model data = populateData();
-		listEarthquakes(data);
-		listPersons(data);
-		listRegions(data);
+		//listEarthquakes(data);
+		//listPersons(data);
+		//listRegions(data);
+		//listEarthquakes(data);
 		registerCustomBuiltins();
 		InfModel inf_data = addJenaRules(data);
-		listPersons(inf_data);
-		//s.listAll(data);
+		//listPersons(inf_data);
+		listAll(inf_data);
 	}
 	
 	public static void registerCustomBuiltins() {
 		BuiltinRegistry.theRegistry.register(new MatchLiteral());
+		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
 	}
 
 	public static Model populateData() {
@@ -46,9 +49,12 @@ public class SafetyCheck {
 				"rdf/friends.rdf");
 		InputStream regionsFile = FileManager.get().open(
 				"rdf/region.rdf");
+		InputStream earthquakesFile = FileManager.get().open(
+				"rdf/earthquakes_10.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
 		data.read(regionsFile, defaultNameSpace);
+		data.read(earthquakesFile, defaultNameSpace);
 		try {
 			owlFile.close();
 		} catch (IOException e) {
@@ -63,6 +69,12 @@ public class SafetyCheck {
 		}
 		try {
 			regionsFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			earthquakesFile.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,7 +121,10 @@ public class SafetyCheck {
 
 	public static void listPersons(Model model) {
 		ResultSet rs = runQuery(
-				" select ?person ?name ?location ?region ?lat ?lon where { ?person rdf:type sc:Person. ?person sc:hasName ?name . ?person sc:hasLocation ?location. OPTIONAL {?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon.} }",
+				" select ?person ?name ?location ?region ?lat ?lon ?mag "
+				+ "where { ?person rdf:type sc:Person. ?person sc:hasName ?name . ?person sc:hasLocation ?location. "
+				+ "OPTIONAL {?person sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} "
+				+ "OPTIONAL {?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon.} }",
 				model); // add the query string
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -124,6 +139,10 @@ public class SafetyCheck {
 							+ soln.getLiteral("?lat").getString());
 					System.out.println(" longitude "
 							+ soln.getLiteral("?lon").getString());
+				}
+				if(soln.get("?earthquake") != null) {
+					System.out.println(" Magnitude "
+							+ soln.getLiteral("?mag").getString());
 				}
 				
 			} else
