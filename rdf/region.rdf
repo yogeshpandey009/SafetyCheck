@@ -84,8 +84,8 @@
 	<rdf:Description rdf:about="&sc;Region11">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Belushya Guba</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">71.32'N</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">52.19'E</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">71.32</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">52.19</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region12">
@@ -686,8 +686,8 @@
 	<rdf:Description rdf:about="&sc;Region97">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Stirling</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">56 09 N.</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">3 56 W.</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">56.09</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">-3.56</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region98">
@@ -1498,8 +1498,8 @@
 	<rdf:Description rdf:about="&sc;Region213">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Donetsk</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">48.00'N</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">37.48'E</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">48.00</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">37.48</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region214">
@@ -2023,8 +2023,8 @@
 	<rdf:Description rdf:about="&sc;Region288">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Gijón</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">43.32'N</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">5.42'W</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">43.32</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">-5.42</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region289">
@@ -2478,8 +2478,8 @@
 	<rdf:Description rdf:about="&sc;Region353">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Ankara</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">39.56'N</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">32.52'E</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">39.56</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">32.52</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region354">
@@ -2948,7 +2948,7 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Nagano</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.38</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">138.11'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">138.11</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region421">
@@ -2969,28 +2969,28 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Kanazawa</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.34</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">136.39'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">136.39</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region424">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Utsunomiya</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.33</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">139.53'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">139.53</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region425">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Maebashi</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.23</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">139.04'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">139.04</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region426">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Mito</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.22</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">140.'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">140.00</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region427">
@@ -3046,7 +3046,7 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Fukui</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">36.04</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">136.13'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">136.13</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region435">
@@ -3123,14 +3123,14 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Kōfu</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">35.40</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">138.34'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">138.34</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region446">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Chiba</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">35.36</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">140.06'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">140.06</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region447">
@@ -3186,7 +3186,7 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Gifu</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">35.25</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">136.46'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">136.46</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region455">
@@ -3249,7 +3249,7 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Shizuoka</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">34.59</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">138.23'E</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">138.23</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region464">
@@ -3570,8 +3570,8 @@
 	<rdf:Description rdf:about="&sc;Region509">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">El Centro</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">32º38'N.</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">115º33'W.</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">32.38</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">-115.33</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region510">
@@ -3598,8 +3598,8 @@
 	<rdf:Description rdf:about="&sc;Region513">
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Shreveport</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">32º28´N.</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">93º42'W.</sc:hasLongitude>
+		<sc:hasLatitude rdf:datatype="&xsd;float">32.28</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">93.42</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region514">
@@ -4824,7 +4824,7 @@
 	    <rdf:type rdf:resource="&sc;Region"/>
 		<sc:hasLocationName rdf:datatype="&xsd;string">Manila</sc:hasLocationName>
 		<sc:hasLatitude rdf:datatype="&xsd;float">14.35</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">120. 58</sc:hasLongitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">120.58</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region689">
