@@ -4,6 +4,7 @@ import csv
 
 rdf = open("city.rdf", "wb")
 try:
+
     rdf.write("<?xml version=\"1.0\"?>\n")
     rdf.write("<!DOCTYPE rdf:RDF [\n")
     rdf.write("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n")
@@ -24,7 +25,10 @@ try:
         x = 1
         for row in reader:
             if row[0] != 'city_name':
-                rdf.write("	<rdf:Description rdf:about=\"&sc;city" + str(x) + "\">\n")
+                rdf.write("	<rdf:Description rdf:about=\"&sc;Region" + str(x) + "\">\n")
+                #<rdf:type rdf:resource="&sc;Person"/>
+                rdf.write("	    <rdf:type rdf:resource=\"&sc;Region\">\n")
+                rdf.write("		<sc:hasLocationName rdf:datatype=\"&xsd;string\">" + row[0] + "</sc:hasLocationName>\n")
                 rdf.write("		<sc:hasLocationName rdf:datatype=\"&xsd;string\">" + row[0] + "</sc:hasLocationName>\n")
                 rdf.write("		<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + row[1] + "</sc:hasLatitude>\n")
                 rdf.write("		<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + row[2] + "</sc:hasLongitude>\n")
