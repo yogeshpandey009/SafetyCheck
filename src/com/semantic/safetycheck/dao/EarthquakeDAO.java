@@ -27,7 +27,7 @@ public class EarthquakeDAO {
 			}
 
 		}
-		return null;
+		return earthquakes;
 	}
 
 

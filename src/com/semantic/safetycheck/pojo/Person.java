@@ -4,21 +4,21 @@ public class Person {
 
 	private String location;
 	private String name;
-	private Float lat;
-	private Float lon;
+	private Float latitude;
+	private Float longitude;
 	
 	public Person(){
 		super();
 	}
 	
-	public Person(String name,String location,Float lat,Float lon){
+	public Person(String name,String location,Float latitude,Float longitude){
 		super();
 		this.name = name;
 		this.location = location;
-		this.lat = lat;
-		this.lon = lon;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
-	
+
 	public String getLocation() {
 		return location;
 	}
@@ -35,22 +35,22 @@ public class Person {
 		this.name = name;
 	}
 
-	public String getLat() {
-		return lat;
+	public Float getLatitude() {
+		return latitude;
 	}
 
-	public void setLat(String lat) {
-		this.lat = lat;
+	public void setLatitude(Float latitude) {
+		this.latitude = latitude;
 	}
 
-	public String getLon() {
-		return lon;
+	public Float getLongitude() {
+		return longitude;
 	}
 
-	public void setLon(String lon) {
-		this.lon = lon;
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
 	}
-
+	
 	
 }
 

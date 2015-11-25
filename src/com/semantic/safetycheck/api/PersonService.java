@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.dao.PersonDAO;
 import com.semantic.safetycheck.pojo.Person;
 
@@ -25,7 +26,7 @@ public class PersonService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response person(InputStream incomingData) {
 		
-		List<Person> person = dao.getAllPersons();
+		List<Person> person = dao.getAllPersons(SafetyCheckServlet.data);
 		
 		String personData = "[]";
 		try {
