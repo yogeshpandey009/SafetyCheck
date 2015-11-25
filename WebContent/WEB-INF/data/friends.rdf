@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" > 
+	 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" > 
+	 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" > 
+	 <!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" > 
+]> 
+<rdf:RDF
+	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	 xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+	 xmlns:sc="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
+
+	 <rdf:Description rdf:about="&sc;friend1">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Rajkumar Mundel</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Pune, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend2">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Rishabh Jain</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">New York, New York</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend3">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Harish Malik</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend4">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Abhishek Patil</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Mumbai, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend5">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Neha Dahiya</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Gurgaon, Haryana</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend6">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Manish Soni</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Pune, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend7">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Vikkash Agrawal</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Mumbai, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend8">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Mitikaa Sama</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend9">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Vardhang Shah</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Sydney, Australia</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend10">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Saikiran Chavali</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Hyderabad, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend11">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Ronak Jethwa</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Boston, Massachusetts</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend12">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Sangeeta Bora</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend13">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend14">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Chirag Sanghvi</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Pune, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend15">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Kiran Vishwanathan</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Seattle, Washington</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend16">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Mukund Manikarnike</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend17">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Harikrishnan Mulangat</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend18">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Puneet Jain</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend19">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Anand Walvekar</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Lubbock, Texas</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend20">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Vidur S. Bhatnagar</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Philadelphia, Pennsylvania</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend21">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Nishant Arora</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">New Delhi, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend22">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Bharat Singh</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend23">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Mitin Dixit</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Noida, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend24">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Shubham Sharma</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Mountain View, California</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend25">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Padmakar Ojha</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">New Delhi, India</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend26">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Yogesh Pandey</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend27">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Mihir Bhatt</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
+	 </rdf:Description>
+
+	 <rdf:Description rdf:about="&sc;friend28">
+	 <rdf:type rdf:resource="&sc;Person"/>
+	 <sc:hasName rdf:datatype="&xsd;string">Sandesh Shetty</sc:hasName>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Thane</sc:hasLocation>
+	 </rdf:Description>
+
+</rdf:RDF>

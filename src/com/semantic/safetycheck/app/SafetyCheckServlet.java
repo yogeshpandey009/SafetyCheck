@@ -3,6 +3,8 @@ package com.semantic.safetycheck.app;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +36,11 @@ import com.semantic.safetycheck.builtin.MatchLiteral;
 public class SafetyCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
-
+	private static ServletContext sc;
+	
 	@Override
 	public void init(){
+		sc = this.getServletContext();
 		Model data = populateData();
 		//listEarthquakes(data);
 		//listPersons(data);
@@ -78,14 +82,11 @@ public class SafetyCheckServlet extends HttpServlet {
 
 	public static Model populateData() {
 		Model data = ModelFactory.createOntologyModel();
-		InputStream owlFile = FileManager.get().open(
-				"ontologies/SafetyCheck.owl");
-		InputStream friendsFile = FileManager.get().open(
-				"rdf/friends.rdf");
-		InputStream regionsFile = FileManager.get().open(
-				"rdf/region.rdf");
-		InputStream earthquakesFile = FileManager.get().open(
-				"rdf/earthquakes_10.rdf");
+
+		InputStream owlFile = sc.getResourceAsStream("/WEB-INF/data/SafetyCheck.owl");
+		InputStream friendsFile = sc.getResourceAsStream("/WEB-INF/data/friends.rdf");
+		InputStream regionsFile =sc.getResourceAsStream("/WEB-INF/data/region.rdf");
+		InputStream earthquakesFile =sc.getResourceAsStream("/WEB-INF/data/earthquakes_10.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
 		data.read(regionsFile, defaultNameSpace);
