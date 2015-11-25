@@ -2,7 +2,7 @@ __author__ = 'HM'
 import csv
 
 
-rdf = open("city_rdf", "wb")
+rdf = open("city.rdf", "wb")
 try:
     rdf.write("<?xml version=\"1.0\"?>\n")
     rdf.write("<!DOCTYPE rdf:RDF [\n")
