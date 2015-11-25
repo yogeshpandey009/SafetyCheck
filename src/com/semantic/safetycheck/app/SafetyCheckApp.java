@@ -20,19 +20,19 @@ import com.hp.hpl.jena.util.FileManager;
 import com.semantic.safetycheck.builtin.ImpactZoneMatch;
 import com.semantic.safetycheck.builtin.MatchLiteral;
 
-public class SafetyCheck {
+public class SafetyCheckApp {
 
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 
 	public static void main(String... args) {
 		Model data = populateData();
-		//listEarthquakes(data);
+		listEarthquakes(data);
 		//listPersons(data);
 		//listRegions(data);
 		//listEarthquakes(data);
 		registerCustomBuiltins();
 		InfModel inf_data = addJenaRules(data);
-		listPersons(inf_data);
+		//listPersons(inf_data);
 		//listAll(inf_data);
 	}
 	
@@ -44,13 +44,13 @@ public class SafetyCheck {
 	public static Model populateData() {
 		Model data = ModelFactory.createOntologyModel();
 		InputStream owlFile = FileManager.get().open(
-				"ontologies/SafetyCheck.owl");
+				"resources/SafetyCheck.owl");
 		InputStream friendsFile = FileManager.get().open(
-				"rdf/friends.rdf");
+				"resources/friends.rdf");
 		InputStream regionsFile = FileManager.get().open(
-				"rdf/region.rdf");
+				"resources/region.rdf");
 		InputStream earthquakesFile = FileManager.get().open(
-				"rdf/earthquakes_10.rdf");
+				"resources/earthquakes_10.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
 		data.read(regionsFile, defaultNameSpace);
@@ -200,7 +200,7 @@ public class SafetyCheck {
 	public static InfModel addJenaRules(Model model) {
 
 		Reasoner reasoner = new GenericRuleReasoner(
-				Rule.rulesFromURL("file:ontologies/rules.txt"));
+				Rule.rulesFromURL("file:resources/rules.txt"));
 		reasoner.setDerivationLogging(true);
 		InfModel inf = ModelFactory.createInfModel(reasoner, model);
 

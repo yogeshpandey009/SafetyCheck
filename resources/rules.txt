@@ -1,0 +1,3 @@
+@prefix sc: <http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#>.
+[rule1: (?person rdf:type sc:Person) (?region rdf:type sc:Region) (?person sc:hasLocation ?ploc) (?region sc:hasLocationName ?rloc) fuzzyMatch(?ploc, ?rloc)-> (?person sc:locatedAt ?region)]
+[rule2: (?earthquake rdf:type sc:Earthquake) (?person sc:locatedAt ?region) (?earthquake sc:atLongitude ?elong) (?region sc:hasLongitude ?rlong) impactMatch(?elong, ?rlong)-> (?person sc:isImpactedBy ?earthquake)]
