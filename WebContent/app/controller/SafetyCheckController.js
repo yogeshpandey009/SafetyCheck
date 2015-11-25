@@ -120,7 +120,7 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
     onException: function(proxy, response, operation) {
         //localStore.load(); // This causes the "loading" mask to disappear
         //this.getContactsGrid().getView().setLoading(false);
-        this.getOnlineSyncMsg().setValue("Unable to connect to the server! (Using local Storage)");
+        this.getOnlineSyncMsg().setValue("Exception occured in fetching data...");
         this.getOnlineSyncMsg().setFieldStyle({"color": "red"});
         //Ext.Msg.alert('Notice', 'You are in offline mode', Ext.emptyFn); //alert the user that they are in offline mode
     },

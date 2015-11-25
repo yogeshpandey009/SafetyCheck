@@ -7,10 +7,13 @@ Ext.define('SafetyCheck.store.EarthquakeStore', {
 	proxy : {
 		//type : 'memory',
 		reader : {
-			type : 'json'
+			type : 'json',
+			root: 'data',
+			successProperty: 'success',
+			messageProperty: 'msg'
 		},
 		type: 'rest',
-		url: 'api/test',
+		url: 'api/earthquakes',
 		pageParam : false, //to remove param "page"
 		startParam : false, //to remove param "start"
 		limitParam : false, //to remove param "limit"

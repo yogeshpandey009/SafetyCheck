@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class SafetyCheckService {
+public class SafetyCheckService extends SCService {
 
 	@POST
 	@Path("/addEarthquake")
