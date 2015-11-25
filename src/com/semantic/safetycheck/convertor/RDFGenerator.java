@@ -1,6 +1,7 @@
 package com.semantic.safetycheck.convertor;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RDFGenerator {
@@ -31,7 +32,7 @@ public class RDFGenerator {
 
 		rdf.append("</rdf:RDF>");
 
-		System.out.println(rdf.toString());
+		// System.out.println(rdf.toString());
 		return rdf.toString();
 	}
 
@@ -47,6 +48,7 @@ public class RDFGenerator {
 	 * @return
 	 */
 	private String populateEarthquake(ArrayList<ArrayList<String>> rowCols) {
+		DecimalFormat df = new DecimalFormat("#.00"); 
 		StringBuffer rdf = new StringBuffer(100);
 		for (int x = 1; x < rowCols.size(); x++) {
 			ArrayList<String> row = rowCols.get(x);
@@ -58,8 +60,8 @@ public class RDFGenerator {
 				rdf.append("		<rdf:type rdf:resource=\"&sc;WeakEarthquake\"/>\n");
 			}
 			rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
-			rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + Double.parseDouble(row.get(1)) + "</sc:atLatitude>\n");
-			rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + Double.parseDouble(row.get(2)) + "</sc:atLongitude>\n");
+			rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(row.get(1))) + "</sc:atLatitude>\n");
+			rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(row.get(2))) + "</sc:atLongitude>\n");
 			rdf.append("	</rdf:Description>\n\n");
 
 		}
@@ -71,6 +73,7 @@ public class RDFGenerator {
 		PrintWriter out = new PrintWriter("./rdf/earthquakes.rdf");
 		out.println(str);
 		out.close();
+		System.out.println("Done");
 	}
 
 }

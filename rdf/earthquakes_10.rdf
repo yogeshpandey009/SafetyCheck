@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+	<!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" >
+]>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+	xmlns:sc="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
+
+	<rdf:Description rdf:about="&sc;earthquake1">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">0.79</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">33.4433333</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-116.4345</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake2">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">2.4</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">35.652832</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-120.5196686</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake3">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">1.7</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">38.5865</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-117.154</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake4">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">1.25</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">33.3656667</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-116.366</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake5">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">1.2</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">38.8366</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-118.9802</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake6">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">1.72</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">33.173</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-115.6015</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake7">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">1.7</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">63.3139</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-151.3521</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake8">
+		<rdf:type rdf:resource="&sc;StrongEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">5.7</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">-7.2496</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">128.9485</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake9">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">0.85</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">33.8985</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-116.7158333</sc:atLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:about="&sc;earthquake10">
+		<rdf:type rdf:resource="&sc;WeakEarthquake"/>
+		<sc:hasMagnitude rdf:datatype="&xsd;float">0.46</sc:hasMagnitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">38.8411674</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">-122.8238297</sc:atLongitude>
+	</rdf:Description>
+
+</rdf:RDF>

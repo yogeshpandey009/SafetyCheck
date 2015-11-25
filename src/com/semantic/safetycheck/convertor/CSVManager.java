@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CSVManager {
 
-	private static final String FILE_PATH = "./files/all_month.csv";
+	private static final String FILE_PATH = "./files/all_month_full.csv";
 	
 	public static ArrayList<ArrayList<String>> loadCSV(){
 		ArrayList<ArrayList<String>> allRowAndColData = null;
