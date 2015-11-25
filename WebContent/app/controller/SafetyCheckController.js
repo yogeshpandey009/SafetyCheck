@@ -109,7 +109,7 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
                     //Ext.Msg.alert('Notice', 'You are in online mode', Ext.emptyFn);
                 	var reg = new RegExp(searchValue, "i");
                 	onlineStore.filterBy(function(record, id) {
-                    	return (reg.test(record.get("uri")) || reg.test(record.get("time")) || reg.test(record.get("coordinates")));
+                    	return (reg.test(record.get("id")) || reg.test(record.get("time")) || reg.test(record.get("coordinates")) || reg.test(record.get("magnitude")));
                     }, this);
                 }
             }
@@ -119,7 +119,7 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
     //        the fallback / local stoage store instead
     onException: function(proxy, response, operation) {
         //localStore.load(); // This causes the "loading" mask to disappear
-        this.getContactsGrid().getView().setLoading(false);
+        //this.getContactsGrid().getView().setLoading(false);
         this.getOnlineSyncMsg().setValue("Unable to connect to the server! (Using local Storage)");
         this.getOnlineSyncMsg().setFieldStyle({"color": "red"});
         //Ext.Msg.alert('Notice', 'You are in offline mode', Ext.emptyFn); //alert the user that they are in offline mode

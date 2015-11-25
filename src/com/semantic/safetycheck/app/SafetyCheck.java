@@ -17,29 +17,28 @@ import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
-import com.semantic.safetycheck.builtin.FuzzyMatchLiteral;
+import com.semantic.safetycheck.builtin.MatchLiteral;
 
 public class SafetyCheck {
 
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 
 	public static void main(String... args) {
-		SafetyCheck s = new SafetyCheck();
-		Model data = s.populateData();
-		s.listEarthquakes(data);
-		s.listPersons(data);
-		s.listRegions(data);
-		s.registerCustomBuiltins();
-		InfModel inf_data = s.addJenaRules(data);
-		s.listPersons(inf_data);
+		Model data = populateData();
+		listEarthquakes(data);
+		listPersons(data);
+		listRegions(data);
+		registerCustomBuiltins();
+		InfModel inf_data = addJenaRules(data);
+		listPersons(inf_data);
 		//s.listAll(data);
 	}
 	
-	private void registerCustomBuiltins() {
-		BuiltinRegistry.theRegistry.register(new FuzzyMatchLiteral());
+	public static void registerCustomBuiltins() {
+		BuiltinRegistry.theRegistry.register(new MatchLiteral());
 	}
 
-	private Model populateData() {
+	public static Model populateData() {
 		Model data = ModelFactory.createOntologyModel();
 		InputStream owlFile = FileManager.get().open(
 				"ontologies/SafetyCheck.owl");
@@ -71,7 +70,7 @@ public class SafetyCheck {
 		return data;
 	}
 
-	private void listAll(Model model) {
+	public static void listAll(Model model) {
 		ResultSet rs = runQuery(" select ?x ?y where { ?x rdf:type ?y. }",
 				model); // add the query string
 		while (rs.hasNext()) {
@@ -86,7 +85,7 @@ public class SafetyCheck {
 
 	}
 
-	private void listEarthquakes(Model model) {
+	public static void listEarthquakes(Model model) {
 		ResultSet rs = runQuery(
 				" select ?earthquake ?magnitude ?latitude ?longitude where { ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?magnitude . ?earthquake sc:atLongitude ?longitude . ?earthquake sc:atLatitude ?latitude. }",
 				model); // add the query string
@@ -108,7 +107,7 @@ public class SafetyCheck {
 
 	}
 
-	private void listPersons(Model model) {
+	public static void listPersons(Model model) {
 		ResultSet rs = runQuery(
 				" select ?person ?name ?location ?region ?lat ?lon where { ?person rdf:type sc:Person. ?person sc:hasName ?name . ?person sc:hasLocation ?location. OPTIONAL {?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon.} }",
 				model); // add the query string
@@ -134,7 +133,7 @@ public class SafetyCheck {
 
 	}
 
-	private void listRegions(Model model) {
+	public static void listRegions(Model model) {
 		ResultSet rs = runQuery(
 				" select ?region ?latitude ?longitude where { ?region rdf:type sc:Region. ?region sc:hasLatitude ?latitude . ?region sc:hasLongitude ?longitude. }",
 				model); // add the query string
@@ -154,7 +153,7 @@ public class SafetyCheck {
 
 	}
 
-	private ResultSet runQuery(String queryRequest, Model model) {
+	public static ResultSet runQuery(String queryRequest, Model model) {
 
 		StringBuffer queryStr = new StringBuffer();
 
@@ -179,7 +178,7 @@ public class SafetyCheck {
 		return response;
 	}
 
-	private InfModel addJenaRules(Model model) {
+	public static InfModel addJenaRules(Model model) {
 
 		Reasoner reasoner = new GenericRuleReasoner(
 				Rule.rulesFromURL("file:ontologies/rules.txt"));

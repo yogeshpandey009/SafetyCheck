@@ -7,7 +7,7 @@ import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
 import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.BaseBuiltin;
 
-public class FuzzyMatchLiteral extends BaseBuiltin {
+public class MatchLiteral extends BaseBuiltin {
 	/**
 	 * Return a name for this builtin, normally this will be the name of the
 	 * functor that will be used to invoke it.

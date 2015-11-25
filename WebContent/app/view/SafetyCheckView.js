@@ -1,6 +1,9 @@
 Ext.define('SafetyCheck.view.SafetyCheckView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.safetycheckview',
+    requires: [
+               'SafetyCheck.view.EarthquakeGrid'
+    ],
     title: 'safetycheck',
     frame: true,
     bodyPadding: 5,
@@ -95,45 +98,7 @@ Ext.define('SafetyCheck.view.SafetyCheckView', {
     }, {
         xtype: 'splitter'
     }, {
-        xtype: 'grid',
-        store: 'EarthquakeStore',
-        autoScroll: true,
-        columns: [{
-            text: 'Earhquake',
-            dataIndex: 'uri',
-            flex: 1
-        }, {
-            text: 'Time',
-            dataIndex: 'time',
-            flex: 1
-        }, {
-            text: 'Co-ordinates',
-            dataIndex: 'coordinates',
-            flex: 1
-        }, {
-            xtype: 'actioncolumn',
-            width: 100,
-            align: 'center',
-            items: [{
-                icon: 'app/resources/images/cog_edit.png', // Use a URL in the icon config
-                tooltip: 'Edit',
-                width: 50,
-                itemId: 'editAction',
-                handler: function(gridView, rowIndex, colIndex, item, e) {
-                    this.fireEvent('itemclick', this, 'edit', gridView, rowIndex, colIndex, item, e);
-                }
-            }, {
-                xtype: 'splitter'
-            }, {
-                icon: 'app/resources/images/delete.png',
-                tooltip: 'Delete',
-                width: 50,
-                itemId: 'deleteAction',
-                handler: function(gridView, rowIndex, colIndex, item, e) {
-                    this.fireEvent('itemclick', this, 'delete', gridView, rowIndex, colIndex, item, e);
-                }
-            }]
-        }]
+        xtype: 'earthquakegrid'
     }],
     dockedItems: [{
         xtype: 'toolbar',

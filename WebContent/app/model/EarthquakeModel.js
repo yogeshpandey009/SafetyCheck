@@ -1,15 +1,27 @@
 Ext.define('SafetyCheck.model.EarthquakeModel', {
     extend: 'Ext.data.Model',
-    idProperty: "uri", //erm, primary key
+    idProperty: "id", //erm, primary key
     fields: [{
-        name: 'uri',
+        name: 'id',
         type: 'string'
+    }, {
+        name: 'magnitude',
+        type: 'number'
     }, {
         name: 'time',
         type: 'string'
     }, {
+        name: 'latitude',
+        type: 'number'
+    }, {
+        name: 'longitude',
+        type: 'number'
+    }, {
         name: 'coordinates',
-        type: 'string'
+        type: 'string',
+        convert: function(rec) {
+        	return rec.get('latitude') + " " + rec.get('longitude');
+        }
     }]//,
 //    identifier: 'uuid' // IMPORTANT, needed to avoid console warnings!
 });

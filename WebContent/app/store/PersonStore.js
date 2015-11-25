@@ -1,7 +1,7 @@
-Ext.define('SafetyCheck.store.EarthquakeStore', {
+Ext.define('SafetyCheck.store.PersonStore', {
 	extend : 'Ext.data.Store',
-	model : 'SafetyCheck.model.EarthquakeModel',
-	storeId : 'earthquakeStore',
+	model : 'SafetyCheck.model.PersonModel',
+	storeId : 'personStore',
 	autoLoad : true,
 	//autoSync: true,
 	proxy : {
@@ -10,7 +10,7 @@ Ext.define('SafetyCheck.store.EarthquakeStore', {
 			type : 'json'
 		},
 		type: 'rest',
-		url: 'api/test',
+		url: 'api/persons',
 		pageParam : false, //to remove param "page"
 		startParam : false, //to remove param "start"
 		limitParam : false, //to remove param "limit"
