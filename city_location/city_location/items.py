@@ -4,6 +4,7 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
+#scrapy crawl citylocation -o items.csv -t csv
 
 import scrapy
 from scrapy.item import Item, Field
