@@ -1,4 +1,4 @@
-package com.sematic.safetycheck.dao;
+package com.semantic.safetycheck.dao;
 
 import java.util.ArrayList;
 import java.util.List;

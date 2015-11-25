@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.semantic.safetycheck.dao.EarthquakeDAO;
 import com.semantic.safetycheck.pojo.Earthquake;
-import com.sematic.safetycheck.dao.EarthquakeDAO;
 
 @Path("/earthquakes")
 public class EarthquakeService {
