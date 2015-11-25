@@ -1,4 +1,4 @@
-package com.semantic.safetycheck.buildin;
+package com.semantic.safetycheck.builtin;
 
 import org.apache.commons.lang3.StringUtils;
 

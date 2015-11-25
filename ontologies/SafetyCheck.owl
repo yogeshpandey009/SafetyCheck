@@ -198,9 +198,7 @@
      -->
 
     
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Tempe -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Tempe
 
     <NamedIndividual rdf:about="&sc;Tempe">
         <rdf:type rdf:resource="&sc;Region"/>
@@ -208,8 +206,9 @@
         <sc:hasLatitude rdf:datatype="&xsd;float">120.0</sc:hasLatitude>
         <sc:hasLocationName rdf:datatype="&xsd;string">Tempe</sc:hasLocationName>
     </NamedIndividual>
-    
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#California -->
+     -->
+     
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#California
 
     <NamedIndividual rdf:about="&sc;California">
         <rdf:type rdf:resource="&sc;Region"/>
@@ -217,19 +216,19 @@
         <sc:hasLatitude rdf:datatype="&xsd;float">100.0</sc:hasLatitude>
         <sc:hasLocationName rdf:datatype="&xsd;string">California</sc:hasLocationName>
     </NamedIndividual>
+ 	-->
 
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Yogesh -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Yogesh
 
     <NamedIndividual rdf:about="&sc;Yogesh">
         <rdf:type rdf:resource="&sc;Person"/>
         <sc:hasLocation rdf:datatype="&xsd;string">Tempe</sc:hasLocation>
         <sc:hasName rdf:datatype="&xsd;string">Yogesh</sc:hasName>
     </NamedIndividual>
-    
+     -->
 
 
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake1 -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake1
 
     <NamedIndividual rdf:about="&sc;earthquake1">
         <rdf:type rdf:resource="&sc;StrongEarthquake"/>
@@ -237,6 +236,8 @@
         <sc:atLatitude rdf:datatype="&xsd;float">80.0</sc:atLatitude>
         <sc:atLongitude rdf:datatype="&xsd;float">90.0</sc:atLongitude>
     </NamedIndividual>
+    -->
+
 </rdf:RDF>
 
 

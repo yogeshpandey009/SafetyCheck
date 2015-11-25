@@ -17,7 +17,7 @@ import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
-import com.semantic.safetycheck.buildin.FuzzyMatchLiteral;
+import com.semantic.safetycheck.builtin.FuzzyMatchLiteral;
 
 public class SafetyCheck {
 
@@ -44,9 +44,12 @@ public class SafetyCheck {
 		InputStream owlFile = FileManager.get().open(
 				"ontologies/SafetyCheck.owl");
 		InputStream friendsFile = FileManager.get().open(
-				"ontologies/friends.rdf");
+				"rdf/friends.rdf");
+		InputStream regionsFile = FileManager.get().open(
+				"rdf/region.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
+		data.read(regionsFile, defaultNameSpace);
 		try {
 			owlFile.close();
 		} catch (IOException e) {
@@ -55,6 +58,12 @@ public class SafetyCheck {
 		}
 		try {
 			friendsFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			regionsFile.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
