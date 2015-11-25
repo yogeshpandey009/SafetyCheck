@@ -1,21 +1,29 @@
 package com.semantic.safetycheck.convertor;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class RDFGenerator {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new RDFGenerator().createRDF();
+	public static void main(String[] args) throws Exception{
+		RDFGenerator rGen = new RDFGenerator();
+		String str = rGen.createRDF();
+		rGen.writeRDF(str);
 	}
 
-	public void createRDF() {
+	public String createRDF() {
 		ArrayList<ArrayList<String>> rowCols = CSVManager.loadCSV();
 		StringBuffer rdf = new StringBuffer(100);
+		rdf.append("<?xml version=\"1.0\"?>\n");
+		rdf.append("<!DOCTYPE rdf:RDF [\n");
+		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
+		rdf.append("	<!ENTITY rdfs \"http://www.w3.org/2000/01/rdf-schema#\" >\n");
+		rdf.append("	<!ENTITY rdf \"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" >\n");
+		rdf.append("	<!ENTITY sc \"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\" >\n");
+		rdf.append("]>\n");              
 		rdf.append("<rdf:RDF\n");
 		rdf.append("	xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" \n");
 		rdf.append("	xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\" \n");
-		rdf.append("	xmlns:owl=\"http://www.w3.org/2002/07/owl#\" \n");
 		rdf.append("	xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\" \n");
 		rdf.append("	xmlns:sc=\"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\">\n\n");
 
@@ -24,6 +32,7 @@ public class RDFGenerator {
 		rdf.append("</rdf:RDF>");
 
 		System.out.println(rdf.toString());
+		return rdf.toString();
 	}
 
 	/**
@@ -41,7 +50,7 @@ public class RDFGenerator {
 		StringBuffer rdf = new StringBuffer(100);
 		for (int x = 1; x < rowCols.size(); x++) {
 			ArrayList<String> row = rowCols.get(x);
-			rdf.append("	<NamedIndividual rdf:about=\"&sc;earthquake" + x + "\">\n");
+			rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + x + "\">\n");
 			double mag = Double.parseDouble(row.get(4));
 			if (mag > 4) {
 				rdf.append("		<rdf:type rdf:resource=\"&sc;StrongEarthquake\"/>\n");
@@ -51,11 +60,17 @@ public class RDFGenerator {
 			rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
 			rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + Double.parseDouble(row.get(1)) + "</sc:atLatitude>\n");
 			rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + Double.parseDouble(row.get(2)) + "</sc:atLongitude>\n");
-			rdf.append("	</NamedIndividual>\n\n");
+			rdf.append("	</rdf:Description>\n\n");
 
 		}
 
 		return rdf.toString();
+	}
+	
+	private void writeRDF(String str)throws Exception {
+		PrintWriter out = new PrintWriter("./rdf/earthquakes.rdf");
+		out.println(str);
+		out.close();
 	}
 
 }
