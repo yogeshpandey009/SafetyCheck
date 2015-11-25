@@ -50,9 +50,9 @@ public class FuzzyMatchLiteral extends BaseBuiltin {
 			if (v1 instanceof String && v2 instanceof String) {
 				String s1 = (String) v1;
 				String s2 = (String) v2;
-				int diff = StringUtils.getLevenshteinDistance(s1, s2);
-				if (s1.toLowerCase().contains(s2)
-						|| s2.toLowerCase().contains(s1) || diff <= 3) {
+				//int diff = StringUtils.getLevenshteinDistance(s1, s2);
+				if (s1.toLowerCase().contains(s2.toLowerCase())
+						|| s2.toLowerCase().contains(s1.toLowerCase())) {
 					return true;
 					// return env.bind(args[2], n2);
 				}
