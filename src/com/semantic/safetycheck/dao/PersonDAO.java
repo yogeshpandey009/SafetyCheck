@@ -19,7 +19,6 @@ public class PersonDAO {
 		+ "?person sc:hasLocation ?location. OPTIONAL "
 		+ "{?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat."
 		+ " ?region sc:hasLongitude ?lon.} }",data);
-		System.out.println(rs);
 		List<Person> persons = new ArrayList<Person>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
