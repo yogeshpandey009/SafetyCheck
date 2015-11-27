@@ -59,6 +59,7 @@ public class RDFGenerator {
 			} else {
 				rdf.append("		<rdf:type rdf:resource=\"&sc;WeakEarthquake\"/>\n");
 			}
+			rdf.append("		<sc:hasTime rdf:datatype=\"&xsd;string\">" + row.get(0)  + "</sc:hasTime>\n");
 			rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
 			rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(row.get(1))) + "</sc:atLatitude>\n");
 			rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(row.get(2))) + "</sc:atLongitude>\n");
@@ -70,7 +71,7 @@ public class RDFGenerator {
 	}
 	
 	private void writeRDF(String str)throws Exception {
-		PrintWriter out = new PrintWriter("./rdf/earthquakes.rdf");
+		PrintWriter out = new PrintWriter("./resources/earthquakes.rdf");
 		out.println(str);
 		out.close();
 		System.out.println("Done");

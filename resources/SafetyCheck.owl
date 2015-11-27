@@ -132,6 +132,15 @@
         <rdfs:range rdf:resource="&xsd;float"/>
     </DatatypeProperty>
     
+    
+    
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasTime -->
+
+    <DatatypeProperty rdf:about="&sc;hasTime">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasName -->
