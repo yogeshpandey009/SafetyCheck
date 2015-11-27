@@ -26,8 +26,8 @@ public class SafetyCheckApp {
 
 	public static void main(String... args) {
 		Model data = populateData();
-		listEarthquakes(data);
-		//listPersons(data);
+		//listEarthquakes(data);
+		listPersons(data);
 		//listRegions(data);
 		listEarthquakes(data);
 		registerCustomBuiltins();

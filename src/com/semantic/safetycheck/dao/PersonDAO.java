@@ -19,14 +19,28 @@ public class PersonDAO {
 		+ "?person sc:hasLocation ?location. OPTIONAL "
 		+ "{?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat."
 		+ " ?region sc:hasLongitude ?lon.} }",data);
-		
+		System.out.println(rs);
 		List<Person> persons = new ArrayList<Person>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
+			String name ="";
+			String location = "";
+			Float latitude = new Float(0);
+			Float longitude = new Float(0);
 			RDFNode person = soln.get("?person");
 			if (person != null) {
-				persons.add(new Person(soln.getLiteral("?name").toString(), soln.getLiteral("?location").toString(), soln.getLiteral("?lat").getFloat(),
-						soln.getLiteral("?lon").getFloat()));
+				if(null != soln.getLiteral("?name"))
+					name = soln.getLiteral("?name").toString();
+				if(null != soln.get("?location"))
+					location = soln.get("?location").toString();
+				if(null != soln.getLiteral("?lat"))
+					latitude = soln.getLiteral("?lat").getFloat();
+				if(null != soln.getLiteral("?lon"))
+					longitude = soln.getLiteral("?lat").getFloat();
+					
+				
+				persons.add(new Person(person.toString(),name, location, latitude,
+						longitude));
 			}
 
 		}
