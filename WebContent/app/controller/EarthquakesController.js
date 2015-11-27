@@ -1,20 +1,20 @@
-Ext.define('SafetyCheck.controller.SafetyCheckController', {
+Ext.define('SafetyCheck.controller.EarthquakesController', {
     extend: 'Ext.app.Controller',
 
     stores: ['EarthquakeStore'],
 
     models: ['EarthquakeModel'],
 
-    views: ['SafetyCheckView'],
+    views: ['EarthquakesView'],
     
     refs: [{
-        selector: 'safetycheckview grid',
-        ref: 'safetycheckGrid'
+        selector: 'earthquakesview grid',
+        ref: 'earthquakesGrid'
     }, {
-        selector: 'safetycheckview form',
-        ref: 'safetycheckForm'
+        selector: 'earthquakesview form',
+        ref: 'earthquakeForm'
     }, {
-        selector: 'safetycheckview #onlineSyncMsg',
+        selector: 'earthquakesview #onlineSyncMsg',
         ref: 'onlineSyncMsg'
     }],
     
@@ -30,43 +30,43 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
                 }
             },
             component: {
-                'safetycheckview button[itemId=reset]': {
+                'earthquakesview button[itemId=reset]': {
                     click: this.onReset
                 },
-                'safetycheckview button[itemId=create]': {
-                    click: this.addContact
+                'earthquakesview button[itemId=create]': {
+                    click: this.addEarthquake
                 },
-                'safetycheckview button[itemId=update]': {
+                'earthquakesview button[itemId=update]': {
                     click: this.saveContact
                 },
-                'safetycheckview button[itemId=clear]': {
+                'earthquakesview button[itemId=clear]': {
                     click: this.clearFilter
                 },
-                'safetycheckview form': {
+                'earthquakesview form': {
                     create: this.create
                 },
-                'safetycheckview #search': {
+                'earthquakesview #search': {
                     change: this.filterEarthquakes
                 },
-                'safetycheckview grid actioncolumn': {
+                'earthquakesview grid actioncolumn': {
                     itemclick: this.handleActionColumn
                 }
             }
         });
     },
     onReset: function() {
-        this.getSafetyCheckForm().setActiveRecord(null);
+        this.getEarthquakeForm().setActiveRecord(null);
     },
-    addContact: function() {
-        var form = this.getSafetyCheckForm().getForm();
+    addEarthquake: function() {
+        var form = this.getEarthquakeForm().getForm();
         if (form.isValid()) {
-            this.getSafetyCheckForm().fireEvent('create', form, form.getValues());
+            this.getEarthquakeForm().fireEvent('create', form, form.getValues());
             form.reset();
         }
     },
     saveContact: function() {
-        var active = this.getSafetyCheckForm().activeRecord,
-            form = this.getSafetyCheckForm().getForm();
+        var active = this.getEarthquakeForm().activeRecord,
+            form = this.getEarthquakeForm().getForm();
         if (!active) {
             return;
         }
@@ -87,7 +87,7 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
     },
     editEarthquake: function(gridView, rowIndex, colIndex, item, e) {
         var selection = gridView.getStore().getAt(rowIndex);
-        this.getSafetyCheckForm().setActiveRecord(selection || null);
+        this.getEarthquakeForm().setActiveRecord(selection || null);
     },
     removeEarthquake: function(gridView, rowIndex, colIndex, item, e) {
         var selection = gridView.getStore().getAt(rowIndex);
@@ -129,7 +129,7 @@ Ext.define('SafetyCheck.controller.SafetyCheckController', {
     	this.getOnlineSyncMsg().setFieldStyle({"color": "blue"});
     },
     clearFilter: function(btn) {
-    	var view = this.getSafetycheckViewView();
+    	var view = this.EarthquakesviewView();
     	btn.previousSibling('#search').setValue('');
     }
 });

@@ -1,6 +1,6 @@
-Ext.define('SafetyCheck.view.SafetyCheckView', {
+Ext.define('SafetyCheck.view.EarthquakesView', {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.safetycheckview',
+    alias: 'widget.earthquakesview',
     requires: [
                'SafetyCheck.view.EarthquakeGrid'
     ],

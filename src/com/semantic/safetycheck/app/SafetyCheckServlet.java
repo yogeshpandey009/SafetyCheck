@@ -28,6 +28,8 @@ import com.semantic.safetycheck.builtin.MatchLiteral;
  */
 @WebServlet("/SafetyCheckServlet")
 public class SafetyCheckServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -2665529947054629356L;
 	private final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 	ServletContext context = null;
 	static public Model data = null;
@@ -43,7 +45,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		// listEarthquakes(data);
 		registerCustomBuiltins();
 		inf_data = addJenaRules(data);
-		//listPersons(inf_data);
+		listPersons(inf_data);
 		// listAll(inf_data);
 	}
 

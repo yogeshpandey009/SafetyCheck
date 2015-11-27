@@ -5,6 +5,6 @@ Ext.tip.QuickTipManager.init();
 Ext.application({
     name: 'SafetyCheck',
     controllers: [
-        'SafetyCheckController'],
+        'EarthquakesController'],
     autoCreateViewport: true
 });
