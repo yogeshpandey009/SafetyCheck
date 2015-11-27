@@ -4,6 +4,9 @@ Ext.define('SafetyCheck.view.PersonGrid', {
 	//title: 'Persons',
     store: 'PersonStore',
     autoScroll: true,
+    plugins: {
+        ptype: 'bufferedrenderer'
+    },
     columns: [{
         text: 'PersonId',
         dataIndex: 'id',

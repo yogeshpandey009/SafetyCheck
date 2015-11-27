@@ -4,6 +4,9 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
 	//title: 'Earthquakes',
     store: 'EarthquakeStore',
     autoScroll: true,
+    plugins: {
+        ptype: 'bufferedrenderer'
+    },
     columns: [{
         text: 'EarhquakeId',
         dataIndex: 'id',

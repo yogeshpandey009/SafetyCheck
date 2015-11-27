@@ -64,7 +64,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		InputStream regionsFile = context
 				.getResourceAsStream("/WEB-INF/classes/region.rdf");
 		InputStream earthquakesFile = context
-				.getResourceAsStream("/WEB-INF/classes/earthquakes_10.rdf");
+				.getResourceAsStream("/WEB-INF/classes/earthquakes.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
 		data.read(regionsFile, defaultNameSpace);

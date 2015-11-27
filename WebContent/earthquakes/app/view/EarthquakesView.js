@@ -98,7 +98,8 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
     }, {
         xtype: 'splitter'
     }, {
-        xtype: 'earthquakegrid'
+        xtype: 'earthquakegrid',
+        flex: 1
     }],
     dockedItems: [{
         xtype: 'toolbar',

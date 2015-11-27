@@ -41,7 +41,8 @@ Ext.define('SafetyCheck.view.PersonsView', {
     }, {
         xtype: 'splitter'
     }, {
-        xtype: 'persongrid'
+        xtype: 'persongrid',
+        flex: 1
     }],
     dockedItems: [{
         xtype: 'toolbar',
@@ -49,6 +50,6 @@ Ext.define('SafetyCheck.view.PersonsView', {
         items: [{
         	xtype: 'displayfield',
         	itemId: 'onlineSyncMsg'
-        	}]
+        }]
     }]
 });
