@@ -29,7 +29,7 @@ public class SafetyCheckApp {
 		listEarthquakes(data);
 		//listPersons(data);
 		//listRegions(data);
-		//listEarthquakes(data);
+		listEarthquakes(data);
 		registerCustomBuiltins();
 		InfModel inf_data = addJenaRules(data);
 		//listPersons(inf_data);
@@ -99,7 +99,7 @@ public class SafetyCheckApp {
 
 	public static void listEarthquakes(Model model) {
 		ResultSet rs = runQuery(
-				" select ?earthquake ?magnitude ?latitude ?longitude where { ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?magnitude . ?earthquake sc:atLongitude ?longitude . ?earthquake sc:atLatitude ?latitude. }",
+				" select ?earthquake ?magnitude ?latitude ?longitude ?time where { ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?magnitude . ?earthquake sc:atLongitude ?longitude . ?earthquake sc:atLatitude ?latitude. ?earthquake sc:hasTime ?time }",
 				model); // add the query string
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -111,7 +111,8 @@ public class SafetyCheckApp {
 						+ soln.getLiteral("?latitude").getFloat());
 				System.out.println(" atLongitude "
 						+ soln.getLiteral("?longitude").getFloat());
-
+				System.out.println(" hasTime "
+						+ soln.getLiteral("?time").getString());
 			} else
 				System.out.println("No Earthquakes found!");
 

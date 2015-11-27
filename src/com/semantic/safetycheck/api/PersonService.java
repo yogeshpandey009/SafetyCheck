@@ -24,7 +24,7 @@ public class PersonService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response person(InputStream incomingData) {
+	public Response person() {
 		
 		List<Person> person = dao.getAllPersons(SafetyCheckServlet.data);
 		

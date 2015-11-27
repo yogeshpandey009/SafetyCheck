@@ -38,9 +38,8 @@ public class SafetyCheckService extends SCService {
 	@GET
 	@Path("/test")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response verifyRESTService(InputStream incomingData) {
+	public Response verifyRESTService() {
 		String result = "SafetyCheckWeb Successfully started..";
- 
 		// return HTTP response 200 in case of success
 		return Response.status(200).entity(result).build();
 	}

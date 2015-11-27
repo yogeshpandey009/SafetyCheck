@@ -1,6 +1,5 @@
 package com.semantic.safetycheck.api;
 
-import java.io.InputStream;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -20,7 +19,7 @@ public class EarthquakeService extends SCService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response earthquakes(InputStream incomingData) {
+	public Response earthquakes() {
 		List<Earthquake> earthquakes = null;
 		Boolean success = Boolean.TRUE;
 		String msg = "";
