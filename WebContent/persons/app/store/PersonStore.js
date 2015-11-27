@@ -7,7 +7,10 @@ Ext.define('SafetyCheck.store.PersonStore', {
 	proxy : {
 		//type : 'memory',
 		reader : {
-			type : 'json'
+			type : 'json',
+			root: 'data',
+			successProperty: 'success',
+			messageProperty: 'msg'
 		},
 		type: 'rest',
 		url: 'api/persons',

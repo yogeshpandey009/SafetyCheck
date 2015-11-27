@@ -16,7 +16,7 @@ import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.dao.PersonDAO;
 import com.semantic.safetycheck.pojo.Person;
 
-@Path("/person")
+@Path("/persons")
 public class PersonService {
 	
 	private ObjectMapper mapper = new ObjectMapper();

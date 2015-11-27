@@ -4,7 +4,8 @@ Ext.Loader.setConfig({
 Ext.tip.QuickTipManager.init();
 Ext.application({
     name: 'SafetyCheck',
+    appFolder: 'persons/app',
     controllers: [
-        'EarthquakesController'],
+        'PersonsController'],
     autoCreateViewport: true
 });

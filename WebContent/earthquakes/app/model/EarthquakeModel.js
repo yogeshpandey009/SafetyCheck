@@ -22,7 +22,7 @@ Ext.define('SafetyCheck.model.EarthquakeModel', {
 		convert : function(v, rec) {
 			return rec.get('latitude') + " " + rec.get('longitude');
 		}
-	} ]
+	}]
 //,
 //    identifier: 'uuid' // IMPORTANT, needed to avoid console warnings!
 });
