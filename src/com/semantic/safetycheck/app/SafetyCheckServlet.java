@@ -1,5 +1,6 @@
 package com.semantic.safetycheck.app;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -22,7 +23,7 @@ import com.semantic.safetycheck.builtin.MatchLiteral;
 @SuppressWarnings("serial")
 public class SafetyCheckServlet extends HttpServlet {
 
-	private final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
+	public static final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 	ServletContext context = null;
 	static public Model data = null;
 	static public InfModel inf_data = null;
@@ -64,7 +65,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		InputStream regionsFile = context
 				.getResourceAsStream("/WEB-INF/classes/region.rdf");
 		InputStream earthquakesFile = context
-				.getResourceAsStream("/WEB-INF/classes/earthquakes.rdf");
+				.getResourceAsStream("/WEB-INF/classes/earthquakes_10.rdf");
 		data.read(owlFile, defaultNameSpace);
 		data.read(friendsFile, defaultNameSpace);
 		data.read(regionsFile, defaultNameSpace);
@@ -122,6 +123,13 @@ public class SafetyCheckServlet extends HttpServlet {
 		// reasoner.setDerivationLogging(true);
 		// InfModel inf = ModelFactory.createInfModel(reasoner, model);
 		return inf;
+	}
+	
+	public static void addEq(String eq){
+		InputStream is = new ByteArrayInputStream(eq.getBytes());
+		
+		SafetyCheckServlet.data.read(is, SafetyCheckServlet.defaultNameSpace);
+		System.out.println("Written");
 	}
 
 }

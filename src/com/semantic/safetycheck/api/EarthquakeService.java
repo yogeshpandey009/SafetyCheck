@@ -1,7 +1,11 @@
 package com.semantic.safetycheck.api;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,6 +19,7 @@ import javax.ws.rs.core.Response;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.semantic.safetycheck.app.SafetyCheckServlet;
+import com.semantic.safetycheck.convertor.RDFGenerator;
 import com.semantic.safetycheck.dao.EarthquakeDAO;
 import com.semantic.safetycheck.pojo.Earthquake;
 
@@ -51,7 +56,13 @@ public class EarthquakeService extends SCService {
 		Boolean success = Boolean.TRUE;
 		String msg = "";
 		try {
-				Earthquake earthquakeObj = mapper.readValue(incomingData, Earthquake.class);
+				//Earthquake earthquakeObj = mapper.readValue(incomingData, Earthquake.class);
+				BufferedReader br = new BufferedReader(new InputStreamReader(incomingData));
+				System.out.println(br.readLine());
+				Earthquake earthquakeObj = new Earthquake("10000", 10.0f, "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
+				String eq = RDFGenerator.singleEarthquakeRDF(earthquakeObj);
+				SafetyCheckServlet.addEq(eq);
+
 			} catch (IOException e) {
 				success = Boolean.FALSE;
 				msg = e.getMessage();

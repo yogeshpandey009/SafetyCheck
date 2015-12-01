@@ -36,7 +36,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             name: 'magnitude',
             allowBlank: false
         }, {
-        	xtype: 'timefield',
+        	// xtype: 'timefield',
             fieldLabel: 'Time',
             name: 'time',
             allowBlank: false

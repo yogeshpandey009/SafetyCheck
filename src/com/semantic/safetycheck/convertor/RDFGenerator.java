@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import com.semantic.safetycheck.pojo.Earthquake;
+
 public class RDFGenerator {
 
 	public static void main(String[] args) throws Exception{
@@ -67,6 +69,39 @@ public class RDFGenerator {
 
 		}
 
+		return rdf.toString();
+	}
+	
+	public static String singleEarthquakeRDF(Earthquake eq) {
+		DecimalFormat df = new DecimalFormat("#.00"); 
+		StringBuffer rdf = new StringBuffer(100);
+		rdf.append("<?xml version=\"1.0\"?>\n");
+		rdf.append("<!DOCTYPE rdf:RDF [\n");
+		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
+		rdf.append("	<!ENTITY rdfs \"http://www.w3.org/2000/01/rdf-schema#\" >\n");
+		rdf.append("	<!ENTITY rdf \"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" >\n");
+		rdf.append("	<!ENTITY sc \"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\" >\n");
+		rdf.append("]>\n");              
+		rdf.append("<rdf:RDF\n");
+		rdf.append("	xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" \n");
+		rdf.append("	xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\" \n");
+		rdf.append("	xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\" \n");
+		rdf.append("	xmlns:sc=\"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\">\n\n");
+
+		rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + eq.getId() + "\">\n");
+		double mag = Double.parseDouble(eq.getMagnitude()+"");
+		if (mag > 4) {
+			rdf.append("		<rdf:type rdf:resource=\"&sc;StrongEarthquake\"/>\n");
+		} else {
+			rdf.append("		<rdf:type rdf:resource=\"&sc;WeakEarthquake\"/>\n");
+		}
+		rdf.append("		<sc:hasTime rdf:datatype=\"&xsd;string\">" + eq.getTime()  + "</sc:hasTime>\n");
+		rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
+		rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLatitude()+"")) + "</sc:atLatitude>\n");
+		rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLongitude()+"")) + "</sc:atLongitude>\n");
+		rdf.append("	</rdf:Description>\n\n");
+
+		rdf.append("</rdf:RDF>");
 		return rdf.toString();
 	}
 	

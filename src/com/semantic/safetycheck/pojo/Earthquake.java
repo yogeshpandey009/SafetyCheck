@@ -22,6 +22,15 @@ public class Earthquake {
 		this.longitude = longitude;
 	}
 	
+	public Earthquake(Float magnitude, String time,
+			Float latitude, Float longitude) {
+		super();
+		this.magnitude = magnitude;
+		this.time = time;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	
 	public String getId() {
 		return id;
 	}
