@@ -1,7 +1,6 @@
 package com.semantic.safetycheck.api;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.ws.rs.GET;

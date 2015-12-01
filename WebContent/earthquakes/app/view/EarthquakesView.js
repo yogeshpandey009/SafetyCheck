@@ -31,16 +31,24 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             width: 300
         },
         items: [{
-            fieldLabel: 'Uri',
-            name: 'uri',
+        	xtype: 'numberfield',
+        	fieldLabel: 'Magnitude',
+            name: 'magnitude',
             allowBlank: false
         }, {
+        	xtype: 'timefield',
             fieldLabel: 'Time',
             name: 'time',
             allowBlank: false
         }, {
-            fieldLabel: 'Co-ordinates',
-            name: 'coordinates',
+        	xtype: 'numberfield',
+        	fieldLabel: 'Latitude',
+            name: 'latitude',
+            allowBlank: false
+        }, {
+        	xtype: 'numberfield',
+        	fieldLabel: 'Longitude',
+            name: 'longitude',
             allowBlank: false
         }],
         dockedItems: [{
@@ -114,9 +122,9 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             enableToggle: true,
             toggleHandler: function(btn, state) {
                 if (state) {
-                    btn.up('safetycheckview').down('form').show();
+                    btn.up('earthquakesview').down('form').show();
                 } else {
-                    btn.up('safetycheckview').down('form').hide();
+                    btn.up('earthquakesview').down('form').hide();
                 }
             }
         }]

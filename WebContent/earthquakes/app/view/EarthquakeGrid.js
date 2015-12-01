@@ -22,7 +22,7 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
         dataIndex: 'magnitude',
         flex: 1
     }, {
-        text: 'Co-ordinates',
+        text: 'Epicenter',
         dataIndex: 'coordinates',
         flex: 1
     }, {
