@@ -92,7 +92,6 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 				alert("Error: " - response.responseText);
 			}
 		});*/
-		debugger;
 		form.submit({ 
 		    url: 'api/earthquake', 
 		    method: 'POST', 

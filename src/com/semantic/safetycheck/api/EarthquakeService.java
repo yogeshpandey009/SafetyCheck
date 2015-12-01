@@ -50,18 +50,18 @@ public class EarthquakeService extends SCService {
 	
 	@POST
 	@Path("/earthquake")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addEarthquake(InputStream incomingData) {
 		Boolean success = Boolean.TRUE;
-		String msg = "";
+		String msg = "Earthquake information has been added";
 		try {
+				Earthquake earthquakeObj = mapper.readValue(incomingData, Earthquake.class);
 				//Earthquake earthquakeObj = mapper.readValue(incomingData, Earthquake.class);
-				BufferedReader br = new BufferedReader(new InputStreamReader(incomingData));
-				System.out.println(br.readLine());
-				Earthquake earthquakeObj = new Earthquake("10000", 10.0f, "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
+				//Earthquake earthquakeObj = new Earthquake(3.0f, "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
+				earthquakeObj.setId("100000");
 				String eq = RDFGenerator.singleEarthquakeRDF(earthquakeObj);
-				SafetyCheckServlet.addEq(eq);
+				SafetyCheckServlet.addEarthquakeInstance(eq);
 
 			} catch (IOException e) {
 				success = Boolean.FALSE;

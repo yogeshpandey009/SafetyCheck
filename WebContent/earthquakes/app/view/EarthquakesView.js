@@ -24,6 +24,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         frame: true,
         defaultType: 'textfield',
         bodyPadding: 5,
+        jsonSubmit: true,
         fieldDefaults: {
             //anchor: '100%',
             labelAlign: 'right',
@@ -34,21 +35,25 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         	xtype: 'numberfield',
         	fieldLabel: 'Magnitude',
             name: 'magnitude',
+            value: 3,
             allowBlank: false
         }, {
         	// xtype: 'timefield',
             fieldLabel: 'Time',
             name: 'time',
+            value: '2015-11-12T00:22:32.520Z',
             allowBlank: false
         }, {
         	xtype: 'numberfield',
         	fieldLabel: 'Latitude',
             name: 'latitude',
+            value: 20,
             allowBlank: false
         }, {
         	xtype: 'numberfield',
         	fieldLabel: 'Longitude',
             name: 'longitude',
+            value: 13,
             allowBlank: false
         }],
         dockedItems: [{

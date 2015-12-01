@@ -125,7 +125,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		return inf;
 	}
 	
-	public static void addEq(String eq){
+	public static void addEarthquakeInstance(String eq){
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		
 		SafetyCheckServlet.data.read(is, SafetyCheckServlet.defaultNameSpace);
