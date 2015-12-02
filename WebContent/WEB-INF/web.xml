@@ -19,7 +19,7 @@
     <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet>
-    <servlet-name>Bks Web Application</servlet-name>
+    <servlet-name>Semantic Web Application</servlet-name>
     <servlet-class>com.semantic.safetycheck.app.SafetyCheckServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>

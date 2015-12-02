@@ -37,10 +37,10 @@ public class EarthquakeDAO {
 		ResultSet rs = SafetyCheckHelper
 				.runQuery(
 						"select ?earthquake ?lat ?lon ?mag ?time"
-								+ "where { <" + personId + ">  sc:isImpactedBy ?earthquake."
-								+ " ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag. "
-								+ "?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat. "
-								+ "?earthquake sc:hasTime ?time } ",
+								+ " where { <" + personId + ">  sc:isImpactedBy ?earthquake."
+								+ " ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
+								+ " ?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat."
+								+ " ?earthquake sc:hasTime ?time }",
 						data); // add the query string
 		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
 		while (rs.hasNext()) {
@@ -48,7 +48,7 @@ public class EarthquakeDAO {
 			RDFNode earthquake = soln.get("?earthquake");
 			if (earthquake != null) {
 				earthquakes.add(new Earthquake(earthquake.toString(), soln
-						.getLiteral("?mag").getFloat(), "", soln.getLiteral("?lat")
+						.getLiteral("?mag").getFloat(), soln.getLiteral("?time").getString(), soln.getLiteral("?lat")
 						.getFloat(), soln.getLiteral("?lon").getFloat()));
 			}
 
