@@ -38,7 +38,7 @@ public class PersonService {
 		// return HTTP response 200 in case of success
 		return Response.status(200).entity(personData).build();
 	}
-	
+	/*
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response personsImpacted() {
@@ -56,5 +56,5 @@ public class PersonService {
 		// return HTTP response 200 in case of success
 		return Response.status(200).entity(personData).build();
 	}
-	
+	*/
 }
