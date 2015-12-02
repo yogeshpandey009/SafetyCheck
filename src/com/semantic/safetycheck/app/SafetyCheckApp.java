@@ -34,7 +34,7 @@ public class SafetyCheckApp {
 		InfModel inf_data = addJenaRules(data);
 		listPersons(inf_data);
 		listImpactedPersons(inf_data);
-		listEarthquakes(inf_data);
+		//listEarthquakes(inf_data);
 		//listAll(inf_data);
 	}
 	
@@ -155,16 +155,23 @@ public class SafetyCheckApp {
 	public static void listImpactedPersons(Model model) {
 		String personId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#friend9";
 			//System.out.println(person.toString());
-			
-			ResultSet rs = runQuery("select ?earthquake ?location ?region ?lat ?lon ?mag "
-						+ "where { <"+personId+">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} ",
+		System.out.println("listImpactedPersons");
+			ResultSet rs = runQuery("select ?earthquake ?lat ?lon ?mag ?time "
+						+ "where { <"+personId+">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag. "
+								+ "?earthquake sc:atLatitude ?lat. ?earthquake sc:atLongitude ?lon ."
+								+ "?earthquake sc:hasTime ?time } ",
 						model);	
 			while(rs.hasNext()){
 				QuerySolution soln = rs.nextSolution();
 				RDFNode earthquake = soln.get("?earthquake");
+				System.out.println("listImpactedPersons");
 				if(earthquake != null){
 					if(soln.get("?mag") != null) 
 						System.out.println("earthquake"+soln.getLiteral("?mag").getString());
+					System.out.println(soln.getLiteral("?lat").getFloat());
+					System.out.println(soln.getLiteral("?lon").getFloat());
+					//System.out.println(soln.getLiteral("?lon").getFloat());
+					System.out.println(soln.getLiteral("?time"));
 					
 				}
 				
