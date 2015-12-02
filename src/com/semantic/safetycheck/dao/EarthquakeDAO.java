@@ -29,6 +29,25 @@ public class EarthquakeDAO {
 		}
 		return earthquakes;
 	}
+	
+	public List<Earthquake> getImpactedByEarthquakes(Model data, String personId) {
+		ResultSet rs = SafetyCheckHelper.runQuery(
+				"select ?earthquake ?location ?region ?lat ?lon ?mag "
+				+ "where { <"+personId+">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} ",
+				data); // add the query string
+		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
+		while (rs.hasNext()) {
+			QuerySolution soln = rs.nextSolution();
+			RDFNode earthquake = soln.get("?earthquake");
+			if (earthquake != null) {
+				earthquakes.add(new Earthquake(earthquake.toString(), soln.getLiteral("?magnitude").getFloat(), soln.getLiteral("?time").getString(),
+						soln.getLiteral("?latitude").getFloat(), soln.getLiteral("?longitude").getFloat()));
+
+			}
+
+		}
+		return earthquakes;
+	}
 
 
 	

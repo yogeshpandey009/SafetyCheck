@@ -32,7 +32,9 @@ public class SafetyCheckApp {
 		listEarthquakes(data);
 		registerCustomBuiltins();
 		InfModel inf_data = addJenaRules(data);
-		//listPersons(inf_data);
+		listPersons(inf_data);
+		listImpactedPersons(inf_data);
+		listEarthquakes(inf_data);
 		//listAll(inf_data);
 	}
 	
@@ -99,22 +101,19 @@ public class SafetyCheckApp {
 
 	public static void listEarthquakes(Model model) {
 		ResultSet rs = runQuery(
-				" select ?earthquake ?magnitude ?latitude ?longitude ?time where { ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?magnitude . ?earthquake sc:atLongitude ?longitude . ?earthquake sc:atLatitude ?latitude. ?earthquake sc:hasTime ?time }",
+				" select ?person ?name ?location ?latitude ?longitude  "
+				+ "where { ?earthquake rdf:type sc:Earthquake."
+				+ "?earthquake sc:atLongitude ?longitude . "
+				+ "?earthquake sc:atLatitude ?latitude."
+				+ " ?person  sc:isImpactedBy ?earthquake.    }",
 				model); // add the query string
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
-			RDFNode earthquake = soln.get("?earthquake");
-			if (earthquake != null) {
-				System.out.print("Earthquake of magnitude "
-						+ soln.getLiteral("?magnitude").getFloat());
-				System.out.print(" atLatitude "
-						+ soln.getLiteral("?latitude").getFloat());
-				System.out.println(" atLongitude "
-						+ soln.getLiteral("?longitude").getFloat());
-				System.out.println(" hasTime "
-						+ soln.getLiteral("?time").getString());
+			RDFNode person = soln.get("?person");
+			if (person != null) {
+				System.out.println("person found");
 			} else
-				System.out.println("No Earthquakes found!");
+				System.out.println("Not found!");
 
 		}
 
@@ -150,6 +149,33 @@ public class SafetyCheckApp {
 				System.out.println("No Person found!");
 
 		}
+
+	}
+	
+	public static void listImpactedPersons(Model model) {
+		String personId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#friend9";
+			//System.out.println(person.toString());
+			
+			ResultSet rs = runQuery("select ?earthquake ?location ?region ?lat ?lon ?mag "
+						+ "where { <"+personId+">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} ",
+						model);	
+			while(rs.hasNext()){
+				QuerySolution soln = rs.nextSolution();
+				RDFNode earthquake = soln.get("?earthquake");
+				if(earthquake != null){
+					if(soln.get("?mag") != null) 
+						System.out.println("earthquake"+soln.getLiteral("?mag").getString());
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+					
+			
 
 	}
 

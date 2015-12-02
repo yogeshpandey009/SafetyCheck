@@ -27,15 +27,16 @@ public class PersonDAO {
 			Float latitude = new Float(0);
 			Float longitude = new Float(0);
 			RDFNode person = soln.get("?person");
+			
 			if (person != null) {
 				if(null != soln.getLiteral("?name"))
-					name = soln.getLiteral("?name").toString();
-				if(null != soln.get("?location"))
-					location = soln.get("?location").toString();
+					name = soln.getLiteral("?name").getString();
+				if(null != soln.getLiteral("?location"))
+					location = soln.getLiteral("?location").getString();
 				if(null != soln.getLiteral("?lat"))
 					latitude = soln.getLiteral("?lat").getFloat();
 				if(null != soln.getLiteral("?lon"))
-					longitude = soln.getLiteral("?lat").getFloat();
+					longitude = soln.getLiteral("?lon").getFloat();
 					
 				
 				persons.add(new Person(person.toString(),name, location, latitude,
@@ -45,6 +46,11 @@ public class PersonDAO {
 		}
 		return persons;
 	}
+	
+public List<Person> getPersonImpacted(Model data) {
+	
+	return null;
+}
 
 
 }

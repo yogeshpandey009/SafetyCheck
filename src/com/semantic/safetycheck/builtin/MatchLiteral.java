@@ -49,10 +49,12 @@ public class MatchLiteral extends BaseBuiltin {
 
 			if (v1 instanceof String && v2 instanceof String) {
 				String s1 = (String) v1;
+				String[] s11 = s1.split(",");
 				String s2 = (String) v2;
+				String[] s22 = s2.split(",");
 				//int diff = StringUtils.getLevenshteinDistance(s1, s2);
-				if (s1.toLowerCase().contains(s2.toLowerCase())
-						|| s2.toLowerCase().contains(s1.toLowerCase())) {
+				//if (s1.toLowerCase().contains(s2.toLowerCase())||
+					if(s22[0].toLowerCase().contains(s11[0].toLowerCase())) {
 					return true;
 					// return env.bind(args[2], n2);
 				}

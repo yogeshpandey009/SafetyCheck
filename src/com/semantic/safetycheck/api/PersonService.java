@@ -25,7 +25,25 @@ public class PersonService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response person() {
 		
-		List<Person> person = dao.getAllPersons(SafetyCheckServlet.data);
+		List<Person> person = dao.getAllPersons(SafetyCheckServlet.inf_data);
+		
+		String personData = "[]";
+		try {
+			personData = mapper.writeValueAsString(person);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// return HTTP response 200 in case of success
+		return Response.status(200).entity(personData).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response personsImpacted() {
+		
+		List<Person> person = dao.getPersonImpacted(SafetyCheckServlet.inf_data);
 		
 		String personData = "[]";
 		try {

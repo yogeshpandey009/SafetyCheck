@@ -1,17 +1,15 @@
 package com.semantic.safetycheck.api;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -71,6 +69,27 @@ public class EarthquakeService extends SCService {
 			}
 			
 		String response = getResponse(success, null, msg);
+		return Response.status(200).entity(response).build();
+	}
+	
+	@GET
+	@Path("/earthquakes?person={personId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response impactedBy(@PathParam("personId") String personId){
+		List<Earthquake> earthquakes = null;
+		Boolean success = Boolean.TRUE;
+		String msg = "";
+		try{
+			
+			earthquakes = dao.getImpactedByEarthquakes(SafetyCheckServlet.inf_data, personId);
+			
+					} 
+		catch(Exception e){
+			success = Boolean.FALSE;
+			msg = e.getMessage();
+		}
+		
+		String response = getResponse(success, earthquakes, msg);
 		return Response.status(200).entity(response).build();
 	}
 }
