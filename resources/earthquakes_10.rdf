@@ -71,8 +71,8 @@
 		<rdf:type rdf:resource="&sc;StrongEarthquake"/>
 		<sc:hasTime rdf:datatype="&xsd;string">2015-11-11T23:36:18.760Z</sc:hasTime>
 		<sc:hasMagnitude rdf:datatype="&xsd;float">5.7</sc:hasMagnitude>
-		<sc:atLatitude rdf:datatype="&xsd;float">-7.25</sc:atLatitude>
-		<sc:atLongitude rdf:datatype="&xsd;float">128.95</sc:atLongitude>
+		<sc:atLatitude rdf:datatype="&xsd;float">-30.52</sc:atLatitude>
+		<sc:atLongitude rdf:datatype="&xsd;float">150.13</sc:atLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;earthquake9">

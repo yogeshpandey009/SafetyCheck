@@ -58,7 +58,7 @@ public class ImpactZoneMatch extends BaseBuiltin {
 				Float s5 = (Float) v5;
 				Float diff = Math.abs(s1 - s2);
 				Float diff2 = Math.abs(s3 - s4);
-				if (diff < (100*s5) && diff2 < (100*s5)) {
+				if (diff <= s5 && diff2 <= s5) {
 					return true;
 					// return env.bind(args[2], n2);
 				}

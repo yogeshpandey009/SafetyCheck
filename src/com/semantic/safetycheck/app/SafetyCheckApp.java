@@ -1,4 +1,5 @@
 package com.semantic.safetycheck.app;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -26,18 +27,19 @@ public class SafetyCheckApp {
 
 	public static void main(String... args) {
 		Model data = populateData();
-		//listEarthquakes(data);
+		// listEarthquakes(data);
 		listPersons(data);
-		//listRegions(data);
+		// listRegions(data);
 		listEarthquakes(data);
 		registerCustomBuiltins();
 		InfModel inf_data = addJenaRules(data);
 		listPersons(inf_data);
-		listImpactedPersons(inf_data);
-		//listEarthquakes(inf_data);
-		//listAll(inf_data);
+		listImpactedByEarthquakes(inf_data);
+		listPersonsImpacted(inf_data);
+		// listEarthquakes(inf_data);
+		// listAll(inf_data);
 	}
-	
+
 	public static void registerCustomBuiltins() {
 		BuiltinRegistry.theRegistry.register(new MatchLiteral());
 		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
@@ -49,8 +51,8 @@ public class SafetyCheckApp {
 				"resources/SafetyCheck.owl");
 		InputStream friendsFile = FileManager.get().open(
 				"resources/friends.rdf");
-		InputStream regionsFile = FileManager.get().open(
-				"resources/region.rdf");
+		InputStream regionsFile = FileManager.get()
+				.open("resources/region.rdf");
 		InputStream earthquakesFile = FileManager.get().open(
 				"resources/earthquakes_10.rdf");
 		data.read(owlFile, defaultNameSpace);
@@ -102,11 +104,13 @@ public class SafetyCheckApp {
 	public static void listEarthquakes(Model model) {
 		ResultSet rs = runQuery(
 				" select ?person ?name ?location ?latitude ?longitude  "
-				+ "where { ?earthquake rdf:type sc:Earthquake."
-				+ "?earthquake sc:atLongitude ?longitude . "
-				+ "?earthquake sc:atLatitude ?latitude."
-				+ " ?person  sc:isImpactedBy ?earthquake.    }",
-				model); // add the query string
+						+ "where { ?earthquake rdf:type sc:Earthquake."
+						+ "?earthquake sc:atLongitude ?longitude . "
+						+ "?earthquake sc:atLatitude ?latitude."
+						+ " ?person  sc:isImpactedBy ?earthquake.    }", model); // add
+																					// the
+																					// query
+																					// string
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode person = soln.get("?person");
@@ -122,9 +126,9 @@ public class SafetyCheckApp {
 	public static void listPersons(Model model) {
 		ResultSet rs = runQuery(
 				" select ?person ?name ?location ?region ?lat ?lon ?mag "
-				+ "where { ?person rdf:type sc:Person. ?person sc:hasName ?name . ?person sc:hasLocation ?location. "
-				+ "OPTIONAL {?person sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} "
-				+ "OPTIONAL {?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon.} }",
+						+ "where { ?person rdf:type sc:Person. ?person sc:hasName ?name . ?person sc:hasLocation ?location. "
+						+ "OPTIONAL {?person sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag.} "
+						+ "OPTIONAL {?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon.} }",
 				model); // add the query string
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -134,56 +138,69 @@ public class SafetyCheckApp {
 						+ soln.getLiteral("?name").getString());
 				System.out.println(" located at "
 						+ soln.getLiteral("?location").getString());
-				if(soln.get("?region") != null) {
+				if (soln.get("?region") != null) {
 					System.out.print(" latitude "
 							+ soln.getLiteral("?lat").getString());
 					System.out.println(" longitude "
 							+ soln.getLiteral("?lon").getString());
 				}
-				if(soln.get("?mag") != null) {
+				if (soln.get("?mag") != null) {
 					System.out.println(" Magnitude "
 							+ soln.getLiteral("?mag").getString());
 				}
-				
+
 			} else
 				System.out.println("No Person found!");
 
 		}
 
 	}
-	
-	public static void listImpactedPersons(Model model) {
-		String personId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#friend9";
-			//System.out.println(person.toString());
-		System.out.println("listImpactedPersons");
-			ResultSet rs = runQuery("select ?earthquake ?lat ?lon ?mag ?time "
-						+ "where { <"+personId+">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag. "
-								+ "?earthquake sc:atLatitude ?lat. ?earthquake sc:atLongitude ?lon ."
-								+ "?earthquake sc:hasTime ?time } ",
-						model);	
-			while(rs.hasNext()){
-				QuerySolution soln = rs.nextSolution();
-				RDFNode earthquake = soln.get("?earthquake");
-				System.out.println("listImpactedPersons");
-				if(earthquake != null){
-					if(soln.get("?mag") != null) 
-						System.out.println("earthquake"+soln.getLiteral("?mag").getString());
-					System.out.println(soln.getLiteral("?lat").getFloat());
-					System.out.println(soln.getLiteral("?lon").getFloat());
-					//System.out.println(soln.getLiteral("?lon").getFloat());
-					System.out.println(soln.getLiteral("?time"));
-					
-				}
-				
-				
-				
-				
-			}
-			
-			
-					
-			
 
+	public static void listImpactedByEarthquakes(Model model) {
+		String personId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#friend9";
+		System.out.println(personId + " has been impactedBy ");
+		ResultSet rs = runQuery(
+				"select ?earthquake ?lat ?lon ?mag ?time "
+						+ "where { <"
+						+ personId
+						+ ">  sc:isImpactedBy ?earthquake. ?earthquake sc:hasMagnitude ?mag. "
+						+ "?earthquake sc:atLatitude ?lat. ?earthquake sc:atLongitude ?lon ."
+						+ "?earthquake sc:hasTime ?time } ", model);
+		while (rs.hasNext()) {
+			QuerySolution soln = rs.nextSolution();
+			RDFNode earthquake = soln.get("?earthquake");
+			if (earthquake != null) {
+				System.out.print(earthquake.toString());
+				System.out.println(" of magnitude "
+						+ soln.getLiteral("?mag").getString());
+				System.out.print("at " + soln.getLiteral("?lat").getFloat());
+				System.out.println(" " + soln.getLiteral("?lon").getFloat());
+				System.out
+						.println("on " + soln.getLiteral("?time").getString());
+			}
+		}
+	}
+
+	public static void listPersonsImpacted(Model model) {
+		String earthquakeId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake8";
+		System.out.println(earthquakeId + " has impacted ");
+		ResultSet rs = runQuery(
+				" select ?person ?name ?location ?region ?lat ?lon "
+						+ " where { ?person sc:isImpactedBy <"
+						+ earthquakeId
+						+ ">. ?person sc:hasName ?name . ?person sc:hasLocation ?location."
+						+ " ?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon. }",
+				model);
+		while (rs.hasNext()) {
+			QuerySolution soln = rs.nextSolution();
+			RDFNode person = soln.get("?person");
+			if (person != null) {
+				System.out.println(soln.getLiteral("?name").getString());
+				System.out.println(soln.getLiteral("?location").getString());
+				System.out.print("at " + soln.getLiteral("?lat").getFloat());
+				System.out.println(" " + soln.getLiteral("?lon").getFloat());
+			}
+		}
 	}
 
 	public static void listRegions(Model model) {
