@@ -2,7 +2,7 @@ Ext.define('SafetyCheck.store.PersonStore', {
 	extend : 'Ext.data.Store',
 	model : 'SafetyCheck.model.PersonModel',
 	storeId : 'personStore',
-	autoLoad : true,
+	autoLoad : false,
 	//autoSync: true,
 	proxy : {
 		//type : 'memory',
@@ -13,7 +13,7 @@ Ext.define('SafetyCheck.store.PersonStore', {
 			messageProperty: 'msg'
 		},
 		type: 'rest',
-		url: 'api/persons',
+		//url: 'api/persons',
 		pageParam : false, //to remove param "page"
 		startParam : false, //to remove param "start"
 		limitParam : false, //to remove param "limit"

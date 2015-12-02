@@ -2,7 +2,7 @@ Ext.define('SafetyCheck.store.EarthquakeStore', {
 	extend : 'Ext.data.Store',
 	model : 'SafetyCheck.model.EarthquakeModel',
 	storeId : 'earthquakeStore',
-	autoLoad : true,
+	autoLoad : false,
 	//autoSync: true,
 	proxy : {
 		//type : 'memory',
@@ -13,7 +13,7 @@ Ext.define('SafetyCheck.store.EarthquakeStore', {
 			messageProperty: 'msg'
 		},
 		type: 'rest',
-		url: 'api/earthquakes',
+		//url: 'api/earthquakes',
 		pageParam : false, //to remove param "page"
 		startParam : false, //to remove param "start"
 		limitParam : false, //to remove param "limit"

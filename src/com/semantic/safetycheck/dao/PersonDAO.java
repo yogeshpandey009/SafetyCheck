@@ -39,7 +39,7 @@ public class PersonDAO {
 					longitude = soln.getLiteral("?lon").getFloat();
 					
 				
-				persons.add(new Person(person.toString(),name, location, latitude,
+				persons.add(new Person(person.toString(), name, location, latitude,
 						longitude));
 			}
 

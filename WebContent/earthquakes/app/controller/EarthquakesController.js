@@ -19,7 +19,8 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 	} ],
 
 	init : function() {
-		this.getEarthquakeStoreStore().getProxy().on('exception',
+		var earthquakeStore = this.getEarthquakeStoreStore();
+		earthquakeStore.getProxy().on('exception',
 				this.onException, this);
 		this.listen({
 			store : {
@@ -49,10 +50,18 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 				'earthquakesview #search' : {
 					change : this.filterEarthquakes
 				},
-				'earthquakesview grid actioncolumn' : {
-					itemclick : this.handleActionColumn
-				}
+                'earthquakesview grid': {
+                    itemdblclick: this.onDoubleClick
+                }
 			}
+		});
+		var earthquakesUrl = "api/earthquakes";
+		var queryParam = location.search.substr(1);
+		if(queryParam != '') {
+			earthquakesUrl = earthquakesUrl + "?" + queryParam;
+		}
+		earthquakeStore.load({
+			url: earthquakesUrl
 		});
 	},
 	onReset : function() {
@@ -103,14 +112,6 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 			}
 		});  
 	},
-	handleActionColumn : function(column, action, gridView, rowIndex, colIndex,
-			item, e) {
-		if (action == 'edit') {
-			this.editEarthquake(gridView, rowIndex, colIndex, item, e)
-		} else if (action == 'delete') {
-			this.removeEarthquake(gridView, rowIndex, colIndex, item, e)
-		}
-	},
 	editEarthquake : function(gridView, rowIndex, colIndex, item, e) {
 		var selection = gridView.getStore().getAt(rowIndex);
 		this.getEarthquakeForm().setActiveRecord(selection || null);
@@ -122,27 +123,15 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		}
 	},
 	filterEarthquakes : function(txtfld, searchValue) {
-		var onlineStore = this.getEarthquakeStoreStore();
-
-		var requestParam = {
-			q : searchValue
-		};
-		onlineStore.load({
-			params : requestParam,
-			scope : this,
-			callback : function(records, operation, success) {
-				if (success) {
-					//Ext.Msg.alert('Notice', 'You are in online mode', Ext.emptyFn);
-					var reg = new RegExp(searchValue, "i");
-					onlineStore.filterBy(function(record, id) {
-						return (reg.test(record.get("id"))
-								|| reg.test(record.get("time"))
-								|| reg.test(record.get("coordinates")) || reg
-								.test(record.get("magnitude")));
-					}, this);
-				}
-			}
-		});
+		var earthquakeStore = this.getEarthquakeStoreStore();
+		var reg = new RegExp(searchValue, "i");
+		earthquakeStore.filterBy(function(record, id) {
+			return (reg.test(record.get("id"))
+					|| reg.test(record.get("time"))
+					|| reg.test(record.get("coordinates")) || reg
+					.test(record.get("magnitude")));
+		}, this);
+	
 	},
 	//        If app is offline a Proxy exception will be thrown. If that happens then use
 	//        the fallback / local stoage store instead
@@ -163,7 +152,11 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		});
 	},
 	clearFilter : function(btn) {
-		var view = this.EarthquakesviewView();
 		btn.previousSibling('#search').setValue('');
-	}
+	},
+    onDoubleClick: function(grid, record) {
+    	var id = record.get('id');
+    	var url = 'persons.html?earthquake=' + id.split('#')[1];
+    	window.location = url;
+    }
 });

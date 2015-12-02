@@ -19,7 +19,8 @@ Ext.define('SafetyCheck.controller.PersonsController', {
     }],
     
     init: function() {
-        this.getPersonStoreStore().getProxy().on('exception', this.onException, this);
+    	var personStore = this.getPersonStoreStore();
+    	personStore.getProxy().on('exception', this.onException, this);
         this.listen({
             store: {
 //                '#ContactsOffline': {
@@ -45,11 +46,19 @@ Ext.define('SafetyCheck.controller.PersonsController', {
                 'personsview #search': {
                     change: this.filterPersons
                 },
-                'personsview grid actioncolumn': {
-                    itemclick: this.handleActionColumn
+                'personsview grid': {
+                    itemdblclick: this.onDoubleClick
                 }
             }
         });
+		var personsUrl = "api/persons";
+		var queryParam = location.search.substr(1);
+		if(queryParam != '') {
+			personsUrl = personsUrl + "?" + queryParam;
+		}
+		personStore.load({
+			url: personsUrl
+		});
     },
     removePerson: function(gridView, rowIndex, colIndex, item, e) {
         var selection = gridView.getStore().getAt(rowIndex);
@@ -58,24 +67,13 @@ Ext.define('SafetyCheck.controller.PersonsController', {
         }
     },
     filterPersons: function(txtfld, searchValue) {
-        var onlineStore = this.getPersonStoreStore();
-
-        var requestParam = {
-            q: searchValue
-        };
-        onlineStore.load({
-            params: requestParam,
-            scope: this,
-            callback: function(records, operation, success) {
-                if (success) {
-                    //Ext.Msg.alert('Notice', 'You are in online mode', Ext.emptyFn);
-                	var reg = new RegExp(searchValue, "i");
-                	onlineStore.filterBy(function(record, id) {
-                    	return (reg.test(record.get("id")) || reg.test(record.get("time")) || reg.test(record.get("coordinates")) || reg.test(record.get("magnitude")));
-                    }, this);
-                }
-            }
-        });
+        var personStore = this.getPersonStoreStore();
+        //Ext.Msg.alert('Notice', 'You are in online mode', Ext.emptyFn);
+    	var reg = new RegExp(searchValue, "i");
+    	personStore.filterBy(function(record, id) {
+        	return (reg.test(record.get("id")) || reg.test(record.get("time")) || reg.test(record.get("coordinates")) || reg.test(record.get("magnitude")));
+        }, this);
+    
     },
     //        If app is offline a Proxy exception will be thrown. If that happens then use
     //        the fallback / local stoage store instead
@@ -91,7 +89,11 @@ Ext.define('SafetyCheck.controller.PersonsController', {
     	this.getOnlineSyncMsg().setFieldStyle({"color": "blue"});
     },
     clearFilter: function(btn) {
-    	var view = this.PersonsviewView();
     	btn.previousSibling('#search').setValue('');
+    },
+    onDoubleClick: function(grid, record) {
+    	var id = record.get('id');
+    	var url = 'earthquakes.html?person=' + id.split('#')[1];
+    	window.location = url;
     }
 });
