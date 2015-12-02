@@ -1,4 +1,4 @@
-package com.semantic.safetycheck.pojo;
+ package com.semantic.safetycheck.pojo;
 
 public class Person {
 

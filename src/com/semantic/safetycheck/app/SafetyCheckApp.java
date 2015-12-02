@@ -27,6 +27,7 @@ public class SafetyCheckApp {
 
 	public static void main(String... args) {
 		Model data = populateData();
+
 		// listEarthquakes(data);
 		listPersons(data);
 		// listRegions(data);
@@ -38,6 +39,7 @@ public class SafetyCheckApp {
 		listPersonsImpacted(inf_data);
 		// listEarthquakes(inf_data);
 		// listAll(inf_data);
+
 	}
 
 	public static void registerCustomBuiltins() {
@@ -102,6 +104,16 @@ public class SafetyCheckApp {
 	}
 
 	public static void listEarthquakes(Model model) {
+		String eid = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake8";
+		System.out.println("listEarthquakes");
+		/*ResultSet rs = runQuery(
+				" select ?person ?name ?location ?latitude ?longitude where { "
+				+ " <"+eid+"> sc:impacts ?person. "
+				+ " ?person sc:hasName ?name."
+				+ " ?person sc:hasLocation ?location."
+				+ " ?person sc:hasLatitude ?latitude."
+				+ " ?person sc:hasLongitude ?longitude }",
+				model); */
 		ResultSet rs = runQuery(
 				" select ?person ?name ?location ?latitude ?longitude  "
 						+ "where { ?earthquake rdf:type sc:Earthquake."
@@ -111,11 +123,13 @@ public class SafetyCheckApp {
 																					// the
 																					// query
 																					// string
+
 		while (rs.hasNext()) {
+			//System.out.println("listEarthquakes3");
 			QuerySolution soln = rs.nextSolution();
 			RDFNode person = soln.get("?person");
 			if (person != null) {
-				System.out.println("person found");
+				System.out.println(soln.getLiteral("?name").getString());
 			} else
 				System.out.println("Not found!");
 
@@ -158,6 +172,7 @@ public class SafetyCheckApp {
 
 	public static void listImpactedByEarthquakes(Model model) {
 		String personId = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#friend9";
+
 		System.out.println(personId + " has been impactedBy ");
 		ResultSet rs = runQuery(
 				"select ?earthquake ?lat ?lon ?mag ?time "
@@ -177,6 +192,7 @@ public class SafetyCheckApp {
 				System.out.println(" " + soln.getLiteral("?lon").getFloat());
 				System.out
 						.println("on " + soln.getLiteral("?time").getString());
+
 			}
 		}
 	}

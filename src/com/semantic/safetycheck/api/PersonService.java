@@ -1,60 +1,50 @@
 package com.semantic.safetycheck.api;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import org.apache.commons.lang3.StringUtils;
 
 import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.dao.PersonDAO;
 import com.semantic.safetycheck.pojo.Person;
 
-@Path("/persons")
-public class PersonService {
+@Path("/")
+public class PersonService extends SCService {
 	
-	private ObjectMapper mapper = new ObjectMapper();
-	private PersonDAO dao = new PersonDAO();
+		private PersonDAO dao = new PersonDAO();
 
 	@GET
+	@Path("/persons")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response person() {
-		
-		List<Person> person = dao.getAllPersons(SafetyCheckServlet.inf_data);
-		
-		String personData = "[]";
-		try {
-			personData = mapper.writeValueAsString(person);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public Response person(@Context UriInfo info) {
+		List<Person> person = null;
+		Boolean success = Boolean.TRUE;
+		String msg = "";
+		String earthquakeId = info.getQueryParameters().getFirst("earthquake");
+		try{
+			if( null != earthquakeId && StringUtils.isNoneEmpty(earthquakeId)){
+				person = dao.getPersonImpacted(SafetyCheckServlet.inf_data, SafetyCheckServlet.defaultNameSpace + earthquakeId);
+				
+			}
+			else{
+				 person = dao.getAllPersons(SafetyCheckServlet.inf_data);
+			}
 		}
-		
-		// return HTTP response 200 in case of success
-		return Response.status(200).entity(personData).build();
-	}
-	/*
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response personsImpacted() {
-		
-		List<Person> person = dao.getPersonImpacted(SafetyCheckServlet.inf_data);
-		
-		String personData = "[]";
-		try {
-			personData = mapper.writeValueAsString(person);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	   catch (Exception e) {
+		    success = Boolean.FALSE;
+			msg = e.getMessage();
 		}
-		
-		// return HTTP response 200 in case of success
-		return Response.status(200).entity(personData).build();
+		String response = getResponse(success, person, msg);
+		return Response.status(200).entity(response).build();
 	}
-	*/
+	
+	
 }

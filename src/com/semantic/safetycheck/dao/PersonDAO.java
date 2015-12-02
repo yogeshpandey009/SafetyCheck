@@ -8,6 +8,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.semantic.safetycheck.app.SafetyCheckHelper;
+import com.semantic.safetycheck.pojo.Earthquake;
 import com.semantic.safetycheck.pojo.Person;
 
 public class PersonDAO {
@@ -47,10 +48,28 @@ public class PersonDAO {
 		return persons;
 	}
 	
-public List<Person> getPersonImpacted(Model data) {
+	public List<Person> getPersonImpacted(Model data,String earthquakeId) {
 	
-	return null;
-}
+		List<Person> persons = new ArrayList<Person>();
+		ResultSet rs = SafetyCheckHelper.runQuery(
+				" select ?person ?name ?location ?region ?lat ?lon "
+						+ " where { ?person sc:isImpactedBy <"
+						+ earthquakeId
+						+ ">. ?person sc:hasName ?name . ?person sc:hasLocation ?location."
+						+ " ?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon. }",
+						data);
+		while (rs.hasNext()) {
+			QuerySolution soln = rs.nextSolution();
+			RDFNode person = soln.get("?person");
+			if (person != null) {
+
+				persons.add(new Person(person.toString(), soln.getLiteral("?name").getString(), soln.getLiteral("?location").getString(),
+						soln.getLiteral("?lat").getFloat(), soln.getLiteral("?lon").getFloat() ));
+				}
+		}
+		
+	return persons;
+	}
 
 
 }
