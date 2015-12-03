@@ -23,7 +23,7 @@ public class PersonService extends SCService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response person(@Context UriInfo info) {
+	public Response persons(@Context UriInfo info) {
 		List<Person> person = null;
 		Boolean success = Boolean.TRUE;
 		String msg = "";

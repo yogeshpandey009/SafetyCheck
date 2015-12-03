@@ -1,77 +1,70 @@
-Ext.define('SafetyCheck.controller.PersonsController', {
+Ext.define('SafetyCheck.controller.RegionsController', {
     extend: 'Ext.app.Controller',
 
-    stores: ['PersonStore'],
+    stores: ['RegionStore'],
 
-    models: ['PersonModel'],
+    models: ['RegionModel'],
 
-    views: ['PersonsView'],
+    views: ['RegionsView'],
     
     refs: [{
-        selector: 'personsview grid',
-        ref: 'personsGrid'
+        selector: 'regionsview grid',
+        ref: 'regionsGrid'
     }, {
-        selector: 'personsview form',
-        ref: 'personForm'
+        selector: 'regionsview form',
+        ref: 'regionForm'
     }, {
-        selector: 'personsview #onlineSyncMsg',
+        selector: 'regionsview #onlineSyncMsg',
         ref: 'onlineSyncMsg'
     }],
     
     init: function() {
-    	var personStore = this.getPersonStoreStore();
-    	personStore.getProxy().on('exception', this.onException, this);
+    	var regionStore = this.getRegionStoreStore();
+    	regionStore.getProxy().on('exception', this.onException, this);
         this.listen({
             store: {
 //                '#ContactsOffline': {
 //                    refresh: this.onDataChange
 //                },
-                '#PersonStore': {
+                '#RegionStore': {
                     beforesync: this.showSyncingMsg
                 }
             },
             component: {
-                'personsview button[itemId=reset]': {
+                'regionsview button[itemId=reset]': {
                     click: this.onReset
                 },
-                'personsview button[itemId=create]': {
-                    click: this.addPerson
+                'regionsview button[itemId=create]': {
+                    click: this.addRegion
                 },
-                'personsview button[itemId=update]': {
+                'regionsview button[itemId=update]': {
                     click: this.saveContact
                 },
-                'personsview button[itemId=clear]': {
+                'regionsview button[itemId=clear]': {
                     click: this.clearFilter
                 },
-                'personsview #search': {
-                    change: this.filterPersons
-                },
-                'personsview grid': {
-                    itemdblclick: this.onDoubleClick
+                'regionsview #search': {
+                    change: this.filterRegions
                 }
             }
         });
-		var personsUrl = "api/persons";
-		var queryParam = location.search.substr(1);
-		if(queryParam != '') {
-			personsUrl = personsUrl + "?" + queryParam;
-		}
-		personStore.load({
-			url: personsUrl
+		var regionsUrl = "api/regions";
+		regionStore.load({
+			url: regionsUrl
 		});
     },
-    removePerson: function(gridView, rowIndex, colIndex, item, e) {
+    removeRegion: function(gridView, rowIndex, colIndex, item, e) {
         var selection = gridView.getStore().getAt(rowIndex);
         if (selection) {
             gridView.getStore().remove(selection);
         }
     },
-    filterPersons: function(txtfld, searchValue) {
-        var personStore = this.getPersonStoreStore();
+    filterRegions: function(txtfld, searchValue) {
+        var regionStore = this.getRegionStoreStore();
         //Ext.Msg.alert('Notice', 'You are in online mode', Ext.emptyFn);
     	var reg = new RegExp(searchValue, "i");
-    	personStore.filterBy(function(record, id) {
-        	return (reg.test(record.get("id")) || reg.test(record.get("name")) || reg.test(record.get("coordinates")) || reg.test(record.get("location")));
+    	regionStore.filterBy(function(record, id) {
+        	return (reg.test(record.get("id")) || reg.test(record.get("name")) || reg.test(record.get("coordinates")));
         }, this);
     
     },
@@ -90,10 +83,5 @@ Ext.define('SafetyCheck.controller.PersonsController', {
     },
     clearFilter: function(btn) {
     	btn.previousSibling('#search').setValue('');
-    },
-    onDoubleClick: function(grid, record) {
-    	var id = record.get('id');
-    	var url = 'earthquakes.html?person=' + id.split('#')[1];
-    	window.location = url;
     }
 });
