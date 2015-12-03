@@ -4,9 +4,10 @@ Ext.define('SafetyCheck.view.RegionsView', {
     requires: [
                'SafetyCheck.view.RegionGrid'
     ],
-    title: 'safetycheck',
-    frame: true,
-    bodyPadding: 5,
+    // title: 'safetycheck',
+    // frame: true,
+    padding: '50 50 0 50',
+    bodyPadding: 20,
     fieldDefaults: {
         labelAlign: 'left'
     },
@@ -15,7 +16,6 @@ Ext.define('SafetyCheck.view.RegionsView', {
         align: 'stretch'
     },
     autoScroll: true,
-    padding: '5 0 0',
     border: 0,
     items: [{
         xtype: 'fieldcontainer',
