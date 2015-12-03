@@ -15,7 +15,11 @@ public class Earthquake {
 	public Earthquake(String id, Float magnitude, String time,
 			Float latitude, Float longitude) {
 		super();
-		this.id = id;
+		if (id.indexOf("#") == -1){
+			this.id = id;
+		} else {
+			this.id = id.substring(id.indexOf("#"));
+		}
 		this.magnitude = magnitude;
 		this.time = time;
 		this.latitude = latitude;

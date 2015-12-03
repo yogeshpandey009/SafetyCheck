@@ -24,7 +24,7 @@ import com.semantic.safetycheck.builtin.MatchLiteral;
 public class SafetyCheckServlet extends HttpServlet {
 
 	public static final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
-	ServletContext context = null;
+	static ServletContext context = null;
 	static public Model data = null;
 	static public InfModel inf_data = null;
 
@@ -98,7 +98,7 @@ public class SafetyCheckServlet extends HttpServlet {
 	}
 
 
-	public InfModel addJenaRules(Model model) {
+	public static InfModel addJenaRules(Model model) {
 
 		Reasoner reasoner = new GenericRuleReasoner(
 				Rule.rulesFromURL(context.getRealPath("/WEB-INF/classes/rules.txt")));
@@ -129,6 +129,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		
 		SafetyCheckServlet.data.read(is, SafetyCheckServlet.defaultNameSpace);
+		inf_data = addJenaRules(data);
 	}
 
 }

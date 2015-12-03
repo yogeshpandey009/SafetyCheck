@@ -28,6 +28,7 @@ public class EarthquakeService extends SCService {
 
 	private EarthquakeDAO dao = new EarthquakeDAO();
 	private ObjectMapper mapper = new ObjectMapper();
+	private static int i = 0;
 
 	@GET
 	@Path("/earthquakes")
@@ -68,7 +69,7 @@ public class EarthquakeService extends SCService {
 			// Earthquake.class);
 			// Earthquake earthquakeObj = new Earthquake(3.0f,
 			// "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
-			earthquakeObj.setId("100000");
+			earthquakeObj.setId(100000 + i++ + "");
 			String eq = RDFGenerator.singleEarthquakeRDF(earthquakeObj);
 			SafetyCheckServlet.addEarthquakeInstance(eq);
 
