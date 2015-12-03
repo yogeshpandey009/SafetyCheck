@@ -19,7 +19,7 @@ import com.semantic.safetycheck.pojo.Person;
 @Path("/persons")
 public class PersonService extends SCService {
 	
-		private PersonDAO dao = new PersonDAO();
+	private PersonDAO dao = new PersonDAO();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -30,7 +30,7 @@ public class PersonService extends SCService {
 		String earthquakeId = info.getQueryParameters().getFirst("earthquake");
 		try{
 			if( null != earthquakeId && StringUtils.isNoneEmpty(earthquakeId)){
-				person = dao.getPersonImpacted(SafetyCheckServlet.inf_data, SafetyCheckServlet.defaultNameSpace + earthquakeId);
+				person = dao.getPersonsImpacted(SafetyCheckServlet.inf_data, SafetyCheckServlet.defaultNameSpace + earthquakeId);
 				
 			}
 			else{

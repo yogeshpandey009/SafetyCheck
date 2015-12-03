@@ -8,7 +8,6 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.semantic.safetycheck.app.SafetyCheckHelper;
-import com.semantic.safetycheck.pojo.Earthquake;
 import com.semantic.safetycheck.pojo.Person;
 
 public class PersonDAO {
@@ -48,7 +47,7 @@ public class PersonDAO {
 		return persons;
 	}
 	
-	public List<Person> getPersonImpacted(Model data,String earthquakeId) {
+	public List<Person> getPersonsImpacted(Model data,String earthquakeId) {
 	
 		List<Person> persons = new ArrayList<Person>();
 		ResultSet rs = SafetyCheckHelper.runQuery(

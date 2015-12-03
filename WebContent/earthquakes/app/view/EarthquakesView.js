@@ -47,13 +47,13 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         	xtype: 'numberfield',
         	fieldLabel: 'Latitude',
             name: 'latitude',
-            value: 20,
+            value: 33,
             allowBlank: false
         }, {
         	xtype: 'numberfield',
         	fieldLabel: 'Longitude',
             name: 'longitude',
-            value: 13,
+            value: -112,
             allowBlank: false
         }],
         dockedItems: [{

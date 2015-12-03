@@ -3940,9 +3940,9 @@
 
 	<rdf:Description rdf:about="&sc;Region562">
 	    <rdf:type rdf:resource="&sc;Region"/>
-		<sc:hasLocationName rdf:datatype="&xsd;string">Santa Cruz de Tenerife</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">28.28</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">-16.15</sc:hasLongitude>
+		<sc:hasLocationName rdf:datatype="&xsd;string">Gurgaon, Haryana</sc:hasLocationName>
+		<sc:hasLatitude rdf:datatype="&xsd;float">28.37</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">77.13</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region563">
@@ -3954,9 +3954,9 @@
 
 	<rdf:Description rdf:about="&sc;Region564">
 	    <rdf:type rdf:resource="&sc;Region"/>
-		<sc:hasLocationName rdf:datatype="&xsd;string">Las Palmas de Gran Canaria</sc:hasLocationName>
-		<sc:hasLatitude rdf:datatype="&xsd;float">28.09</sc:hasLatitude>
-		<sc:hasLongitude rdf:datatype="&xsd;float">-15.25</sc:hasLongitude>
+		<sc:hasLocationName rdf:datatype="&xsd;string">Noida, India</sc:hasLocationName>
+		<sc:hasLatitude rdf:datatype="&xsd;float">28.37</sc:hasLatitude>
+		<sc:hasLongitude rdf:datatype="&xsd;float">77.13</sc:hasLongitude>
 	</rdf:Description>
 
 	<rdf:Description rdf:about="&sc;Region565">
