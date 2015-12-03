@@ -4,9 +4,10 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
     requires: [
                'SafetyCheck.view.EarthquakeGrid'
     ],
-    title: 'safetycheck',
-    frame: true,
-    bodyPadding: 5,
+    //title: 'safetycheck',
+    //frame: true,
+    padding: '50 50 0 50',
+    bodyPadding: 20,
     fieldDefaults: {
         labelAlign: 'left'
     },
@@ -15,11 +16,10 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         align: 'stretch'
     },
     autoScroll: true,
-    padding: '5 0 0',
     border: 0,
     items: [{
         xtype: 'form',
-    	activeRecord: null,
+        activeRecord: null,
         hidden: true,
         frame: true,
         defaultType: 'textfield',
