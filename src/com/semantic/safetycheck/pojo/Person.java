@@ -14,7 +14,11 @@ public class Person {
 	
 	public Person(String id,String name,String location,Float latitude,Float longitude){
 		super();
-		this.id = id;
+		if (id.indexOf("#") == -1){
+			this.id = id;
+		} else {
+			this.id = id.substring(id.indexOf("#"));
+		}
 		this.name = name;
 		this.location = location;
 		this.latitude = latitude;

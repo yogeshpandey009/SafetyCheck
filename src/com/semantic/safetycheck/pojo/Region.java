@@ -9,7 +9,11 @@ public class Region {
 
 	public Region(String id, String name, Float latitude, Float longitude) {
 		super();
-		this.id = id;
+		if (id.indexOf("#") == -1){
+			this.id = id;
+		} else {
+			this.id = id.substring(id.indexOf("#"));
+		}
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
