@@ -16,13 +16,12 @@ import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.dao.PersonDAO;
 import com.semantic.safetycheck.pojo.Person;
 
-@Path("/")
+@Path("/persons")
 public class PersonService extends SCService {
 	
 		private PersonDAO dao = new PersonDAO();
 
 	@GET
-	@Path("/persons")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response person(@Context UriInfo info) {
 		List<Person> person = null;
