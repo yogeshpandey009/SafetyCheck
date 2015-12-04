@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Earthquake {
 
+	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	private String id;
 	private Float magnitude;
 	private Date time;
@@ -41,7 +42,6 @@ public class Earthquake {
 	
 	private Date parseTime(String time) {
 		// 2015-11-12T00:22:32.520Z
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		Date date = null;
 		try {
 			date = formatter.parse(time);
@@ -64,6 +64,9 @@ public class Earthquake {
 	}
 	public void setMagnitude(Float magnitude) {
 		this.magnitude = magnitude;
+	}
+	public String getTimeAsFormat() {
+		return formatter.format(time);
 	}
 	public Date getTime() {
 		return time;

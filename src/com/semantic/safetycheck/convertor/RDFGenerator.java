@@ -95,7 +95,7 @@ public class RDFGenerator {
 		} else {
 			rdf.append("		<rdf:type rdf:resource=\"&sc;WeakEarthquake\"/>\n");
 		}
-		rdf.append("		<sc:hasTime rdf:datatype=\"&xsd;string\">" + eq.getTime()  + "</sc:hasTime>\n");
+		rdf.append("		<sc:hasTime rdf:datatype=\"&xsd;string\">" + eq.getTimeAsFormat()  + "</sc:hasTime>\n");
 		rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
 		rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLatitude()+"")) + "</sc:atLatitude>\n");
 		rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLongitude()+"")) + "</sc:atLongitude>\n");
