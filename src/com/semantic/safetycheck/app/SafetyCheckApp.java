@@ -104,7 +104,6 @@ public class SafetyCheckApp {
 	}
 
 	public static void listEarthquakes(Model model) {
-		String eid = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake8";
 		System.out.println("listEarthquakes");
 		/*ResultSet rs = runQuery(
 				" select ?person ?name ?location ?latitude ?longitude where { "
