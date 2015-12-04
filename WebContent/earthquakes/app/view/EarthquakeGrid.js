@@ -28,6 +28,7 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
     }, {
         text: 'Time',
         dataIndex: 'time',
+        renderer: Ext.util.Format.dateRenderer('g:i A m/d/Y'),
         flex: 1
     }]
 });

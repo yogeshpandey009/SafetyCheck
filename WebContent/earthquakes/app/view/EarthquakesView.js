@@ -37,13 +37,14 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             name: 'magnitude',
             value: 3,
             allowBlank: false
-        }, {
-        	// xtype: 'timefield',
+        }, /* {
+        	//xtype: 'timefield',
             fieldLabel: 'Time',
             name: 'time',
+            //value: new Date().getTime(),
             value: '2015-11-12T00:22:32.520Z',
             allowBlank: false
-        }, {
+        },*/ {
         	xtype: 'numberfield',
         	fieldLabel: 'Latitude',
             name: 'latitude',

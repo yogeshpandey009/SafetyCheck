@@ -39,7 +39,7 @@ public class Earthquake {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
+
 	private Date parseTime(String time) {
 		// 2015-11-12T00:22:32.520Z
 		Date date = null;
@@ -72,7 +72,8 @@ public class Earthquake {
 		return time;
 	}
 	public void setTime(String time) {
-		this.time = parseTime(time);
+		this.time = new Date(Long.parseLong(time));
+		//this.time = parseTime(time);
 	}
 	public Float getLatitude() {
 		return latitude;

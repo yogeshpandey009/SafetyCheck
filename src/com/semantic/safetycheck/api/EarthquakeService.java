@@ -47,6 +47,7 @@ public class EarthquakeService extends SCService {
 		} catch (Exception e) {
 			success = Boolean.FALSE;
 			msg = e.getMessage();
+			e.printStackTrace();
 		}
 		String response = getResponse(success, earthquakes, msg);
 

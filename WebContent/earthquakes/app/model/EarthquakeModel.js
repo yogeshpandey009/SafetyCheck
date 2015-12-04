@@ -9,7 +9,8 @@ Ext.define('SafetyCheck.model.EarthquakeModel', {
 		type : 'number'
 	}, {
 		name : 'time',
-		type : 'string'
+		type : 'date',
+		dateFormat: 'time'
 	}, {
 		name : 'latitude',
 		type : 'number'

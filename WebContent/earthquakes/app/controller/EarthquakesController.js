@@ -81,17 +81,6 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 			//form.reset();
 		}
 	},
-	saveContact : function() {
-		var active = this.getEarthquakeForm().activeRecord, form = this
-				.getEarthquakeForm().getForm();
-		if (!active) {
-			return;
-		}
-		if (form.isValid()) {
-			form.updateRecord(active);
-			this.onReset();
-		}
-	},
 	create : function(form) {
 		//this.getEarthquakesGrid().getStore().insert(0, data);
 		/*Ext.Ajax.request({
@@ -110,7 +99,10 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		var me = this;
 		form.submit({ 
 		    url: 'api/earthquake', 
-		    method: 'POST', 
+		    method: 'POST',
+		    params: {
+                time: new Date().getTime()
+            },
 		    success: function(form, action) { 
 		        Ext.Msg.alert('Success', action.result.msg);
 		        me.loadEarthquakes(me.earthquakesUrl);
