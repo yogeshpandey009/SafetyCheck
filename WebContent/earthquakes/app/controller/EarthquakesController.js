@@ -18,6 +18,8 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		ref : 'onlineSyncMsg'
 	} ],
 
+	earthquakesUrl: 'api/earthquakes',
+
 	init : function() {
 		var earthquakeStore = this.getEarthquakeStoreStore();
 		earthquakeStore.getProxy().on('exception',
@@ -55,11 +57,15 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
                 }
 			}
 		});
-		var earthquakesUrl = "api/earthquakes";
 		var queryParam = location.search.substr(1);
+		var earthquakesUrl = this.earthquakesUrl;
 		if(queryParam != '') {
 			earthquakesUrl = earthquakesUrl + "?" + queryParam;
 		}
+		this.loadEarthquakes(earthquakesUrl);
+	},
+	loadEarthquakes: function(earthquakesUrl) {
+		var earthquakeStore = this.getEarthquakeStoreStore();
 		earthquakeStore.load({
 			url: earthquakesUrl
 		});
@@ -101,11 +107,13 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 				alert("Error: " - response.responseText);
 			}
 		});*/
+		var me = this;
 		form.submit({ 
 		    url: 'api/earthquake', 
 		    method: 'POST', 
 		    success: function(form, action) { 
-		        Ext.Msg.alert('Success', action.result.msg); 
+		        Ext.Msg.alert('Success', action.result.msg);
+		        me.loadEarthquakes(me.earthquakesUrl);
 		    },
 			fsuccess: function(form, action) {
 				Ext.Msg.alert('Error', action.result.msg);
