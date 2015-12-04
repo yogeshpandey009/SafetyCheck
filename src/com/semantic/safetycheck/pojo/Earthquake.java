@@ -1,10 +1,14 @@
 package com.semantic.safetycheck.pojo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Earthquake {
 
 	private String id;
 	private Float magnitude;
-	private String time;
+	private Date time;
 	private Float latitude;
 	private Float longitude;
 	
@@ -21,7 +25,7 @@ public class Earthquake {
 			this.id = id.substring(id.indexOf("#"));
 		}
 		this.magnitude = magnitude;
-		this.time = time;
+		this.time = parseTime(time);
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
@@ -30,9 +34,23 @@ public class Earthquake {
 			Float latitude, Float longitude) {
 		super();
 		this.magnitude = magnitude;
-		this.time = time;
+		this.time = parseTime(time);
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+	
+	private Date parseTime(String time) {
+		// 2015-11-12T00:22:32.520Z
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		Date date = null;
+		try {
+			date = formatter.parse(time);
+			// System.out.println(date.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date;
 	}
 	
 	public String getId() {
@@ -47,11 +65,11 @@ public class Earthquake {
 	public void setMagnitude(Float magnitude) {
 		this.magnitude = magnitude;
 	}
-	public String getTime() {
+	public Date getTime() {
 		return time;
 	}
 	public void setTime(String time) {
-		this.time = time;
+		this.time = parseTime(time);
 	}
 	public Float getLatitude() {
 		return latitude;
@@ -64,6 +82,10 @@ public class Earthquake {
 	}
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
+	}
+	
+	public static void main(String[] args) {
+		new Earthquake().parseTime("2015-11-12T00:22:32.520Z");
 	}
 	
 }
