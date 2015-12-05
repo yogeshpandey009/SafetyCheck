@@ -39,6 +39,9 @@ Ext.define('SafetyCheck.view.PersonsView', {
     }, {
         xtype: 'splitter'
     }, {
+    	xtype: 'box',
+    	html: 'Double click a person to show impactedBy which earthquakes'
+    }, {
         xtype: 'splitter'
     }, {
         xtype: 'persongrid',
