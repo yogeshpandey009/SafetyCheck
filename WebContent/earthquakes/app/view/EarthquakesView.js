@@ -6,7 +6,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
     ],
     //title: 'safetycheck',
     //frame: true,
-    padding: '50 50 0 50',
+    padding: '50 10% 0 10%',
     bodyPadding: 20,
     fieldDefaults: {
         labelAlign: 'left'
