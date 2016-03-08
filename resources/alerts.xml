@@ -1,0 +1,19 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dOnt="http://www.weather.gov/ontology#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+  <rdf:Description rdf:about="#1513608173">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NOAA-NWS-ALERTS-GA1255EFF22158.FloodWarning.1255F0016398GA.CHSFLSCHS.9195a1863fcdffdf188a3b443aabeea0</dOnt:Identifier>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <dOnt:Note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert for Effingham; Screven (Georgia) Issued by the National Weather Service</dOnt:Note>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w-nws.webmaster@noaa.gov</dOnt:Sender>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="ontology#Alert">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>
