@@ -121,5 +121,10 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.2.5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-pubsub</artifactId>
+			<version>v1-rev8-1.21.0</version>
+		</dependency>
 	</dependencies>
 </project>
