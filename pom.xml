@@ -37,17 +37,30 @@
 				<version>1.6</version>
 				<executions>
 					<execution>
-						<id>xjc</id>
+						<id>schema-v1-generate</id>
 						<goals>
 							<goal>xjc</goal>
 						</goals>
+						<configuration>
+							<!-- Set the package of the generated code -->
+							<packageName>com.semantic.safetycheck.model.v1</packageName>
+							<schemaDirectory>${basedir}/resources/schema/v1</schemaDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+					</execution>
+					<execution>
+						<id>schema-v2-generate</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<!-- Set the package of the generated code -->
+							<packageName>com.semantic.safetycheck.model.v2</packageName>
+							<schemaDirectory>${basedir}/resources/schema/v2</schemaDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<!-- Set the package of the generated code -->
-					<packageName>com.semantic.safetycheck.model</packageName>
-					<schemaDirectory>${basedir}/resources/schema</schemaDirectory> 
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

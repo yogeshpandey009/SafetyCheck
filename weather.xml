@@ -6,8 +6,8 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
   <rdf:Description rdf:about="#1513608173">
     <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NOAA-NWS-ALERTS-GA1255F03C9904.FloodWarning.1255F04BDAE0GA.CHSFLSCHS.9195a1863fcdffdf188a3b443aabeea0</dOnt:Identifier>
-    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w-nws.webmaster@noaa.gov</dOnt:Sender>
     <dOnt:Note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert for Effingham; Screven (Georgia) Issued by the National Weather Service</dOnt:Note>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w-nws.webmaster@noaa.gov</dOnt:Sender>
     <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
     <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
     <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>

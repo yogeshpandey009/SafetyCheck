@@ -1,4 +1,4 @@
-package com.semantic.safetycheck.api;
+package com.semantic.safetycheck.client.weather;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,9 +17,9 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.lang3.StringUtils;
 
 import com.semantic.javaobjectstordf.JavaObjectRdfSerializer;
-import com.semantic.safetycheck.model.Alert;
-import com.semantic.safetycheck.model.Alert.Info;
-import com.semantic.safetycheck.model.Alert.Info.Area;
+import com.semantic.safetycheck.model.v1.Alert;
+import com.semantic.safetycheck.model.v1.Alert.Info;
+import com.semantic.safetycheck.model.v1.Alert.Info.Area;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndLinkImpl;
@@ -28,14 +28,14 @@ import com.sun.syndication.io.XmlReader;
 //import com.google.publicalerts.cap.Alert;
 //import com.google.publicalerts.cap.Info;
 
-public class PubSubClient {
+public class WeatherClient {
 
 	public List<Alert> fetchCapAlerts(String s_url) {
 		List<Alert> alerts = new ArrayList<Alert>();
 
 		try {
 			JAXBContext jaxbContext = JAXBContext
-					.newInstance("com.semantic.safetycheck.model");
+					.newInstance("com.semantic.safetycheck.model.v1");
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			//Marshaller marshaller = jaxbContext.createMarshaller();
 			//marshaller.setProperty("eclipselink.media-type", "application/json");
@@ -96,13 +96,11 @@ public class PubSubClient {
 	}
 
 	public static void main(String[] args) {
-		PubSubClient pc = new PubSubClient();
+		WeatherClient pc = new WeatherClient();
 		FileOutputStream outputStream;
 		try {
-			outputStream = new FileOutputStream("alerts.xml");
-			List<Alert> alerts = pc.fetchCapAlerts("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
-			// URL url = new
-			// URL("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
+			outputStream = new FileOutputStream("weather.xml");
+			List<Alert> alerts = pc.fetchCapAlerts("http://alerts.weather.gov/cap/ga.php?x=0");
 			JavaObjectRdfSerializer serializer = new JavaObjectRdfSerializer(
 					"http://www.weather.gov/weather#",
 					"http://www.weather.gov/ontology#", "RDF/XML",

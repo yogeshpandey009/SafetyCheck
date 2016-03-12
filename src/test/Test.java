@@ -36,7 +36,7 @@ public class Test {
 			
 			   //String hub = "http://myhub.example.com/endpoint";
 			   //String hub_topic = "http://publisher.example.com/topic.xml";
-			   String hub = "https://pubsubhubbub.appspot.com";
+			   String hub = "http://pubsubhubbub.appspot.com";
 			   String hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
 			   
 			   startServer();

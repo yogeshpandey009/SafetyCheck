@@ -1,0 +1,399 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dOnt="http://www.weather.gov/ontology#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+  <rdf:Description rdf:about="#384617262">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w2p.1068716.0.20160308T183819.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#846974653">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vuu.1067633.0.20160307T175717.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2101636817">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vzl.1068388.0.20160308T085055.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2032326802">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-usd0006rr6.1069521.0.20160309T170057.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1957099969">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wip.1070392.0.20160310T130050.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2143139988">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wqj.1071526.0.20160311T111821.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1112737073">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w8b.1069298.0.20160309T064255.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1356732524">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w9z.1069429.0.20160309T134610.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1759250827">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wvq.995119.0.20160311T221737.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#776484396">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w03.1068520.0.20160308T143551.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#762074108">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wv0.995181.0.20160311T230138.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1311844206">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wyc.1072602.0.20160312T044550.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2058135834">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wy7.1072585.0.20160312T041821.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Update</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <dOnt:References rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/regions/hi/,USGS-earthquakes-pt16072050.1072582.A.20160312T040654.675Z.0,2016-03-12T04:06:54+00:00</dOnt:References>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#3540494">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w1b.1068567.0.20160308T160713.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1364497552">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w9t.1069408.0.20160309T122339.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1622458036">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wy4.1072615.0.20160312T050942.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2107543287">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wf6.1069935.0.20160310T024326.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1899141525">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wlr.1070734.0.20160310T185315.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#872669868">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vv5.1067901.0.20160307T223206.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1932536213">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wfv.1070114.0.20160310T034019.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1260467793">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wer.1069810.0.20160310T000604.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#195801026">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wbs.1069513.0.20160309T165051.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#57241990">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w1y.1068708.0.20160308T183146.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#873993427">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wnq.1071096.0.20160311T013143.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#26757919">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vz7.1068305.0.20160308T055608.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Update</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <dOnt:References rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/regions/hi/,USGS-earthquakes-pt16068050.1068303.A.20160308T054454.010Z.0,2016-03-08T05:44:54+00:00</dOnt:References>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1829217853">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004ww3.989287.0.20160311T230520.608Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1533524862">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wp8.1071255.0.20160311T044800.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1455695758">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wp4.1071244.0.20160311T043433.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1094674892">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vzn.1068392.0.20160308T085517.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#895766599">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w4d.1068890.0.20160308T223518.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#945834881">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004we7.1069736.0.20160309T223335.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="ontology#Alert">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#541285440">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wx7.1072500.0.20160312T012425.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#100929741">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wef.1069777.0.20160309T231642.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#466853180">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wn0.1070953.0.20160310T231453.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1667305539">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wgx.1070246.0.20160310T085250.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1611373863">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wcb.1069526.0.20160309T170639.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#209429254">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004vx9.1067923.0.20160307T230024.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#916835004">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w8a.1069714.0.20160309T214249.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#917768476">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w2n.1069445.0.20160309T143644.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#2694936">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004w2w.1068804.0.20160308T200308.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#895599632">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wph.1071403.0.20160311T071910.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1845517769">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wqn.1071545.0.20160311T114925.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#1100399456">
+    <dOnt:Identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USGS-earthquakes-us10004wxy.1072564.0.20160312T033340.040Z.0</dOnt:Identifier>
+    <dOnt:Sender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://earthquake.usgs.gov/research/monitoring/anss/neic/</dOnt:Sender>
+    <dOnt:Addresses rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</dOnt:Addresses>
+    <dOnt:Status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actual</dOnt:Status>
+    <dOnt:MsgType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alert</dOnt:MsgType>
+    <dOnt:Scope rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public</dOnt:Scope>
+    <rdf:type rdf:resource="ontology#Alert"/>
+  </rdf:Description>
+</rdf:RDF>
