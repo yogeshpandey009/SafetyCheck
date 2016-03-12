@@ -12,17 +12,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.lang3.StringUtils;
 
-//import com.google.publicalerts.cap.Alert;
-import com.google.publicalerts.cap.CapXmlParser;
-//import com.google.publicalerts.cap.Info;
-
 import com.semantic.javaobjectstordf.JavaObjectRdfSerializer;
-import com.semantic.safetycheck.client.weather.CurrentObservation;
 import com.semantic.safetycheck.model.Alert;
 import com.semantic.safetycheck.model.Alert.Info;
 import com.semantic.safetycheck.model.Alert.Info.Area;
@@ -31,6 +25,8 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+//import com.google.publicalerts.cap.Alert;
+//import com.google.publicalerts.cap.Info;
 
 public class PubSubClient {
 
