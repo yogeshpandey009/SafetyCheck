@@ -12,7 +12,7 @@ public class Test {
 	private static Web webserver;
 	private static Subscriber sbcbr;
 	private static String hostname = null;
-	private static Integer webserverPort = 8181;
+	private static Integer webserverPort = 8989;
 
     private static void startServer(){
     	try {
@@ -22,8 +22,8 @@ public class Test {
 			
 			InetAddress addr = InetAddress.getLocalHost(); 
 			hostname = addr.getHostName();
-			hostname = "http://" + hostname + ":" + Integer.toString(webserverPort) + "/";
-		   
+			hostname = "http://" + "52.32.136.81" + ":" + Integer.toString(webserverPort);
+			System.out.println("Hostname: " + hostname);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("WebServer can not start");
@@ -38,11 +38,10 @@ public class Test {
 			   //String hub_topic = "http://publisher.example.com/topic.xml";
 			   String hub = "http://pubsubhubbub.appspot.com";
 			   String hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
-			   
+			   //String hub_topic = "http://alerts.weather.gov/cap/ga.php?x=0";
 			   startServer();
 
 			   int statusCode = sbcbr.subscribe(hub, hub_topic, hostname, null, null);
-			   
 			   if (statusCode == 204){
 				   System.out.println("the status code of the subscription is 204: the request was verified and that the subscription is active");
 			   } else if (statusCode == 202){

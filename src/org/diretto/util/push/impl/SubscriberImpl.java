@@ -110,7 +110,8 @@ public class SubscriberImpl implements Subscriber
 
 		if(hubUri == null)
 		{
-			throw new IllegalArgumentException("Feed does not contain a hub relation");
+			hubUri = URI.create("http://pubsubhubbub.appspot.com");
+			//throw new IllegalArgumentException("Feed does not contain a hub relation");
 		}
 
 		Subscription subscription = new SubscriptionImpl(feedTopicUri, hubUri, this);

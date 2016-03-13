@@ -30,7 +30,7 @@ public class PuSHhandler extends AbstractHandler
 	private void processFeeds(String hubtopic, SyndFeed feed){
 		
 		//checks if the channel is already created
-		
+		System.out.println("processFeed: " + feed.getTitle());
 		//NOTE! This code should be changed for your case//
 	    
 	}
