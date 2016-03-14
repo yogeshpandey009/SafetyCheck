@@ -45,7 +45,7 @@ public class PuSHhandler extends AbstractHandler
 		MessageStatus stsMessage = MessageStatus.ERROR;
 	        
 		if (request != null){ 
-			
+			System.out.println("Request from: " + request.getRemoteAddr());
 			//verification if the method is a GET or a POST
 			if (request.getMethod().equals("GET")){
 

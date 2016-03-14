@@ -110,7 +110,8 @@ public class SubscriberImpl implements Subscriber
 
 		if(hubUri == null)
 		{
-			hubUri = URI.create("http://pubsubhubbub.appspot.com");
+			//hubUri = URI.create("http://pubsubhubbub.appspot.com");
+			hubUri = URI.create("http://alert-hub.appspot.com/");
 			//throw new IllegalArgumentException("Feed does not contain a hub relation");
 		}
 
@@ -132,10 +133,11 @@ public class SubscriberImpl implements Subscriber
 		{
 			post.setEntity(new UrlEncodedFormEntity(params));
 			HttpResponse response = client.execute(post);
-			if(response.getStatusLine().getStatusCode() != 204)
-			{
-				throw new RuntimeException();
-			}
+			System.out.println(response.getStatusLine().getStatusCode());
+			//if(response.getStatusLine().getStatusCode() != 204)
+			//{
+			//	throw new RuntimeException();
+			//}
 		}
 		catch (Exception e)
 		{

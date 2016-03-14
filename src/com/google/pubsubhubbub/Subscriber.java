@@ -85,7 +85,8 @@ public class Subscriber {
 		if (topic_url != null) {
 			
 			String callbackserverurl= hostname + contextPath;
-			
+			System.out.println("Callback: " + callbackserverurl);
+			System.out.println("TopicURL: " + topic_url);
 			HttpPost httppost = new HttpPost(hub);	
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("hub.callback", callbackserverurl));
