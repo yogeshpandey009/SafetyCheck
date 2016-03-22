@@ -22,7 +22,7 @@ public class Test {
 			
 			InetAddress addr = InetAddress.getLocalHost(); 
 			hostname = addr.getHostName();
-			hostname = "http://" + "52.32.136.81";// + ":" + Integer.toString(webserverPort);
+			hostname = "http://" + "c693a05e.ngrok.io";// + ":" + Integer.toString(webserverPort);
 			System.out.println("Hostname: " + hostname);
 		} catch (Exception e) {
 			e.printStackTrace();

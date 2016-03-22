@@ -3,6 +3,7 @@ package com.semantic.safetycheck.convertor;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.semantic.safetycheck.pojo.Earthquake;
 
@@ -16,7 +17,7 @@ public class RDFGenerator {
 
 	public String createRDF() {
 		ArrayList<ArrayList<String>> rowCols = CSVManager.loadCSV();
-		StringBuffer rdf = new StringBuffer(100);
+		StringBuffer rdf = new StringBuffer();
 		rdf.append("<?xml version=\"1.0\"?>\n");
 		rdf.append("<!DOCTYPE rdf:RDF [\n");
 		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
@@ -51,7 +52,7 @@ public class RDFGenerator {
 	 */
 	private String populateEarthquake(ArrayList<ArrayList<String>> rowCols) {
 		DecimalFormat df = new DecimalFormat("#.00"); 
-		StringBuffer rdf = new StringBuffer(100);
+		StringBuffer rdf = new StringBuffer();
 		for (int x = 1; x < rowCols.size(); x++) {
 			ArrayList<String> row = rowCols.get(x);
 			rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + x + "\">\n");
@@ -74,7 +75,7 @@ public class RDFGenerator {
 	
 	public static String singleEarthquakeRDF(Earthquake eq) {
 		DecimalFormat df = new DecimalFormat("#.00"); 
-		StringBuffer rdf = new StringBuffer(100);
+		StringBuffer rdf = new StringBuffer();
 		rdf.append("<?xml version=\"1.0\"?>\n");
 		rdf.append("<!DOCTYPE rdf:RDF [\n");
 		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
@@ -102,6 +103,26 @@ public class RDFGenerator {
 		rdf.append("	</rdf:Description>\n\n");
 
 		rdf.append("</rdf:RDF>");
+		return rdf.toString();
+	}
+	
+	private static String populateEarthquakes(List<Earthquake> eqList) {
+		DecimalFormat df = new DecimalFormat("#.00"); 
+		StringBuffer rdf = new StringBuffer();
+		for(Earthquake eq: eqList) {
+			rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + eq.getId() + "\">\n");
+			double mag = Double.parseDouble(eq.getMagnitude()+"");
+			if (mag > 4) {
+				rdf.append("		<rdf:type rdf:resource=\"&sc;StrongEarthquake\"/>\n");
+			} else {
+				rdf.append("		<rdf:type rdf:resource=\"&sc;WeakEarthquake\"/>\n");
+			}
+			rdf.append("		<sc:hasTime rdf:datatype=\"&xsd;string\">" + eq.getTimeAsFormat()  + "</sc:hasTime>\n");
+			rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
+			rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLatitude()+"")) + "</sc:atLatitude>\n");
+			rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLongitude()+"")) + "</sc:atLongitude>\n");
+			rdf.append("	</rdf:Description>\n\n");
+		}
 		return rdf.toString();
 	}
 	

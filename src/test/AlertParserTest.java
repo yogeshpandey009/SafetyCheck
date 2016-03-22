@@ -1,4 +1,4 @@
-package com.semantic.safetycheck.api;
+package test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,7 +33,7 @@ import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
-public class EarthquakeSubscriber {
+public class AlertParserTest {
 
 	public void testEndToEnd() throws Exception {
 		// Generate a CAP document

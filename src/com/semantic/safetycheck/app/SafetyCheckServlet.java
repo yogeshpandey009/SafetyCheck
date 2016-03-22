@@ -7,6 +7,7 @@ import java.io.InputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 
+import com.google.pubsubhubbub.GoogleAlertSubscriber;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -38,6 +39,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		// listEarthquakes(data);
 		registerCustomBuiltins();
 		inf_data = addJenaRules(data);
+		GoogleAlertSubscriber.initiate();
 		//listPersons(inf_data);
 		// listAll(inf_data);
 	}
@@ -128,7 +130,7 @@ public class SafetyCheckServlet extends HttpServlet {
 	public static void addEarthquakeInstance(String eq){
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		
-		SafetyCheckServlet.data.read(is, SafetyCheckServlet.defaultNameSpace);
+		data.read(is, SafetyCheckServlet.defaultNameSpace);
 		inf_data = addJenaRules(data);
 	}
 
