@@ -5,20 +5,19 @@ import java.util.List;
 
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.semantic.safetycheck.app.SafetyCheckHelper;
 import com.semantic.safetycheck.pojo.Person;
 
 public class PersonDAO {
 	
-	public List<Person> getAllPersons(Model data) {
+	public List<Person> getAllPersons() {
 		
 		ResultSet rs = SafetyCheckHelper.runQuery(" select ?person ?name ?location ?region ?lat ?lon where "
 		+ "{ ?person rdf:type sc:Person. ?person sc:hasName ?name . "
 		+ "?person sc:hasLocation ?location. OPTIONAL "
 		+ "{?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat."
-		+ " ?region sc:hasLongitude ?lon.} }",data);
+		+ " ?region sc:hasLongitude ?lon.} }");
 		List<Person> persons = new ArrayList<Person>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -47,7 +46,7 @@ public class PersonDAO {
 		return persons;
 	}
 	
-	public List<Person> getPersonsImpacted(Model data,String earthquakeId) {
+	public List<Person> getPersonsImpacted(String earthquakeId) {
 	
 		List<Person> persons = new ArrayList<Person>();
 		ResultSet rs = SafetyCheckHelper.runQuery(
@@ -55,8 +54,7 @@ public class PersonDAO {
 						+ " where { ?person sc:isImpactedBy <"
 						+ earthquakeId
 						+ ">. ?person sc:hasName ?name . ?person sc:hasLocation ?location."
-						+ " ?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon. }",
-						data);
+						+ " ?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon. }");
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode person = soln.get("?person");

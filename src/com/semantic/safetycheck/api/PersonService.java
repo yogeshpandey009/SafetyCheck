@@ -30,11 +30,11 @@ public class PersonService extends SCService {
 		String earthquakeId = info.getQueryParameters().getFirst("earthquake");
 		try{
 			if( null != earthquakeId && StringUtils.isNoneEmpty(earthquakeId)){
-				person = dao.getPersonsImpacted(SafetyCheckServlet.inf_data, SafetyCheckServlet.defaultNameSpace + earthquakeId);
+				person = dao.getPersonsImpacted(SafetyCheckServlet.defaultNameSpace + earthquakeId);
 				
 			}
 			else{
-				 person = dao.getAllPersons(SafetyCheckServlet.inf_data);
+				 person = dao.getAllPersons();
 			}
 		}
 	   catch (Exception e) {

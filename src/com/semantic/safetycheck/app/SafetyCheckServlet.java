@@ -1,20 +1,14 @@
 package com.semantic.safetycheck.app;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.File;
 import java.io.InputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 
 import com.google.pubsubhubbub.GoogleAlertSubscriber;
-import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
-import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
-import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.semantic.safetycheck.builtin.ImpactZoneMatch;
 import com.semantic.safetycheck.builtin.MatchLiteral;
 
@@ -26,22 +20,37 @@ public class SafetyCheckServlet extends HttpServlet {
 
 	public static final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 	static ServletContext context = null;
-	static public Model data = null;
-	static public InfModel inf_data = null;
+	// static public Model data = null;
+	// static public InfModel inf_data = null;
+	static public TDBStoreManager store = null;
 
 	@Override
 	public void init() {
 		context = getServletContext();
-		data = populateData();
-		// listEarthquakes(data);
-		// listPersons(data);
-		// listRegions(data);
-		// listEarthquakes(data);
-		registerCustomBuiltins();
-		inf_data = addJenaRules(data);
-		GoogleAlertSubscriber.initiate();
-		//listPersons(inf_data);
-		// listAll(inf_data);
+		Thread t1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				registerCustomBuiltins();
+				store = new TDBStoreManager(context.getRealPath(File.separator));
+				// data = populateData();
+				// listEarthquakes(data);
+				// listPersons(data);
+				// listRegions(data);
+				// listEarthquakes(data);
+				//store.runReasoner(context.getRealPath("/WEB-INF/classes/rules.txt"));
+				// inf_data = addJenaRules(data);
+				// listPersons(inf_data);
+				// listAll(inf_data);
+			}
+		});
+		Thread t2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				GoogleAlertSubscriber.initiate();
+			}
+		});
+		t1.start();
+		t2.start();
 	}
 
 	/**
@@ -51,12 +60,12 @@ public class SafetyCheckServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public static void registerCustomBuiltins() {
 		BuiltinRegistry.theRegistry.register(new MatchLiteral());
 		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
 	}
 
+	/*
 	public Model populateData() {
 		Model data = ModelFactory.createOntologyModel();
 
@@ -99,11 +108,10 @@ public class SafetyCheckServlet extends HttpServlet {
 		return data;
 	}
 
-
 	public static InfModel addJenaRules(Model model) {
 
-		Reasoner reasoner = new GenericRuleReasoner(
-				Rule.rulesFromURL(context.getRealPath("/WEB-INF/classes/rules.txt")));
+		Reasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL(context
+				.getRealPath("/WEB-INF/classes/rules.txt")));
 		reasoner.setDerivationLogging(true);
 		InfModel inf = ModelFactory.createInfModel(reasoner, model);
 
@@ -126,12 +134,13 @@ public class SafetyCheckServlet extends HttpServlet {
 		// InfModel inf = ModelFactory.createInfModel(reasoner, model);
 		return inf;
 	}
-	
-	public static void addEarthquakeInstance(String eq){
+	*/
+	public static void addEarthquakeInstance(String eq) {
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
-		
-		data.read(is, SafetyCheckServlet.defaultNameSpace);
-		inf_data = addJenaRules(data);
+		store.read(is, defaultNameSpace);
+		store.runReasoner();
+		// data.read(is, SafetyCheckServlet.defaultNameSpace);
+		// inf_data = addJenaRules(data);
 	}
 
 }

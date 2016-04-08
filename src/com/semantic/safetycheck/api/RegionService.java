@@ -8,7 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.dao.RegionDAO;
 import com.semantic.safetycheck.pojo.Region;
 
@@ -24,7 +23,7 @@ public class RegionService extends SCService {
 		Boolean success = Boolean.TRUE;
 		String msg = "";
 		try{
-			regions = dao.getAllRegions(SafetyCheckServlet.data);
+			regions = dao.getAllRegions();
 		}
 	   catch (Exception e) {
 		    success = Boolean.FALSE;

@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:sc="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
+        <versionIRI rdf:resource="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"/>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasPoints -->
+
+    <ObjectProperty rdf:about="&sc;hasPoints">
+        <rdfs:domain rdf:resource="&sc;Alert"/>
+        <rdfs:range rdf:resource="&sc;Point"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#impacts -->
+
+    <ObjectProperty rdf:about="&sc;impacts">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
+        <rdfs:range rdf:resource="&sc;Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isImpactedBy -->
+
+    <ObjectProperty rdf:about="&sc;isImpactedBy">
+        <inverseOf rdf:resource="&sc;impacts"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#locatedAt -->
+
+    <ObjectProperty rdf:about="&sc;locatedAt">
+        <rdfs:domain rdf:resource="&sc;Person"/>
+        <rdfs:range rdf:resource="&sc;Region"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#atLatitude -->
+
+    <DatatypeProperty rdf:about="&sc;atLatitude">
+        <rdfs:domain rdf:resource="&sc;Point"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#atLongitude -->
+
+    <DatatypeProperty rdf:about="&sc;atLongitude">
+        <rdfs:domain rdf:resource="&sc;Point"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasDescription -->
+
+    <DatatypeProperty rdf:about="&sc;hasDescription">
+        <rdfs:domain rdf:resource="&sc;Alert"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLatitude -->
+
+    <DatatypeProperty rdf:about="&sc;hasLatitude">
+        <rdfs:domain rdf:resource="&sc;Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLocation -->
+
+    <DatatypeProperty rdf:about="&sc;hasLocation">
+        <rdfs:domain rdf:resource="&sc;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLocationName -->
+
+    <DatatypeProperty rdf:about="&sc;hasLocationName">
+        <rdfs:domain rdf:resource="&sc;Region"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLongitude -->
+
+    <DatatypeProperty rdf:about="&sc;hasLongitude">
+        <rdfs:domain rdf:resource="&sc;Region"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasMagnitude -->
+
+    <DatatypeProperty rdf:about="&sc;hasMagnitude">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasName -->
+
+    <DatatypeProperty rdf:about="&sc;hasName">
+        <rdfs:domain rdf:resource="&sc;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasSeverity -->
+
+    <DatatypeProperty rdf:about="&sc;hasSeverity">
+        <rdfs:domain rdf:resource="&sc;Weather"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasSource -->
+
+    <DatatypeProperty rdf:about="&sc;hasSource">
+        <rdfs:domain rdf:resource="&sc;Alert"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasTime -->
+
+    <DatatypeProperty rdf:about="&sc;hasTime">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Alert -->
+
+    <Class rdf:about="&sc;Alert"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Earthquake -->
+
+    <Class rdf:about="&sc;Earthquake">
+        <rdfs:subClassOf rdf:resource="&sc;Alert"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Person -->
+
+    <Class rdf:about="&sc;Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Point -->
+
+    <Class rdf:about="&sc;Point"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Region -->
+
+    <Class rdf:about="&sc;Region"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Weather -->
+
+    <Class rdf:about="&sc;Weather">
+        <rdfs:subClassOf rdf:resource="&sc;Alert"/>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
