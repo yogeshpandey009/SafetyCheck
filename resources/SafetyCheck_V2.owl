@@ -336,7 +336,7 @@ DIFFICULT.</sc:hasDescription>
     <NamedIndividual rdf:about="&sc;20005hxx">
         <rdf:type rdf:resource="&sc;Earthquake"/>
         <sc:hasAreaDescription rdf:datatype="&xsd;string">104 miles (167 km) ENE of Petropavlovsk-Kamchatskiy, Russia; 229 miles (369 km) WSW of Nikol&apos;skoye, Komandorskiye Ostrova, Rus.; 292 miles (471 km) NE of Severo-Kuril&apos;sk, Kuril Islands, Russia; 1611 miles (2593 km) NNE of TOKYO, Japan</sc:hasAreaDescription>
-        <sc:atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32.520Z</sc:atTime>
+        <sc:atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32Z</sc:atTime>
         <sc:hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</sc:hasDescription>
         <sc:hasArea rdf:resource="&sc;53.78_160.77"/>
     </NamedIndividual>
