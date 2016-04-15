@@ -7,19 +7,21 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
 ]>
 
 
-<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.w3.org/2002/07/owl"
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"
+     xml:base="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck"
      xmlns:sc="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <Ontology rdf:about="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
-        <versionIRI rdf:resource="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"/>
-    </Ontology>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"/>
+    </owl:Ontology>
     
 
 
@@ -36,55 +38,56 @@
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasArea -->
 
-    <ObjectProperty rdf:about="&sc;hasArea">
+    <owl:ObjectProperty rdf:about="&sc;hasArea">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&sc;Point"/>
-    </ObjectProperty>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasPoint -->
 
-    <ObjectProperty rdf:about="&sc;hasPoint">
+    <owl:ObjectProperty rdf:about="&sc;hasPoint">
         <rdfs:range rdf:resource="&sc;Point"/>
         <rdfs:domain rdf:resource="&sc;Region"/>
-    </ObjectProperty>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#impacts -->
 
-    <ObjectProperty rdf:about="&sc;impacts">
+    <owl:ObjectProperty rdf:about="&sc;impacts">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&sc;Person"/>
-    </ObjectProperty>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isFriendOf -->
 
-    <ObjectProperty rdf:about="&sc;isFriendOf">
+    <owl:ObjectProperty rdf:about="&sc;isFriendOf">
+		<owl:equivalentProperty rdf:resource="&foaf;knows"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&sc;Person"/>
-    </ObjectProperty>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isImpactedBy -->
 
-    <ObjectProperty rdf:about="&sc;isImpactedBy">
-        <inverseOf rdf:resource="&sc;impacts"/>
-    </ObjectProperty>
+    <owl:ObjectProperty rdf:about="&sc;isImpactedBy">
+        <owl:inverseOf rdf:resource="&sc;impacts"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#locatedAt -->
 
-    <ObjectProperty rdf:about="&sc;locatedAt">
+    <owl:ObjectProperty rdf:about="&sc;locatedAt">
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&sc;Region"/>
-    </ObjectProperty>
+    </owl:ObjectProperty>
     
 
 
@@ -101,100 +104,100 @@
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#atTime -->
 
-    <DatatypeProperty rdf:about="&sc;atTime">
+    <owl:DatatypeProperty rdf:about="&sc;atTime">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasAreaDescription -->
 
-    <DatatypeProperty rdf:about="&sc;hasAreaDescription">
+    <owl:DatatypeProperty rdf:about="&sc;hasAreaDescription">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasDescription -->
 
-    <DatatypeProperty rdf:about="&sc;hasDescription">
+    <owl:DatatypeProperty rdf:about="&sc;hasDescription">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLatitude -->
 
-    <DatatypeProperty rdf:about="&sc;hasLatitude">
+    <owl:DatatypeProperty rdf:about="&sc;hasLatitude">
         <rdfs:domain rdf:resource="&sc;Point"/>
         <rdfs:range rdf:resource="&xsd;float"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLocation -->
 
-    <DatatypeProperty rdf:about="&sc;hasLocation">
+    <owl:DatatypeProperty rdf:about="&sc;hasLocation">
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLongitude -->
 
-    <DatatypeProperty rdf:about="&sc;hasLongitude">
+    <owl:DatatypeProperty rdf:about="&sc;hasLongitude">
         <rdfs:domain rdf:resource="&sc;Point"/>
         <rdfs:range rdf:resource="&xsd;float"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasMagnitude -->
 
-    <DatatypeProperty rdf:about="&sc;hasMagnitude">
+    <owl:DatatypeProperty rdf:about="&sc;hasMagnitude">
         <rdfs:domain rdf:resource="&sc;Earthquake"/>
         <rdfs:range rdf:resource="&xsd;float"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasName -->
 
-    <DatatypeProperty rdf:about="&sc;hasName">
+    <owl:DatatypeProperty rdf:about="&sc;hasName">
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasPopulation -->
 
-    <DatatypeProperty rdf:about="&sc;hasPopulation">
+    <owl:DatatypeProperty rdf:about="&sc;hasPopulation">
         <rdfs:domain rdf:resource="&sc;Region"/>
         <rdfs:range rdf:resource="&xsd;unsignedLong"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasRegionName -->
 
-    <DatatypeProperty rdf:about="&sc;hasRegionName">
+    <owl:DatatypeProperty rdf:about="&sc;hasRegionName">
         <rdfs:domain rdf:resource="&sc;Region"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasSeverity -->
 
-    <DatatypeProperty rdf:about="&sc;hasSeverity">
+    <owl:DatatypeProperty rdf:about="&sc;hasSeverity">
         <rdfs:domain rdf:resource="&sc;Alert"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
+    </owl:DatatypeProperty>
     
 
 
@@ -211,44 +214,45 @@
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Alert -->
 
-    <Class rdf:about="&sc;Alert"/>
+    <owl:Class rdf:about="&sc;Alert"/>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Earthquake -->
 
-    <Class rdf:about="&sc;Earthquake">
+    <owl:Class rdf:about="&sc;Earthquake">
         <rdfs:subClassOf rdf:resource="&sc;Alert"/>
-        <disjointWith rdf:resource="&sc;Weather"/>
-    </Class>
+        <owl:disjointWith rdf:resource="&sc;Weather"/>
+    </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Person -->
 
-    <Class rdf:about="&sc;Person"/>
+	<owl:Class rdf:about="&sc;Person">
+		<equivalentClass rdf:resource="&foaf;Person"/>
+	</owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Point -->
 
-    <Class rdf:about="&sc;Point"/>
+    <owl:Class rdf:about="&sc;Point"/>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Region -->
 
-    <Class rdf:about="&sc;Region"/>
+    <owl:Class rdf:about="&sc;Region"/>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Weather -->
 
-    <Class rdf:about="&sc;Weather">
+    <owl:Class rdf:about="&sc;Weather">
         <rdfs:subClassOf rdf:resource="&sc;Alert"/>
-    </Class>
+    </owl:Class>
     
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -263,9 +267,9 @@
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#NOAA-NWS-ALERTS-AK1255F644C72C.BlizzardWarning.1255F66033E0AK.AFGWSWNSB.1bba64eff253629b166e7b5203f626e5 -->
 
-    <NamedIndividual rdf:about="&sc;NOAA-NWS-ALERTS-AK1255F644C72C.BlizzardWarning.1255F66033E0AK.AFGWSWNSB.1bba64eff253629b166e7b5203f626e5">
+    <owl:NamedIndividual rdf:about="&sc;NOAA-NWS-ALERTS-AK1255F644C72C.BlizzardWarning.1255F66033E0AK.AFGWSWNSB.1bba64eff253629b166e7b5203f626e5">
         <rdf:type rdf:resource="&sc;Weather"/>
-        <sc:hasDescription rdf:datatype="&xsd;string">...BLIZZARD WARNING REMAINS IN EFFECT UNTIL 6 PM AKDT
+        <hasDescription rdf:datatype="&xsd;string">...BLIZZARD WARNING REMAINS IN EFFECT UNTIL 6 PM AKDT
 THURSDAY...
 THE NATIONAL WEATHER SERVICE IN FAIRBANKS HAS ISSUED BLIZZARD
 WARNING...WHICH IS IN EFFECT UNTIL 6 PM AKDT THURSDAY.
@@ -278,108 +282,108 @@ CONDITIONS TO IMPROVE THEN.
 * IMPACTS...VISIBILITY WILL BE VERY POOR AND SNOW WILL
 ACCUMULATE INTO DRIFTS. WHITEOUT CONDITIONS SHOULD BE
 EXPECTED. TRAVEL AND OUTDOOR ACTIVITIES WILL BE EXTREMELY
-DIFFICULT.</sc:hasDescription>
-        <sc:atTime rdf:datatype="&xsd;dateTimeStamp">2016-04-13T14:27:00-08:00</sc:atTime>
-        <sc:hasAreaDescription rdf:datatype="&xsd;string">Central Beaufort Sea Coast</sc:hasAreaDescription>
-        <sc:hasSeverity rdf:datatype="&xsd;string">Severe</sc:hasSeverity>
-        <sc:hasArea rdf:resource="&sc;31.14_-81.83"/>
-        <sc:hasArea rdf:resource="&sc;31.14_-81.9"/>
-        <sc:hasArea rdf:resource="&sc;31.28_-81.91"/>
-    </NamedIndividual>
+DIFFICULT.</hasDescription>
+        <atTime rdf:datatype="&xsd;dateTimeStamp">2016-04-13T14:27:00-08:00</atTime>
+        <hasAreaDescription rdf:datatype="&xsd;string">Central Beaufort Sea Coast</hasAreaDescription>
+        <hasSeverity rdf:datatype="&xsd;string">Severe</hasSeverity>
+        <hasArea rdf:resource="&sc;31.14_-81.83"/>
+        <hasArea rdf:resource="&sc;31.14_-81.9"/>
+        <hasArea rdf:resource="&sc;31.28_-81.91"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person1 -->
 
-    <NamedIndividual rdf:about="&sc;person1">
+    <owl:NamedIndividual rdf:about="&sc;person1">
         <rdf:type rdf:resource="&sc;Person"/>
-        <sc:hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</sc:hasLocation>
-        <sc:hasName rdf:datatype="&xsd;string">Yogesh Pandey</sc:hasName>
-        <sc:isFriendOf rdf:resource="&sc;person2"/>
-    </NamedIndividual>
+        <hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</hasLocation>
+        <hasName rdf:datatype="&xsd;string">Yogesh Pandey</hasName>
+        <isFriendOf rdf:resource="&sc;person2"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person2 -->
 
-    <NamedIndividual rdf:about="&sc;person2">
+    <owl:NamedIndividual rdf:about="&sc;person2">
         <rdf:type rdf:resource="&sc;Person"/>
-        <sc:hasLocation rdf:datatype="&xsd;string">Bangalore, India</sc:hasLocation>
-        <sc:hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</sc:hasName>
-    </NamedIndividual>
+        <hasLocation rdf:datatype="&xsd;string">Bangalore, India</hasLocation>
+        <hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</hasName>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#region1 -->
 
-    <NamedIndividual rdf:about="&sc;region1">
+    <owl:NamedIndividual rdf:about="&sc;region1">
         <rdf:type rdf:resource="&sc;Region"/>
-        <sc:hasPopulation rdf:datatype="&xsd;unsignedLong">5945523</sc:hasPopulation>
-        <sc:hasRegionName rdf:datatype="&xsd;string">Bangalore</sc:hasRegionName>
-        <sc:hasPoint rdf:resource="&sc;12.58_77.34"/>
-    </NamedIndividual>
+        <hasPopulation rdf:datatype="&xsd;unsignedLong">5945523</hasPopulation>
+        <hasRegionName rdf:datatype="&xsd;string">Bangalore</hasRegionName>
+        <hasPoint rdf:resource="&sc;12.58_77.34"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#12.58_77.34 -->
 
-    <NamedIndividual rdf:about="&sc;12.58_77.34">
+    <owl:NamedIndividual rdf:about="&sc;12.58_77.34">
         <rdf:type rdf:resource="&sc;Point"/>
-        <sc:hasLatitude rdf:datatype="&xsd;float">12.58</sc:hasLatitude>
-        <sc:hasLongitude rdf:datatype="&xsd;float">77.34</sc:hasLongitude>
-    </NamedIndividual>
+        <hasLatitude rdf:datatype="&xsd;float">12.58</hasLatitude>
+        <hasLongitude rdf:datatype="&xsd;float">77.34</hasLongitude>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#20005hxx -->
 
-    <NamedIndividual rdf:about="&sc;20005hxx">
+    <owl:NamedIndividual rdf:about="&sc;20005hxx">
         <rdf:type rdf:resource="&sc;Earthquake"/>
-        <sc:hasAreaDescription rdf:datatype="&xsd;string">104 miles (167 km) ENE of Petropavlovsk-Kamchatskiy, Russia; 229 miles (369 km) WSW of Nikol&apos;skoye, Komandorskiye Ostrova, Rus.; 292 miles (471 km) NE of Severo-Kuril&apos;sk, Kuril Islands, Russia; 1611 miles (2593 km) NNE of TOKYO, Japan</sc:hasAreaDescription>
-        <sc:atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32Z</sc:atTime>
-        <sc:hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</sc:hasDescription>
-        <sc:hasArea rdf:resource="&sc;53.78_160.77"/>
-    </NamedIndividual>
+        <hasAreaDescription rdf:datatype="&xsd;string">104 miles (167 km) ENE of Petropavlovsk-Kamchatskiy, Russia; 229 miles (369 km) WSW of Nikol&apos;skoye, Komandorskiye Ostrova, Rus.; 292 miles (471 km) NE of Severo-Kuril&apos;sk, Kuril Islands, Russia; 1611 miles (2593 km) NNE of TOKYO, Japan</hasAreaDescription>
+        <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32Z</atTime>
+        <hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</hasDescription>
+        <hasArea rdf:resource="&sc;53.78_160.77"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#31.14_-81.83 -->
 
-    <NamedIndividual rdf:about="&sc;31.14_-81.83">
+    <owl:NamedIndividual rdf:about="&sc;31.14_-81.83">
         <rdf:type rdf:resource="&sc;Point"/>
-        <sc:hasLongitude rdf:datatype="&xsd;float">-81.83</sc:hasLongitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">31.14</sc:hasLatitude>
-    </NamedIndividual>
+        <hasLongitude rdf:datatype="&xsd;float">-81.83</hasLongitude>
+        <hasLatitude rdf:datatype="&xsd;float">31.14</hasLatitude>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#31.14_-81.9 -->
 
-    <NamedIndividual rdf:about="&sc;31.14_-81.9">
+    <owl:NamedIndividual rdf:about="&sc;31.14_-81.9">
         <rdf:type rdf:resource="&sc;Point"/>
-        <sc:hasLongitude rdf:datatype="&xsd;float">-81.9</sc:hasLongitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">31.14</sc:hasLatitude>
-    </NamedIndividual>
+        <hasLongitude rdf:datatype="&xsd;float">-81.9</hasLongitude>
+        <hasLatitude rdf:datatype="&xsd;float">31.14</hasLatitude>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#31.28_-81.91 -->
 
-    <NamedIndividual rdf:about="&sc;31.28_-81.91">
+    <owl:NamedIndividual rdf:about="&sc;31.28_-81.91">
         <rdf:type rdf:resource="&sc;Point"/>
-        <sc:hasLatitude rdf:datatype="&xsd;float">-81.91</sc:hasLatitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">31.28</sc:hasLatitude>
-    </NamedIndividual>
+        <hasLatitude rdf:datatype="&xsd;float">-81.91</hasLatitude>
+        <hasLatitude rdf:datatype="&xsd;float">31.28</hasLatitude>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#53.78_160.77 -->
 
-    <NamedIndividual rdf:about="&sc;53.78_160.77">
+    <owl:NamedIndividual rdf:about="&sc;53.78_160.77">
         <rdf:type rdf:resource="&sc;Point"/>
-        <sc:hasLongitude rdf:datatype="&xsd;float">160.77</sc:hasLongitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">53.78</sc:hasLatitude>
-    </NamedIndividual>
+        <hasLongitude rdf:datatype="&xsd;float">160.77</hasLongitude>
+        <hasLatitude rdf:datatype="&xsd;float">53.78</hasLatitude>
+    </owl:NamedIndividual>
     
 
 
@@ -393,12 +397,12 @@ DIFFICULT.</sc:hasDescription>
 
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <members rdf:parseType="Collection">
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="&sc;Alert"/>
             <rdf:Description rdf:about="&sc;Person"/>
             <rdf:Description rdf:about="&sc;Point"/>
             <rdf:Description rdf:about="&sc;Region"/>
-        </members>
+        </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
