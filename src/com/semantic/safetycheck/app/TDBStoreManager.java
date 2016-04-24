@@ -20,7 +20,7 @@ import com.hp.hpl.jena.util.FileManager;
 public class TDBStoreManager {
 
 	protected Dataset dataset = null;
-	private final String dataDir = "data/tdb";
+	private final String dataDir = "./data/tdb";
 	private final String rulesPath = "WEB-INF/classes/rules.txt";
 	private String path = "";
 	protected OntModel ontModel = null;
@@ -29,11 +29,11 @@ public class TDBStoreManager {
 	public TDBStoreManager(String path) {
 		this.path = path;
 		boolean alreadyExist = false;
-		File f = new File(path + dataDir);
+		File f = new File(dataDir);
 		if (!f.exists()) {
 			f.mkdirs();
 		}
-		Location location = Location.create(path + dataDir);
+		Location location = Location.create(dataDir);
 		dataset = TDBFactory.createDataset(location);
 		if (dataset.listNames().hasNext()) {
 			alreadyExist = true;
@@ -107,7 +107,7 @@ public class TDBStoreManager {
 		readModel(owlFilePath);
 		readModel(friendsFilePath);
 		readModel(regionsFilePath);
-		readModel(earthquakesFilePath);
+		//readModel(earthquakesFilePath);
 	}
 	/*
 	 * protected void begin(final ReadWrite write) { dataset.begin(write); }
