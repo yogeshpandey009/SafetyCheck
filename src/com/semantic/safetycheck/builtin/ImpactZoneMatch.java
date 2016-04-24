@@ -38,33 +38,65 @@ public class ImpactZoneMatch extends BaseBuiltin {
 	public boolean bodyCall(Node[] args, int length, RuleContext context) {
 		checkArgs(length, context);
 		// BindingEnvironment env = context.getEnv();
-		Node n1 = getArg(0, args, context);
-		Node n2 = getArg(1, args, context);
-		Node n3 = getArg(2, args, context);
-		Node n4 = getArg(3, args, context);
-		Node n5 = getArg(4, args, context);
-		if (n1.isLiteral() && n2.isLiteral() && n3.isLiteral() && n4.isLiteral() && n5.isLiteral()) {
-			Object v1 = n1.getLiteralValue();
-			Object v2 = n2.getLiteralValue();
-			Object v3 = n3.getLiteralValue();
-			Object v4 = n4.getLiteralValue();
-			Object v5 = n5.getLiteralValue();
+		Node eLatNode = getArg(0, args, context);
+		Node eLonNode = getArg(1, args, context);
+		Node rLatNode = getArg(2, args, context);
+		Node rLonNode = getArg(3, args, context);
+		Node magNode = getArg(4, args, context);
+		if (eLatNode.isLiteral() && rLatNode.isLiteral() && eLonNode.isLiteral() && rLonNode.isLiteral()
+				&& magNode.isLiteral()) {
+			Object eLatObj = eLatNode.getLiteralValue();
+			Object eLonObj = eLonNode.getLiteralValue();
+			Object rLatObj = rLatNode.getLiteralValue();
+			Object rLonObj = rLonNode.getLiteralValue();
+			Object magObj = magNode.getLiteralValue();
 
-			if (v1 instanceof Float && v2 instanceof Float && v3 instanceof Float && v4 instanceof Float && v5 instanceof Float) {
-				Float s1 = (Float) v1;
-				Float s2 = (Float) v2;
-				Float s3 = (Float) v3;
-				Float s4 = (Float) v4;
-				Float s5 = (Float) v5;
-				Float diff = Math.abs(s1 - s2);
-				Float diff2 = Math.abs(s3 - s4);
-				if (diff <= s5 && diff2 <= s5) {
-					return true;
-					// return env.bind(args[2], n2);
-				}
+			if (eLatObj instanceof Float && rLatObj instanceof Float && eLonObj instanceof Float
+					&& rLonObj instanceof Float && magObj instanceof Float) {
+				Float eLat = (Float) eLatObj;
+				Float eLon = (Float) eLonObj;
+				Float rLat = (Float) rLatObj;
+				Float rLon = (Float) rLonObj;
+				Float mag = (Float) magObj;
+				float radiusInKm = computeEarthquakeRadius(mag);
+				float radiusInDeg = radiusInKm / 110;
+				return liesInsideEarthquake(eLat, eLon, rLat, rLon, radiusInDeg);
+				/*
+				 * Float diff = Math.abs(eLat - rLat); Float diff2 =
+				 * Math.abs(eLong - rLong); if (diff <= mag && diff2 <= mag) {
+				 * return true; // return env.bind(args[2], n2); }
+				 */
 			}
 		}
 		// Doesn't (yet) handle partially bound cases
 		return false;
+	}
+
+	// References:
+	// http://www.aees.org.au/wp-content/uploads/2015/12/Paper_134.pdf
+	// http://www.cqsrg.org/tools/perceptionradius/
+	// http://seismo.cqu.edu.au/CQSRG/PerceptionRadius/
+	private float computeEarthquakeRadius(float mag) {
+		return (float) Math.exp((mag - 0.13) / 1.01);
+	}
+
+	/**
+	 * 
+	 * @param cX
+	 *            epicenter X coordinate
+	 * @param cY
+	 *            epicenter Y coordinate
+	 * @param x
+	 *            point X coordinate
+	 * @param y
+	 *            point Y coordinate
+	 * @param r
+	 *            radius
+	 * @return
+	 */
+	private boolean liesInsideEarthquake(float cX, float cY, float x, float y, float r) {
+		float dx = x - cX;
+		float dy = y - cY;
+		return dx * dx + dy * dy <= r * r;
 	}
 }
