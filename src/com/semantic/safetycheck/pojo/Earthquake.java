@@ -2,25 +2,27 @@ package com.semantic.safetycheck.pojo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Earthquake {
 
-	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	private SimpleDateFormat formatter = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	private String id;
 	private Float magnitude;
 	private Date time;
 	private Float latitude;
 	private Float longitude;
-	
+
 	public Earthquake() {
 		super();
 	}
 
-	public Earthquake(String id, Float magnitude, String time,
-			Float latitude, Float longitude) {
+	public Earthquake(String id, Float magnitude, String time, Float latitude,
+			Float longitude) {
 		super();
-		if (id.indexOf("#") == -1){
+		if (id.indexOf("#") == -1) {
 			this.id = id;
 		} else {
 			this.id = id.substring(id.indexOf("#"));
@@ -30,9 +32,9 @@ public class Earthquake {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
-	public Earthquake(Float magnitude, String time,
-			Float latitude, Float longitude) {
+
+	public Earthquake(Float magnitude, String time, Float latitude,
+			Float longitude) {
 		super();
 		this.magnitude = magnitude;
 		this.time = parseTime(time);
@@ -52,7 +54,7 @@ public class Earthquake {
 		}
 		return date;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -73,7 +75,7 @@ public class Earthquake {
 	}
 	public void setTime(String time) {
 		this.time = new Date(Long.parseLong(time));
-		//this.time = parseTime(time);
+		// this.time = parseTime(time);
 	}
 	public Float getLatitude() {
 		return latitude;
@@ -87,9 +89,16 @@ public class Earthquake {
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
-	
+
 	public static void main(String[] args) {
 		new Earthquake().parseTime("2015-11-12T00:22:32.520Z");
 	}
-	
+
+	public static Comparator<Earthquake> EQTimeComparator = new Comparator<Earthquake>() {
+
+		public int compare(Earthquake eq1, Earthquake eq2) {
+			return eq2.getTime().compareTo(eq1.getTime());
+		}
+	};
+
 }

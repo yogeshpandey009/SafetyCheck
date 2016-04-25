@@ -2,6 +2,7 @@ package com.semantic.safetycheck.api;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -42,6 +43,9 @@ public class EarthquakeService extends SCService {
 				earthquakes = dao.getImpactedByEarthquakes(SafetyCheckServlet.defaultNameSpace + personId);
 			} else {
 				earthquakes = dao.getAllEarthquakes();
+			}
+			if(earthquakes != null) {
+				Collections.sort(earthquakes, Earthquake.EQTimeComparator);
 			}
 		} catch (Exception e) {
 			success = Boolean.FALSE;
