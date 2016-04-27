@@ -36,12 +36,13 @@ public class Earthquake {
 	}
 
 	public Earthquake(Float magnitude, String time, Float latitude,
-			Float longitude) {
+			Float longitude, String desc) {
 		super();
 		this.magnitude = magnitude;
 		this.time = parseTime(time);
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.desc = desc;
 	}
 
 	private Date parseTime(String time) {
