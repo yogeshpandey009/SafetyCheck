@@ -14,13 +14,14 @@ public class Earthquake {
 	private Date time;
 	private Float latitude;
 	private Float longitude;
+	private String desc;
 
 	public Earthquake() {
 		super();
 	}
 
 	public Earthquake(String id, Float magnitude, String time, Float latitude,
-			Float longitude) {
+			Float longitude, String desc) {
 		super();
 		if (id.indexOf("#") == -1) {
 			this.id = id;
@@ -31,6 +32,7 @@ public class Earthquake {
 		this.time = parseTime(time);
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.desc = desc;
 	}
 
 	public Earthquake(Float magnitude, String time, Float latitude,
@@ -100,5 +102,13 @@ public class Earthquake {
 			return eq2.getTime().compareTo(eq1.getTime());
 		}
 	};
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 }

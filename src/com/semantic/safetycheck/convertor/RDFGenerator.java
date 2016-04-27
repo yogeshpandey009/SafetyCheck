@@ -100,6 +100,7 @@ public class RDFGenerator {
 		rdf.append("		<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + mag + "</sc:hasMagnitude>\n");
 		rdf.append("		<sc:atLatitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLatitude()+"")) + "</sc:atLatitude>\n");
 		rdf.append("		<sc:atLongitude rdf:datatype=\"&xsd;float\">" + df.format(Double.parseDouble(eq.getLongitude()+"")) + "</sc:atLongitude>\n");
+		rdf.append("		<sc:hasDesc rdf:datatype=\"&xsd;string\">" + eq.getDesc() + "</sc:hasDesc>\n");
 		rdf.append("	</rdf:Description>\n\n");
 
 		rdf.append("</rdf:RDF>");

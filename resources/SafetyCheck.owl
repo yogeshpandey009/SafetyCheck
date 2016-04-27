@@ -89,6 +89,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasDesc -->
+
+    <DatatypeProperty rdf:about="&sc;hasDesc">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasLatitude -->
 
     <DatatypeProperty rdf:about="&sc;hasLatitude">
@@ -132,21 +141,21 @@
         <rdfs:range rdf:resource="&xsd;float"/>
     </DatatypeProperty>
     
-    
-    
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasTime -->
-
-    <DatatypeProperty rdf:about="&sc;hasTime">
-        <rdfs:domain rdf:resource="&sc;Earthquake"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </DatatypeProperty>
-    
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasName -->
 
     <DatatypeProperty rdf:about="&sc;hasName">
         <rdfs:domain rdf:resource="&sc;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasTime -->
+
+    <DatatypeProperty rdf:about="&sc;hasTime">
+        <rdfs:domain rdf:resource="&sc;Earthquake"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </DatatypeProperty>
     
@@ -201,52 +210,19 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Individuals
+    // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Tempe
-
-    <NamedIndividual rdf:about="&sc;Tempe">
-        <rdf:type rdf:resource="&sc;Region"/>
-        <sc:hasLongitude rdf:datatype="&xsd;float">110.0</sc:hasLongitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">120.0</sc:hasLatitude>
-        <sc:hasLocationName rdf:datatype="&xsd;string">Tempe</sc:hasLocationName>
-    </NamedIndividual>
-     -->
-     
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#California
-
-    <NamedIndividual rdf:about="&sc;California">
-        <rdf:type rdf:resource="&sc;Region"/>
-        <sc:hasLongitude rdf:datatype="&xsd;float">154.0</sc:hasLongitude>
-        <sc:hasLatitude rdf:datatype="&xsd;float">100.0</sc:hasLatitude>
-        <sc:hasLocationName rdf:datatype="&xsd;string">California</sc:hasLocationName>
-    </NamedIndividual>
- 	-->
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Yogesh
-
-    <NamedIndividual rdf:about="&sc;Yogesh">
-        <rdf:type rdf:resource="&sc;Person"/>
-        <sc:hasLocation rdf:datatype="&xsd;string">Tempe</sc:hasLocation>
-        <sc:hasName rdf:datatype="&xsd;string">Yogesh</sc:hasName>
-    </NamedIndividual>
-     -->
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#earthquake1
-
-    <NamedIndividual rdf:about="&sc;earthquake1">
-        <rdf:type rdf:resource="&sc;StrongEarthquake"/>
-        <sc:hasMagnitude rdf:datatype="&xsd;float">4.5</sc:hasMagnitude>
-        <sc:atLatitude rdf:datatype="&xsd;float">80.0</sc:atLatitude>
-        <sc:atLongitude rdf:datatype="&xsd;float">90.0</sc:atLongitude>
-    </NamedIndividual>
-    -->
-
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&sc;Earthquake"/>
+            <rdf:Description rdf:about="&sc;Person"/>
+            <rdf:Description rdf:about="&sc;Region"/>
+        </members>
+    </rdf:Description>
 </rdf:RDF>
 
 

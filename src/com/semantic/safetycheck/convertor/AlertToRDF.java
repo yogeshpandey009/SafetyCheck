@@ -20,7 +20,7 @@ public class AlertToRDF {
 	private static SimpleDateFormat old_formatter = new SimpleDateFormat(
 			"yyyyMMdd'T'HHmmss.SSS'Z'");
 
-	public static String EarthquakeAlertstoRDF(List<Alert> alerts) {
+	public static String earthquakeAlertstoRDF(List<Alert> alerts) {
 		StringBuffer rdf = new StringBuffer();
 		rdf.append(generateRDFHeader());
 		for (Alert alert : alerts)
@@ -79,6 +79,11 @@ public class AlertToRDF {
 								+ "</sc:atLongitude>\n");
 					}
 				}
+			}
+			String desc = infoItem.getDescription();
+			if (desc != null) {
+				rdf.append("\t\t<sc:hasDesc rdf:datatype=\"&xsd;string\">"
+						+ desc + "</sc:hasDesc>\n");
 			}
 			rdf.append("\t</rdf:Description>\n\n");
 		}

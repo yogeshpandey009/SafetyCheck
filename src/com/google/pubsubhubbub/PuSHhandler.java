@@ -75,6 +75,7 @@ public class PuSHhandler extends AbstractHandler {
 					List<Info> infoList = alert.getInfoList();
 					for (Info infoItem : infoList) {
 						System.out.println("\t" + infoItem.getHeadline());
+						System.out.println("\t\tDescription: " + infoItem.getDescription());
 						for (int i = 0; i < infoItem.getCategoryCount(); i++) {
 							System.out.print("\t\tCategory: "
 									+ infoItem.getCategory(i));
@@ -94,7 +95,7 @@ public class PuSHhandler extends AbstractHandler {
 				ex.printStackTrace();
 			}
 		}
-		String earthquakesRDF = AlertToRDF.EarthquakeAlertstoRDF(alerts);
+		String earthquakesRDF = AlertToRDF.earthquakeAlertstoRDF(alerts);
 		System.out.println(earthquakesRDF);
 		SafetyCheckServlet.addEarthquakeInstance(earthquakesRDF);
 	}

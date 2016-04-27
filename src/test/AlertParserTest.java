@@ -10,23 +10,22 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Sets;
 import com.google.publicalerts.cap.Alert;
+import com.google.publicalerts.cap.Area;
 import com.google.publicalerts.cap.CapValidator;
 import com.google.publicalerts.cap.CapXmlBuilder;
 import com.google.publicalerts.cap.CapXmlParser;
-import com.google.publicalerts.cap.XmlSignatureValidator;
-import com.google.publicalerts.cap.XmlSigner;
-import com.google.common.collect.Sets;
-import com.google.publicalerts.cap.Area;
 import com.google.publicalerts.cap.Circle;
 import com.google.publicalerts.cap.Group;
 import com.google.publicalerts.cap.Info;
-import com.google.publicalerts.cap.NotCapException;
 import com.google.publicalerts.cap.Point;
 import com.google.publicalerts.cap.Polygon;
 import com.google.publicalerts.cap.Resource;
 import com.google.publicalerts.cap.TrustStrategy;
 import com.google.publicalerts.cap.ValuePair;
+import com.google.publicalerts.cap.XmlSignatureValidator;
+import com.google.publicalerts.cap.XmlSigner;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndLinkImpl;
@@ -63,8 +62,8 @@ public class AlertParserTest {
 	private static boolean noFetch = false;
 	public static void main(String[] args) {
 		try {
-			URL url = new URL("http://alerts.weather.gov/cap/ga.php?x=0");
-			//URL url = new URL("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
+			//URL url = new URL("http://alerts.weather.gov/cap/ga.php?x=0");
+			URL url = new URL("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = input.build(new XmlReader(url));
 			@SuppressWarnings("unchecked")
@@ -101,6 +100,7 @@ public class AlertParserTest {
 					List<Info> infoList = alert.getInfoList();
 					for (Info infoItem : infoList) {
 						System.out.println("\t" + infoItem.getHeadline());
+						System.out.println("\t\tDescription: " + infoItem.getDescription());
 						for (int i = 0; i < infoItem.getCategoryCount(); i++) {
 							System.out.print("\t\tCategory: "
 									+ infoItem.getCategory(i));

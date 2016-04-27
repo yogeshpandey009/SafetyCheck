@@ -33,6 +33,12 @@ public class TDBStoreManager {
 		if (!f.exists()) {
 			f.mkdirs();
 		}
+		try {
+			System.out.println("DB files are present at: " + f.getCanonicalPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Location location = Location.create(dataDir);
 		dataset = TDBFactory.createDataset(location);
 		if (dataset.listNames().hasNext()) {
