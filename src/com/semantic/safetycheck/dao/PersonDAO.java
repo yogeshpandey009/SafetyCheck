@@ -6,14 +6,14 @@ import java.util.List;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.semantic.safetycheck.app.SafetyCheckHelper;
+import com.semantic.safetycheck.app.SafetyCheckQueryHelper;
 import com.semantic.safetycheck.pojo.Person;
 
 public class PersonDAO {
 	
 	public List<Person> getAllPersons() {
 		
-		ResultSet rs = SafetyCheckHelper.runQuery(" select ?person ?name ?location ?region ?lat ?lon where "
+		ResultSet rs = SafetyCheckQueryHelper.runQuery(" select ?person ?name ?location ?region ?lat ?lon where "
 		+ "{ ?person rdf:type sc:Person. ?person sc:hasName ?name . "
 		+ "?person sc:hasLocation ?location. OPTIONAL "
 		+ "{?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat."
@@ -49,7 +49,7 @@ public class PersonDAO {
 	public List<Person> getPersonsImpacted(String earthquakeId) {
 	
 		List<Person> persons = new ArrayList<Person>();
-		ResultSet rs = SafetyCheckHelper.runQuery(
+		ResultSet rs = SafetyCheckQueryHelper.runQuery(
 				" select ?person ?name ?location ?region ?lat ?lon "
 						+ " where { ?person sc:isImpactedBy <"
 						+ earthquakeId

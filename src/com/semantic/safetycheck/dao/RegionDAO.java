@@ -6,14 +6,14 @@ import java.util.List;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.semantic.safetycheck.app.SafetyCheckHelper;
+import com.semantic.safetycheck.app.SafetyCheckQueryHelper;
 import com.semantic.safetycheck.pojo.Region;
 
 public class RegionDAO {
 
 	public List<Region> getAllRegions() {
 
-		ResultSet rs = SafetyCheckHelper
+		ResultSet rs = SafetyCheckQueryHelper
 				.runQuery(
 						" select ?region ?name ?latitude ?longitude"
 								+ " where { ?region rdf:type sc:Region. ?region sc:hasLocationName ?name."
