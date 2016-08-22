@@ -60,10 +60,11 @@ def create_friends_instances(friends):
 
 def create_friend_rdf(friend, i):
     rdf = []
-    rdf.append("\t <NamedIndividual rdf:about=\"&sc;friend" + str(i) + "\">\n")
+    rdf.append("\t <NamedIndividual rdf:about=\"&sc;person" + str(i) + "\">\n")
     rdf.append("\t <rdf:type rdf:resource=\"&sc;Person\"/>\n")
     rdf.append("\t <sc:hasName rdf:datatype=\"&xsd;string\">"+ friend["name"] +"</sc:hasName>\n")    
     rdf.append("\t <sc:hasLocation rdf:datatype=\"&xsd;string\">"+ friend["location"] +"</sc:hasLocation>\n")
+    rdf.append("\t <sc:isFriendOf rdf:resource=\"&sc;person26\"/>\n")
     rdf.append("\t </NamedIndividual>\n\n")
     return "".join(rdf)
     

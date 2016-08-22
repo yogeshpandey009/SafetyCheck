@@ -15,18 +15,19 @@ public class RegionDAO {
 
 		ResultSet rs = SafetyCheckQueryHelper
 				.runQuery(
-						" select ?region ?name ?latitude ?longitude"
-								+ " where { ?region rdf:type sc:Region. ?region sc:hasLocationName ?name."
-								+ " ?region sc:hasLatitude ?latitude . ?region sc:hasLongitude ?longitude. }");
+						" select ?region ?name ?point ?latitude ?longitude ?population"
+								+ " where { ?region rdf:type sc:Region. ?region sc:hasRegionName ?name."
+								+ " ?region sc:hasPoint ?point. ?region sc:hasPopulation ?population."
+								+ " ?point sc:hasLatitude ?latitude . ?point sc:hasLongitude ?longitude. }");
 		List<Region> regions = new ArrayList<Region>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode region = soln.get("?region");
 			if (region != null) {
-
 				regions.add(new Region(region.toString(), soln.getLiteral(
 						"?name").getString(), soln.getLiteral("?latitude")
-						.getFloat(), soln.getLiteral("?longitude").getFloat()));
+						.getFloat(), soln.getLiteral("?longitude").getFloat(),
+						soln.getLiteral("?population").getInt()));
 			}
 		}
 		return regions;

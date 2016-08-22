@@ -95,9 +95,9 @@ public class PuSHhandler extends AbstractHandler {
 				ex.printStackTrace();
 			}
 		}
-		String earthquakesRDF = AlertToRDF.earthquakeAlertstoRDF(alerts);
-		System.out.println(earthquakesRDF);
-		SafetyCheckServlet.addEarthquakeInstance(earthquakesRDF);
+		String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts);
+		System.out.println(alertsRDF);
+		SafetyCheckServlet.addAlertRDF(alertsRDF);
 	}
 
 	public void handle(String target, Request baseRequest,

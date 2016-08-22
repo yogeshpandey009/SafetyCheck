@@ -13,11 +13,11 @@ public class PersonDAO {
 	
 	public List<Person> getAllPersons() {
 		
-		ResultSet rs = SafetyCheckQueryHelper.runQuery(" select ?person ?name ?location ?region ?lat ?lon where "
-		+ "{ ?person rdf:type sc:Person. ?person sc:hasName ?name . "
-		+ "?person sc:hasLocation ?location. OPTIONAL "
-		+ "{?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat."
-		+ " ?region sc:hasLongitude ?lon.} }");
+		ResultSet rs = SafetyCheckQueryHelper.runQuery(" select ?person ?name ?location ?region ?point ?lat ?lon where"
+		+ " { ?person rdf:type sc:Person. ?person sc:hasName ?name ."
+		+ " ?person sc:hasLocation ?location. OPTIONAL"
+		+ " { ?person sc:locatedAt ?region. ?region sc:hasPoint ?point."
+		+ " ?point sc:hasLatitude ?lat. ?point sc:hasLongitude ?lon.} }");
 		List<Person> persons = new ArrayList<Person>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -50,11 +50,12 @@ public class PersonDAO {
 	
 		List<Person> persons = new ArrayList<Person>();
 		ResultSet rs = SafetyCheckQueryHelper.runQuery(
-				" select ?person ?name ?location ?region ?lat ?lon "
+				" select ?person ?name ?location ?region ?point ?lat ?lon "
 						+ " where { ?person sc:isImpactedBy <"
 						+ earthquakeId
-						+ ">. ?person sc:hasName ?name . ?person sc:hasLocation ?location."
-						+ " ?person sc:locatedAt ?region. ?region sc:hasLatitude ?lat. ?region sc:hasLongitude ?lon. }");
+						+ ">. ?person sc:hasName ?name. ?person sc:hasLocation ?location."
+						+ " ?person sc:locatedAt ?region.  ?region sc:hasPoint ?point."
+						+ " ?point sc:hasLatitude ?lat. ?point sc:hasLongitude ?lon. }");
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode person = soln.get("?person");

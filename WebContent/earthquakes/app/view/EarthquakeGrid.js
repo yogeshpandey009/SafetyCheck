@@ -6,7 +6,7 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
     cls: 'earthquakegrid',
     viewConfig: {
         getRowClass: function(record, rowIndex, rowParams, store){
-            return record.get("magnitude") < 6 ? "" : "danger";
+            return record.get("magnitude") < 5 ? "" : "danger";
         }
     },
     autoScroll: true,
@@ -14,10 +14,6 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
         ptype: 'bufferedrenderer'
     },
     columns: [{
-        text: 'EarhquakeId',
-        dataIndex: 'id',
-        flex: 1
-    }, {
         text: 'Magnitude',
         dataIndex: 'magnitude',
         flex: 1
@@ -25,6 +21,13 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
         text: 'Epicenter',
         dataIndex: 'coordinates',
         flex: 1
+    }, {
+        text: 'Info',
+        dataIndex: 'desc',
+        flex: 3,
+        renderer: function (value, metaData) {
+            return '<div style="white-space:normal">' + value + '</div>';
+        }
     }, {
         text: 'Time',
         dataIndex: 'time',

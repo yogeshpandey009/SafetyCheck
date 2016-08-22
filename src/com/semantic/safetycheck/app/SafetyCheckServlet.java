@@ -28,7 +28,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				registerCustomBuiltins();
+				registerCustomBuiltinRules();
 				store = new TDBStoreManager(context.getRealPath(File.separator));
 			}
 		});
@@ -49,12 +49,12 @@ public class SafetyCheckServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void registerCustomBuiltins() {
+	public static void registerCustomBuiltinRules() {
 		BuiltinRegistry.theRegistry.register(new MatchLiteral());
 		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
 	}
 
-	public static void addEarthquakeInstance(String eq) {
+	public static void addAlertRDF(String eq) {
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		store.read(is, defaultNameSpace);
 		store.runReasoner();

@@ -6,8 +6,9 @@ public class Region {
 	private String name;
 	private Float latitude;
 	private Float longitude;
+	private Integer population;
 
-	public Region(String id, String name, Float latitude, Float longitude) {
+	public Region(String id, String name, Float latitude, Float longitude, Integer population) {
 		super();
 		if (id.indexOf("#") == -1){
 			this.id = id;
@@ -17,6 +18,7 @@ public class Region {
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.population = population;
 	}
 
 	public String getId() {
@@ -49,6 +51,14 @@ public class Region {
 
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
+	}
+
+	public Integer getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(Integer population) {
+		this.population = population;
 	}
 
 }

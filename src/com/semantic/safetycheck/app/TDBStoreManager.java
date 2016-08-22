@@ -100,9 +100,10 @@ public class TDBStoreManager {
 
 	private void loadDataIntoTDB() {
 
-		String owlFilePath = path + "WEB-INF/classes/SafetyCheck.owl";
+		//String owlFilePath = path + "WEB-INF/classes/SafetyCheck.owl";
+		String owlFilePath = path + "WEB-INF/classes/SafetyCheck_V2.owl";
 		String friendsFilePath = path + "WEB-INF/classes/friends.rdf";
-		String regionsFilePath = path + "WEB-INF/classes/region.rdf";
+		String regionsFilePath = path + "WEB-INF/classes/regions.rdf";
 		// String earthquakesFilePath = path +
 		// "WEB-INF/classes/earthquakes.rdf";
 		readFile(owlFilePath);

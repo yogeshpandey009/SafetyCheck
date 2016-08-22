@@ -14,10 +14,11 @@ public class EarthquakeDAO {
 
 	public List<Earthquake> getAllEarthquakes() {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(" select ?earthquake ?lat ?lon ?mag ?time ?desc where "
+				.runQuery(" select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where "
 						+ "{ ?earthquake rdf:type sc:Earthquake. OPTIONAL { ?earthquake sc:hasMagnitude ?mag."
-						+ " ?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat."
-						+ " ?earthquake sc:hasTime ?time. ?earthquake sc:hasDesc ?desc } }");
+						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc } }");
 		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -32,12 +33,13 @@ public class EarthquakeDAO {
 
 	public List<Earthquake> getImpactedByEarthquakes(String personId) {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery("select ?earthquake ?lat ?lon ?mag ?time ?desc where { <"
+				.runQuery("select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where { <"
 						+ personId
 						+ ">  sc:isImpactedBy ?earthquake."
 						+ " ?earthquake rdf:type sc:Earthquake. OPTIONAL { ?earthquake sc:hasMagnitude ?mag."
-						+ " ?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat."
-						+ " ?earthquake sc:hasTime ?time. ?earthquake sc:atDesc ?desc } }");
+						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc } }");
 
 		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
 		while (rs.hasNext()) {

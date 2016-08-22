@@ -2,12 +2,12 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY sc "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#" >
-    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
 ]>
 
 
@@ -22,6 +22,23 @@
     <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#">
         <owl:versionIRI rdf:resource="http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#equivalentClass -->
+
+    <owl:AnnotationProperty rdf:about="&sc;equivalentClass"/>
     
 
 
@@ -66,7 +83,6 @@
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isFriendOf -->
 
     <owl:ObjectProperty rdf:about="&sc;isFriendOf">
-		<owl:equivalentProperty rdf:resource="&foaf;knows"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&sc;Person"/>
@@ -229,9 +245,9 @@
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#Person -->
 
-	<owl:Class rdf:about="&sc;Person">
-		<equivalentClass rdf:resource="&foaf;Person"/>
-	</owl:Class>
+    <owl:Class rdf:about="&sc;Person">
+        <equivalentClass rdf:resource="&foaf;Person"/>
+    </owl:Class>
     
 
 
@@ -253,6 +269,7 @@
         <rdfs:subClassOf rdf:resource="&sc;Alert"/>
     </owl:Class>
     
+
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -293,7 +310,7 @@ DIFFICULT.</hasDescription>
     
 
 
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person1 -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person1
 
     <owl:NamedIndividual rdf:about="&sc;person1">
         <rdf:type rdf:resource="&sc;Person"/>
@@ -301,38 +318,38 @@ DIFFICULT.</hasDescription>
         <hasName rdf:datatype="&xsd;string">Yogesh Pandey</hasName>
         <isFriendOf rdf:resource="&sc;person2"/>
     </owl:NamedIndividual>
-    
+     -->
 
 
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person2 -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person2 
 
     <owl:NamedIndividual rdf:about="&sc;person2">
         <rdf:type rdf:resource="&sc;Person"/>
-        <hasLocation rdf:datatype="&xsd;string">Bangalore, India</hasLocation>
+        <hasLocation rdf:datatype="&xsd;string">Bangalore</hasLocation>
         <hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</hasName>
     </owl:NamedIndividual>
-    
+    -->
 
 
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#region1 -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#region1
 
     <owl:NamedIndividual rdf:about="&sc;region1">
         <rdf:type rdf:resource="&sc;Region"/>
         <hasPopulation rdf:datatype="&xsd;unsignedLong">5945523</hasPopulation>
-        <hasRegionName rdf:datatype="&xsd;string">Bangalore</hasRegionName>
+        <hasRegionName rdf:datatype="&xsd;string">Bangalore, India</hasRegionName>
         <hasPoint rdf:resource="&sc;12.58_77.34"/>
     </owl:NamedIndividual>
-    
+     -->
 
 
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#12.58_77.34 -->
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#12.58_77.34
 
     <owl:NamedIndividual rdf:about="&sc;12.58_77.34">
         <rdf:type rdf:resource="&sc;Point"/>
         <hasLatitude rdf:datatype="&xsd;float">12.58</hasLatitude>
         <hasLongitude rdf:datatype="&xsd;float">77.34</hasLongitude>
     </owl:NamedIndividual>
-    
+    -->
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#20005hxx -->
@@ -340,7 +357,8 @@ DIFFICULT.</hasDescription>
     <owl:NamedIndividual rdf:about="&sc;20005hxx">
         <rdf:type rdf:resource="&sc;Earthquake"/>
         <hasAreaDescription rdf:datatype="&xsd;string">104 miles (167 km) ENE of Petropavlovsk-Kamchatskiy, Russia; 229 miles (369 km) WSW of Nikol&apos;skoye, Komandorskiye Ostrova, Rus.; 292 miles (471 km) NE of Severo-Kuril&apos;sk, Kuril Islands, Russia; 1611 miles (2593 km) NNE of TOKYO, Japan</hasAreaDescription>
-        <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32Z</atTime>
+        <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32.520Z</atTime>
+        <hasMagnitude rdf:datatype="&xsd;float">5.3</hasMagnitude>
         <hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</hasDescription>
         <hasArea rdf:resource="&sc;53.78_160.77"/>
     </owl:NamedIndividual>

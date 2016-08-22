@@ -60,7 +60,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         	xtype: 'textarea',
         	fieldLabel: 'Description',
         	name: 'desc',
-        	value: 'An earthquake with magnitude 3 occurred near Tempe, AZ',
+        	value: 'An earthquake with magnitude 3 occurred near Tempe, AZ(dummy earthquake)',
         	allowBlank: false
         }],
         dockedItems: [{

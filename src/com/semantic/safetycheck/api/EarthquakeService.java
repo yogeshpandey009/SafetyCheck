@@ -74,7 +74,7 @@ public class EarthquakeService extends SCService {
 			// "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
 			earthquakeObj.setId(100000 + i++ + "");
 			String eq = RDFGenerator.singleEarthquakeRDF(earthquakeObj);
-			SafetyCheckServlet.addEarthquakeInstance(eq);
+			SafetyCheckServlet.addAlertRDF(eq);
 
 		} catch (IOException e) {
 			success = Boolean.FALSE;
