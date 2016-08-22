@@ -83,6 +83,7 @@
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isFriendOf -->
 
     <owl:ObjectProperty rdf:about="&sc;isFriendOf">
+        <owl:equivalentProperty rdf:resource="&foaf;knows"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&sc;Person"/>
