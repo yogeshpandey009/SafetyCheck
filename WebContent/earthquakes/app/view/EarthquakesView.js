@@ -35,7 +35,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             xtype: 'numberfield',
             fieldLabel: 'Magnitude',
             name: 'magnitude',
-            value: 4,
+            value: 4.3,
             allowBlank: false
         }, /* {
             //xtype: 'timefield',
@@ -60,7 +60,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             xtype: 'textarea',
             fieldLabel: 'Description',
             name: 'desc',
-            value: 'An earthquake with magnitude 4 occurred near Tempe, AZ(dummy earthquake)',
+            value: 'An earthquake with magnitude 4.3 occurred near Tempe, AZ (Note: dummy earthquake)',
             allowBlank: false
         }],
         dockedItems: [{

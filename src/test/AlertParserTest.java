@@ -62,8 +62,8 @@ public class AlertParserTest {
 	private static boolean noFetch = false;
 	public static void main(String[] args) {
 		try {
-			//URL url = new URL("http://alerts.weather.gov/cap/ga.php?x=0");
-			URL url = new URL("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
+			URL url = new URL("https://alerts.weather.gov/cap/us.php?x=0");
+			//URL url = new URL("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = input.build(new XmlReader(url));
 			@SuppressWarnings("unchecked")

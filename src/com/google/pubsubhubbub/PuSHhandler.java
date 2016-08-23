@@ -96,7 +96,7 @@ public class PuSHhandler extends AbstractHandler {
 			}
 		}
 		if(alerts.size() > 0) {
-			String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts);
+			String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts, hubtopic);
 			System.out.println(alertsRDF);
 			SafetyCheckServlet.addAlertRDF(alertsRDF);
 		}
