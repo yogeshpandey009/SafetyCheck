@@ -21,12 +21,15 @@ public class TDBStoreManager {
 	String dataURI = "http://localhost:3030/sc/data";
 	private final String rulesPath = "WEB-INF/classes/rules.txt";
 	private String path = "";
-	protected OntModel ontModel = null;
+	protected OntModel ontModel = ModelFactory.createOntologyModel();
 	protected Model base = null;
 	DatasetAccessor accessor = null;
+	Reasoner reasoner = null;
 	public TDBStoreManager(String path) {
 		this.path = path;
 		accessor = DatasetAccessorFactory.createHTTP(dataURI);
+		reasoner = new GenericRuleReasoner(Rule.rulesFromURL(path
+				+ rulesPath));
 		// File f = new File(dataDir);
 		// if (!f.exists()) {
 		// f.mkdirs();
@@ -49,11 +52,11 @@ public class TDBStoreManager {
 			// om = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,
 			// base);
 			// base = ModelFactory.createDefaultModel();
-			ontModel = ModelFactory.createOntologyModel();
 			loadDataIntoTDB();
 			runReasoner();
 			// accessor.putModel(ontModel);
 		}
+
 	}
 
 	private void saveIntoTDB() {
@@ -89,9 +92,7 @@ public class TDBStoreManager {
 	}
 
 	public void runReasoner() {
-		Reasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL(path
-				+ rulesPath));
-		reasoner.setDerivationLogging(true);
+		//reasoner.setDerivationLogging(true);
 		InfModel infModel = ModelFactory.createInfModel(reasoner, ontModel);
 		// infModel.prepare();
 		ontModel.add(infModel.getDeductionsModel());

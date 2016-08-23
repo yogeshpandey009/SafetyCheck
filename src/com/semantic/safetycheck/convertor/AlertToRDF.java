@@ -25,7 +25,16 @@ public class AlertToRDF {
 		StringBuffer rdf = new StringBuffer();
 		rdf.append(generateRDFHeader());
 		for (Alert alert : alerts)
-			rdf.append(convertEarthquakeAlert(alert));
+			try{
+				rdf.append(convertEarthquakeAlert(alert));
+			} catch(Exception e) {
+				try {
+					rdf.append(convertWeatherAlert(alert));
+				} catch(Exception e2) {
+					e.printStackTrace();
+					e2.printStackTrace();
+				}
+			}
 		rdf.append(generateRDFFooter());
 		return rdf.toString();
 	}

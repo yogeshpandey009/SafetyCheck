@@ -1,15 +1,13 @@
 package com.semantic.safetycheck.builtin;
 
 import java.util.Arrays;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.List;
 
 import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
 import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.BaseBuiltin;
 
-public class MatchLiteral extends BaseBuiltin {
+public class MatchRegion extends BaseBuiltin {
 	/**
 	 * Return a name for this builtin, normally this will be the name of the
 	 * functor that will be used to invoke it.
@@ -50,17 +48,14 @@ public class MatchLiteral extends BaseBuiltin {
 			Object v2 = n2.getLiteralValue();
 
 			if (v1 instanceof String && v2 instanceof String) {
-				String s1 = ((String) v1).toLowerCase();
-				String[] s11 = s1.split(",");
-				String s2 = ((String) v2).toLowerCase();
-				String[] s22 = s2.split(",");
+				String loction = ((String) v1).toLowerCase();
+				String[] locParts = loction.split(",");
+				String region = ((String) v2).toLowerCase();
+				//String[] regionParts = region.split(",");
+				//List<String> regionPartsList = Arrays.asList(regionParts);
 				//int diff = StringUtils.getLevenshteinDistance(s1, s2);
-				if(Arrays.asList(s22).contains(s11[0])) {
-				//if (s1.toLowerCase().contains(s2.toLowerCase())||
-				//if(s22[0].toLowerCase().contains(s11[0].toLowerCase())) {
-					return true;
-					// return env.bind(args[2], n2);
-				}
+				if(region.contains(locParts[0])) return true;
+				// return env.bind(args[2], n2);
 			}
 		}
 		// Doesn't (yet) handle partially bound cases

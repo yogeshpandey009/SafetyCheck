@@ -363,7 +363,7 @@ DIFFICULT.</hasDescription>
         <hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</hasDescription>
         <hasArea rdf:resource="&sc;53.78_160.77"/>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#31.14_-81.83 -->
@@ -390,7 +390,7 @@ DIFFICULT.</hasDescription>
 
     <owl:NamedIndividual rdf:about="&sc;31.28_-81.91">
         <rdf:type rdf:resource="&sc;Point"/>
-        <hasLatitude rdf:datatype="&xsd;float">-81.91</hasLatitude>
+        <hasLongitude rdf:datatype="&xsd;float">-81.91</hasLongitude>
         <hasLatitude rdf:datatype="&xsd;float">31.28</hasLatitude>
     </owl:NamedIndividual>
     
@@ -400,8 +400,8 @@ DIFFICULT.</hasDescription>
 
     <owl:NamedIndividual rdf:about="&sc;53.78_160.77">
         <rdf:type rdf:resource="&sc;Point"/>
-        <hasLongitude rdf:datatype="&xsd;float">160.77</hasLongitude>
         <hasLatitude rdf:datatype="&xsd;float">53.78</hasLatitude>
+        <hasLongitude rdf:datatype="&xsd;float">160.77</hasLongitude>
     </owl:NamedIndividual>
     
 

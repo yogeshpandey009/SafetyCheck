@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.eclipse.jetty.util.log.Log;
+
 public class Earthquake {
 
-	private SimpleDateFormat formatter = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	private String[] formatStrings = {"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+			"yyyy-MM-dd'T'HH:mm:ss'Z'"};
 	private String id;
 	private Float magnitude;
 	private Date time;
@@ -47,15 +49,18 @@ public class Earthquake {
 
 	private Date parseTime(String time) {
 		// 2015-11-12T00:22:32.520Z
-		Date date = null;
-		try {
-			date = formatter.parse(time);
-			// System.out.println(date.getTime());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// 2016-08-22T04:48:42Z
+		for (String formatString : formatStrings) {
+			try {
+				return new SimpleDateFormat(formatString).parse(time);
+				// System.out.println(date.getTime());
+			} catch (ParseException e) {
+				Log.debug(e.getMessage());
+				// e.printStackTrace();
+			}
 		}
-		return date;
+		Log.warn("Couldn't parse:" + time);
+		return new Date();
 	}
 
 	public String getId() {
@@ -71,7 +76,7 @@ public class Earthquake {
 		this.magnitude = magnitude;
 	}
 	public String getTimeAsFormat() {
-		return formatter.format(time);
+		return new SimpleDateFormat(formatStrings[0]).format(time);
 	}
 	public Date getTime() {
 		return time;

@@ -4,7 +4,7 @@ import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.BaseBuiltin;
 
-public class ImpactZoneMatch extends BaseBuiltin {
+public class EQImpactZoneMatch extends BaseBuiltin {
 	/**
 	 * Return a name for this builtin, normally this will be the name of the
 	 * functor that will be used to invoke it.
@@ -43,7 +43,7 @@ public class ImpactZoneMatch extends BaseBuiltin {
 		Node rLatNode = getArg(2, args, context);
 		Node rLonNode = getArg(3, args, context);
 		Node magNode = getArg(4, args, context);
-		if (eLatNode.isLiteral() && rLatNode.isLiteral() && eLonNode.isLiteral() && rLonNode.isLiteral()
+		if (eLatNode.isLiteral() && eLonNode.isLiteral() && rLatNode.isLiteral() && rLonNode.isLiteral()
 				&& magNode.isLiteral()) {
 			Object eLatObj = eLatNode.getLiteralValue();
 			Object eLonObj = eLonNode.getLiteralValue();
@@ -51,7 +51,7 @@ public class ImpactZoneMatch extends BaseBuiltin {
 			Object rLonObj = rLonNode.getLiteralValue();
 			Object magObj = magNode.getLiteralValue();
 
-			if (eLatObj instanceof Float && rLatObj instanceof Float && eLonObj instanceof Float
+			if (eLatObj instanceof Float && eLonObj instanceof Float && rLatObj instanceof Float
 					&& rLonObj instanceof Float && magObj instanceof Float) {
 				Float eLat = (Float) eLatObj;
 				Float eLon = (Float) eLonObj;

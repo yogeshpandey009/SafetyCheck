@@ -23,6 +23,7 @@ import com.semantic.safetycheck.convertor.RDFGenerator;
 import com.semantic.safetycheck.dao.WeatherDAO;
 import com.semantic.safetycheck.pojo.Weather;
 
+@Path("/weather")
 public class WeatherService  extends SCService {
 
 	private WeatherDAO dao = new WeatherDAO();
@@ -30,7 +31,6 @@ public class WeatherService  extends SCService {
 	private static int i = 0;
 
 	@GET
-	@Path("/weather")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response weatherAlerts(@Context UriInfo info) {
 		List<Weather> weatherAlerts = null;
@@ -58,7 +58,6 @@ public class WeatherService  extends SCService {
 	}
 
 	@POST
-	@Path("/weather")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addWeatherAlert(InputStream incomingData) {

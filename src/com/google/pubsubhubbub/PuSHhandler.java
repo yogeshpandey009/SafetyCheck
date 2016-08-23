@@ -95,9 +95,11 @@ public class PuSHhandler extends AbstractHandler {
 				ex.printStackTrace();
 			}
 		}
-		String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts);
-		System.out.println(alertsRDF);
-		SafetyCheckServlet.addAlertRDF(alertsRDF);
+		if(alerts.size() > 0) {
+			String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts);
+			System.out.println(alertsRDF);
+			SafetyCheckServlet.addAlertRDF(alertsRDF);
+		}
 	}
 
 	public void handle(String target, Request baseRequest,

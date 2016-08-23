@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 
 import com.google.pubsubhubbub.GoogleAlertSubscriber;
 import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
-import com.semantic.safetycheck.builtin.ImpactZoneMatch;
-import com.semantic.safetycheck.builtin.MatchLiteral;
+import com.semantic.safetycheck.builtin.EQImpactZoneMatch;
+import com.semantic.safetycheck.builtin.MatchRegion;
 
 /**
  * Servlet implementation class SafetyCheckServlet
@@ -50,8 +50,8 @@ public class SafetyCheckServlet extends HttpServlet {
 	}
 
 	public static void registerCustomBuiltinRules() {
-		BuiltinRegistry.theRegistry.register(new MatchLiteral());
-		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
+		BuiltinRegistry.theRegistry.register(new MatchRegion());
+		BuiltinRegistry.theRegistry.register(new EQImpactZoneMatch());
 	}
 
 	public static void addAlertRDF(String eq) {

@@ -58,7 +58,7 @@ public class GoogleAlertSubscriber {
 	private GoogleAlertSubscriber() {
 		startServer();
 		startSubscriber(eq_hub_topic);
-		//startSubscriber(w_hub_topic);
+		startSubscriber(w_hub_topic);
 	}
 
 }

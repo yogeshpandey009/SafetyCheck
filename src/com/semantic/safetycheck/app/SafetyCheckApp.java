@@ -18,8 +18,8 @@ import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
-import com.semantic.safetycheck.builtin.ImpactZoneMatch;
-import com.semantic.safetycheck.builtin.MatchLiteral;
+import com.semantic.safetycheck.builtin.EQImpactZoneMatch;
+import com.semantic.safetycheck.builtin.MatchRegion;
 
 public class SafetyCheckApp {
 
@@ -43,8 +43,8 @@ public class SafetyCheckApp {
 	}
 
 	public static void registerCustomBuiltins() {
-		BuiltinRegistry.theRegistry.register(new MatchLiteral());
-		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
+		BuiltinRegistry.theRegistry.register(new MatchRegion());
+		BuiltinRegistry.theRegistry.register(new EQImpactZoneMatch());
 	}
 
 	public static Model populateData() {

@@ -23,15 +23,13 @@ import com.semantic.safetycheck.convertor.RDFGenerator;
 import com.semantic.safetycheck.dao.EarthquakeDAO;
 import com.semantic.safetycheck.pojo.Earthquake;
 
-@Path("/")
+@Path("/earthquakes")
 public class EarthquakeService extends SCService {
 
 	private EarthquakeDAO dao = new EarthquakeDAO();
 	private ObjectMapper mapper = new ObjectMapper();
-	private static int i = 0;
 
 	@GET
-	@Path("/earthquakes")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response earthquakes(@Context UriInfo info) {
 		List<Earthquake> earthquakes = null;
@@ -59,7 +57,6 @@ public class EarthquakeService extends SCService {
 	}
 
 	@POST
-	@Path("/earthquake")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addEarthquake(InputStream incomingData) {
@@ -72,7 +69,7 @@ public class EarthquakeService extends SCService {
 			// Earthquake.class);
 			// Earthquake earthquakeObj = new Earthquake(3.0f,
 			// "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
-			earthquakeObj.setId(100000 + i++ + "");
+			earthquakeObj.setId("eq" + System.currentTimeMillis());
 			String eq = RDFGenerator.singleEarthquakeRDF(earthquakeObj);
 			SafetyCheckServlet.addAlertRDF(eq);
 
