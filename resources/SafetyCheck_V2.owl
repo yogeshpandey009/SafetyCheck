@@ -301,7 +301,7 @@ CONDITIONS TO IMPROVE THEN.
 ACCUMULATE INTO DRIFTS. WHITEOUT CONDITIONS SHOULD BE
 EXPECTED. TRAVEL AND OUTDOOR ACTIVITIES WILL BE EXTREMELY
 DIFFICULT.</hasDescription>
-        <atTime rdf:datatype="&xsd;dateTimeStamp">2016-04-13T14:27:00-08:00</atTime>
+        <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32.520Z</atTime>
         <hasAreaDescription rdf:datatype="&xsd;string">Central Beaufort Sea Coast</hasAreaDescription>
         <hasSeverity rdf:datatype="&xsd;string">Severe</hasSeverity>
         <hasArea rdf:resource="&sc;31.14_-81.83"/>

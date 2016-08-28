@@ -19,7 +19,6 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import com.google.publicalerts.cap.Alert;
 import com.google.publicalerts.cap.CapXmlParser;
-import com.google.publicalerts.cap.Info;
 import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.convertor.AlertToRDF;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -70,6 +69,7 @@ public class PuSHhandler extends AbstractHandler {
 					}
 					CapXmlParser parser = new CapXmlParser(false);
 					Alert alert = parser.parseFrom(sb.toString());
+					/*
 					System.out.println(alert.getStatus() + ":"
 							+ alert.getScope() + ":" + alert.getMsgType());
 					List<Info> infoList = alert.getInfoList();
@@ -88,7 +88,7 @@ public class PuSHhandler extends AbstractHandler {
 							System.out.println("\t\tArea affected: "
 									+ infoItem.getArea(i));
 						}
-					}
+					}*/
 					alerts.add(alert);
 				}
 			} catch (Exception ex) {

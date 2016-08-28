@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.DatasetAccessor;
 import com.hp.hpl.jena.query.DatasetAccessorFactory;
 import com.hp.hpl.jena.rdf.model.InfModel;
@@ -21,10 +22,11 @@ public class TDBStoreManager {
 	String dataURI = "http://localhost:3030/sc/data";
 	private final String rulesPath = "WEB-INF/classes/rules.txt";
 	private String path = "";
-	protected OntModel ontModel = ModelFactory.createOntologyModel();
+	protected OntModel ontModel = null;
 	protected Model base = null;
 	DatasetAccessor accessor = null;
 	Reasoner reasoner = null;
+	InfModel infModel = null;
 	public TDBStoreManager(String path) {
 		this.path = path;
 		accessor = DatasetAccessorFactory.createHTTP(dataURI);
@@ -48,21 +50,35 @@ public class TDBStoreManager {
 		// }
 		// base = dataset.getDefaultModel();
 		base = accessor.getModel();
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM;
+		ontModelSpec.setReasoner(reasoner);
+		ontModel = ModelFactory.createOntologyModel(ontModelSpec, base);
+
 		if (base.isEmpty()) {
-			// om = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,
-			// base);
+			// om = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, base);
 			// base = ModelFactory.createDefaultModel();
-			loadDataIntoTDB();
-			runReasoner();
+			loadData();
+			//runReasoner();
+			saveData();
 			// accessor.putModel(ontModel);
 		}
 
 	}
 
-	private void saveIntoTDB() {
+	public void saveData() {
 		// dataset.begin(ReadWrite.WRITE);
-		base.add(ontModel);
-		accessor.putModel(base);
+		Thread t1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				base.add(ontModel);
+				//reasoner.setDerivationLogging(true);
+				//infModel.prepare();
+				//ontModel.add(infModel.getDeductionsModel());
+				//base.add(infModel.getDeductionsModel());
+				accessor.putModel(base);
+			}
+		});
+		t1.start();
 		// dataset.commit();
 		// dataset.end();
 	}
@@ -81,7 +97,8 @@ public class TDBStoreManager {
 
 	public void read(InputStream is, String ns) {
 		// dataset.begin(ReadWrite.WRITE);
-		ontModel.read(is, ns);
+		Model model = ModelFactory.createDefaultModel();
+		model.read(is, ns);
 		// dataset.commit();
 		// dataset.end();
 		try {
@@ -89,17 +106,19 @@ public class TDBStoreManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		ontModel.add(model);
 	}
 
+	/*
 	public void runReasoner() {
+		//saveIntoTDB();
 		//reasoner.setDerivationLogging(true);
-		InfModel infModel = ModelFactory.createInfModel(reasoner, ontModel);
-		// infModel.prepare();
-		ontModel.add(infModel.getDeductionsModel());
-		saveIntoTDB();
+		//infModel = ModelFactory.createInfModel(reasoner, ontModel);
+		//infModel.prepare();
 	}
+	*/
 
-	private void loadDataIntoTDB() {
+	private void loadData() {
 
 		//String owlFilePath = path + "WEB-INF/classes/SafetyCheck.owl";
 		String owlFilePath = path + "WEB-INF/classes/SafetyCheck_V2.owl";

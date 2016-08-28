@@ -11,6 +11,7 @@ import com.google.pubsubhubbub.GoogleAlertSubscriber;
 import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
 import com.semantic.safetycheck.builtin.EQImpactZoneMatch;
 import com.semantic.safetycheck.builtin.MatchRegion;
+import com.semantic.safetycheck.builtin.WeatherImpactZoneMatch;
 
 /**
  * Servlet implementation class SafetyCheckServlet
@@ -52,12 +53,13 @@ public class SafetyCheckServlet extends HttpServlet {
 	public static void registerCustomBuiltinRules() {
 		BuiltinRegistry.theRegistry.register(new MatchRegion());
 		BuiltinRegistry.theRegistry.register(new EQImpactZoneMatch());
+		BuiltinRegistry.theRegistry.register(new WeatherImpactZoneMatch());
 	}
 
 	public static void addAlertRDF(String eq) {
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		store.read(is, defaultNameSpace);
-		store.runReasoner();
+		store.saveData();
 	}
 
 }

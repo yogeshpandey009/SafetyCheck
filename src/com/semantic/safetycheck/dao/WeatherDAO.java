@@ -7,8 +7,6 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.semantic.safetycheck.app.SafetyCheckQueryHelper;
 import com.semantic.safetycheck.pojo.Point;
 import com.semantic.safetycheck.pojo.Weather;
@@ -17,72 +15,94 @@ public class WeatherDAO {
 
 	public List<Weather> getAllWeatherAlerts() {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(" select ?weather ?area ?areaDesc ?sev ?time ?desc where "
-						+ "{ ?weather rdf:type sc:Weather. OPTIONAL { ?weather sc:hasSeverity ?sev."
-						+ " ?weather sc:hasArea ?area. ?weather sc:hasAreaDescription ?areaDesc."
-						+ " ?weather sc:hasTime ?time. ?weather sc:hasDescription ?desc } }");
-		List<Weather> weatherAlerts = new ArrayList<Weather>();
-		while (rs.hasNext()) {
-			QuerySolution soln = rs.nextSolution();
-			Weather eq = solnToWeather(soln);
-			if (eq != null) {
-				weatherAlerts.add(eq);
-			}
-		}
-		return weatherAlerts;
+				.runQuery(" select ?weather ?areaDesc ?sev ?time ?desc"
+						+ " (GROUP_CONCAT(?lat) AS ?lats)"
+						+ " (GROUP_CONCAT(?lon) AS ?lons) where"
+						+ " { ?weather rdf:type sc:Weather. OPTIONAL { ?weather sc:hasSeverity ?sev."
+						+ " ?weather sc:hasAreaDescription ?areaDesc. ?weather sc:hasArea ?area."
+						+ " ?area sc:hasLongitude ?lon. ?area sc:hasLatitude ?lat."
+						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc } }"
+						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
+
+		return computeWeatherResultSet(rs);
 	}
 
 	public List<Weather> getImpactedByWeatherAlerts(String personId) {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery("select ?weather ?area ?areaDesc ?sev ?time ?desc where { <"
+				.runQuery("select ?weather ?areaDesc ?sev ?time ?desc"
+						+ " (GROUP_CONCAT(?lat) AS ?lats)"
+						+ " (GROUP_CONCAT(?lon) AS ?lons) where { <"
 						+ personId
 						+ ">  sc:isImpactedBy ?weather."
 						+ "{ ?weather rdf:type sc:Weather. OPTIONAL { ?weather sc:hasSeverity ?sev."
-						+ " ?weather sc:hasArea ?area. ?weather sc:hasAreaDescription ?areaDesc."
-						+ " ?weather sc:hasTime ?time. ?weather sc:hasDescription ?desc } }");
+						+ " ?weather sc:hasAreaDescription ?areaDesc. ?weather sc:hasArea ?area. "
+						+ " ?area sc:hasLongitude ?lon. ?area sc:hasLatitude ?lat. "
+						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc } }"
+						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
 
-		List<Weather> weatherAlerts = new ArrayList<Weather>();
+		return computeWeatherResultSet(rs);
+	}
+
+	private List<Weather> computeWeatherResultSet(ResultSet rs) {
+		//Map<String, Weather> weatherAlerts = new HashMap<>();
+		ArrayList<Weather> weatherAlerts = new ArrayList<Weather>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
-			Weather eq = solnToWeather(soln);
-			if (eq != null) {
-				weatherAlerts.add(eq);
-			}
-
+			Weather	w = solnToWeather(soln);
+			if(w != null)
+				weatherAlerts.add(w);
 		}
 		return weatherAlerts;
 	}
 
 	private Weather solnToWeather(QuerySolution soln) {
-		RDFNode eqId = soln.get("?weather");
-		if (eqId != null) {
-			String id = eqId.toString();
-			 String sev = null;
-			 String time = null;
-			 List<Point> points = null;
-			 String desc = null;
-			 String areaDesc = null;
+		if (soln != null) {
+			String sev = null;
+			String time = null;
+			List<Point> points = new ArrayList<>();
+			String desc = null;
+			String areaDesc = null;
 
-			Literal sevLtr = soln.getLiteral("?sev");
-			if(sevLtr != null) sev = sevLtr.getString();
+			RDFNode weather = soln.get("?weather");
+			if(weather != null) {
+				String wId = weather.toString();
 
-			StmtIterator it = soln.getResource("?area").listProperties();
-		    while( it.hasNext() ) {
-		      Statement stmt = it.nextStatement();
-		      System.out.println( "   * "+stmt );
-		    }
-			Literal timeLtr = soln.getLiteral("?time");
-			if(timeLtr != null) time = timeLtr.getString();
+				Literal sevLtr = soln.getLiteral("?sev");
+				if (sevLtr != null)
+					sev = sevLtr.getString();
 
-			Literal descLtr = soln.getLiteral("?desc");
-			if(descLtr != null) desc = descLtr.getString();
+				Literal timeLtr = soln.getLiteral("?time");
+				if (timeLtr != null)
+					time = timeLtr.getString();
 
-			Literal areaDescLtr = soln.getLiteral("?areaDesc");
-			if(areaDescLtr != null) areaDesc = areaDescLtr.getString();
+				Literal latLtr = soln.getLiteral("?lats");
+				Literal lonLtr = soln.getLiteral("?lons");
 
-			return new Weather(id, sev, time, points, desc, areaDesc);
+				String latsStr = latLtr.getString();
+				String lonStr = lonLtr.getString();
+				if(latsStr != null && lonStr != null) {
+					String[] lats = latsStr.split(" ");
+					String[] lons = lonStr.split(" ");
+
+					int i = 0;
+					while(i < lats.length && i < lons.length) {
+						Point p = new Point(Float.parseFloat(lats[i]), Float.parseFloat(lons[i]));
+						points.add(p);
+						i++;
+					}
+				}
+
+				Literal descLtr = soln.getLiteral("?desc");
+				if (descLtr != null)
+					desc = descLtr.getString();
+
+				Literal areaDescLtr = soln.getLiteral("?areaDesc");
+				if (areaDescLtr != null)
+					areaDesc = areaDescLtr.getString();
+
+				return new Weather(wId, sev, time, points, desc, areaDesc);
+			}
 		}
 		return null;
 	}
-
 }

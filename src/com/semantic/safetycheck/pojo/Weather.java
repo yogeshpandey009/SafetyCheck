@@ -10,6 +10,9 @@ public class Weather {
 
 	private SimpleDateFormat formatter = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	private static SimpleDateFormat iso_format = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ssXXX");
+
 	private String id;
 	private String severity;
 	private Date time;

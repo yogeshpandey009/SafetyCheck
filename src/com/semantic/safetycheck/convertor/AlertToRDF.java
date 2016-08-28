@@ -39,8 +39,8 @@ public class AlertToRDF {
 					rdf.append(convertWeatherAlert(alert));
 				}
 			} catch (AlertConversionException e) {
-				Log.warn(e.getCause().getMessage());
 				System.out.println(e.getCause().getMessage());
+				//Log.warn(e.getCause().getMessage());
 			}
 		}
 		rdf.append(generateRDFFooter());
@@ -128,7 +128,8 @@ public class AlertToRDF {
 							+ "</sc:atTime>\n");
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
+					throw new AlertConversionException(e.getMessage());
 				}
 				String desc = infoItem.getDescription();
 				rdf.append("\t\t<sc:hasDescription rdf:datatype=\"&xsd;string\">"

@@ -10,7 +10,7 @@ public class EQImpactZoneMatch extends BaseBuiltin {
 	 * functor that will be used to invoke it.
 	 */
 	public String getName() {
-		return "impactMatch";
+		return "eqImpactMatch";
 	}
 
 	/**
