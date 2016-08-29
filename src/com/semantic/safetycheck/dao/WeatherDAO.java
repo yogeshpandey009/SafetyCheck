@@ -78,9 +78,9 @@ public class WeatherDAO {
 				Literal latLtr = soln.getLiteral("?lats");
 				Literal lonLtr = soln.getLiteral("?lons");
 
-				String latsStr = latLtr.getString();
-				String lonStr = lonLtr.getString();
-				if(latsStr != null && lonStr != null) {
+				if(latLtr != null && lonLtr != null) {
+					String latsStr = latLtr.getString();
+					String lonStr = lonLtr.getString();
 					String[] lats = latsStr.split(" ");
 					String[] lons = lonStr.split(" ");
 

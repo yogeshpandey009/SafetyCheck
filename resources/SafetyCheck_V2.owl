@@ -287,20 +287,7 @@
 
     <owl:NamedIndividual rdf:about="&sc;NOAA-NWS-ALERTS-AK1255F644C72C.BlizzardWarning.1255F66033E0AK.AFGWSWNSB.1bba64eff253629b166e7b5203f626e5">
         <rdf:type rdf:resource="&sc;Weather"/>
-        <hasDescription rdf:datatype="&xsd;string">...BLIZZARD WARNING REMAINS IN EFFECT UNTIL 6 PM AKDT
-THURSDAY...
-THE NATIONAL WEATHER SERVICE IN FAIRBANKS HAS ISSUED BLIZZARD
-WARNING...WHICH IS IN EFFECT UNTIL 6 PM AKDT THURSDAY.
-* VISIBILITY...NEAR ZERO AT TIMES IN BLOWING SNOW.
-* WINDS...EAST 25 TO 35 MPH GUSTING TO 45 MPH.
-* TIMING...STRONG WINDS WILL CONTINUE THROUGH THURSDAY AFTERNOON.
-THIS WILL CAUSE PERIODS OF VERY LOW VISIBILITY IN BLOWING SNOW.
-WINDS ARE EXPECTED TO DECREASE THURSDAY EVENING CAUSING
-CONDITIONS TO IMPROVE THEN.
-* IMPACTS...VISIBILITY WILL BE VERY POOR AND SNOW WILL
-ACCUMULATE INTO DRIFTS. WHITEOUT CONDITIONS SHOULD BE
-EXPECTED. TRAVEL AND OUTDOOR ACTIVITIES WILL BE EXTREMELY
-DIFFICULT.</hasDescription>
+        <hasDescription rdf:datatype="&xsd;string">the national weather service in fairbanks has issued blizzard warning which is in effect until 6 pm akdt thursday. visibility near zero at times in blowing snow. winds east 25 to 35 mph gusting to 45 mph. timing strong winds will continue through thursday afternoon. this will cause periods of very low visibility in blowing snow. winds are expected to decrease thursday evening causing conditions to improve then. impacts visibility will be very poor and snow will accumulate into drifts. whiteout conditions should be expected. travel and outdoor activities will be extremely difficult</hasDescription>
         <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32.520Z</atTime>
         <hasAreaDescription rdf:datatype="&xsd;string">Central Beaufort Sea Coast</hasAreaDescription>
         <hasSeverity rdf:datatype="&xsd;string">Severe</hasSeverity>

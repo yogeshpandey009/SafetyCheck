@@ -1,5 +1,6 @@
 Ext.Loader.setConfig({
-    enabled: true
+    enabled: true,
+    disableCaching: false
 });
 Ext.tip.QuickTipManager.init();
 Ext.application({

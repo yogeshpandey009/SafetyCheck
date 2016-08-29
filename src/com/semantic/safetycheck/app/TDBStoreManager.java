@@ -67,18 +67,18 @@ public class TDBStoreManager {
 
 	public void saveData() {
 		// dataset.begin(ReadWrite.WRITE);
-		/*Thread t1 = new Thread(new Runnable() {
+		base.add(ontModel);
+		Thread t1 = new Thread(new Runnable() {
 			@Override
-			public void run() {*/
-				base.add(ontModel);
+			public void run() {
 				//reasoner.setDerivationLogging(true);
 				//infModel.prepare();
 				//ontModel.add(infModel.getDeductionsModel());
 				//base.add(infModel.getDeductionsModel());
 				accessor.putModel(base);
-		/*	}
+			}
 		});
-		t1.start();*/
+		t1.start();
 		// dataset.commit();
 		// dataset.end();
 	}

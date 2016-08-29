@@ -3,7 +3,7 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
 	alias: 'widget.earthquakegrid',
 	//title: 'Earthquakes',
     store: 'EarthquakeStore',
-    cls: 'earthquakegrid',
+    //cls: 'earthquakegrid',
     viewConfig: {
         getRowClass: function(record, rowIndex, rowParams, store){
             return record.get("magnitude") < 5 ? "" : "danger";

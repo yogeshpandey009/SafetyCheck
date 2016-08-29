@@ -58,51 +58,50 @@ public class AlertToRDF {
 			rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Earthquake\"/>\n");
 
 			Info infoItem = alert.getInfo(0);
-			if (infoItem != null) {
-				Area area = infoItem.getArea(0);
-				List<ValuePair> params = infoItem.getParameterList();
-				for (ValuePair param : params) {
-					if ("EventTime".equals(param.getValueName())) {
-						try {
-							Date date = old_formatter.parse(param.getValue());
-							rdf.append("\t\t<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">"
-									+ new_formatter.format(date)
-									+ "</sc:atTime>\n");
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					if ("Magnitude".equals(param.getValueName())) {
-						rdf.append("\t\t<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + param.getValue() + "</sc:hasMagnitude>\n");
+
+			Area area = infoItem.getArea(0);
+			List<ValuePair> params = infoItem.getParameterList();
+			for (ValuePair param : params) {
+				if ("EventTime".equals(param.getValueName())) {
+					try {
+						Date date = old_formatter.parse(param.getValue());
+						rdf.append("\t\t<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">"
+								+ new_formatter.format(date)
+								+ "</sc:atTime>\n");
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
-				String desc = infoItem.getDescription();
-				if (desc != null) {
-					rdf.append("\t\t<sc:hasDescription rdf:datatype=\"&xsd;string\">"
-							+ desc + "</sc:hasDescription>\n");
+				if ("Magnitude".equals(param.getValueName())) {
+					rdf.append("\t\t<sc:hasMagnitude rdf:datatype=\"&xsd;float\">" + param.getValue() + "</sc:hasMagnitude>\n");
 				}
-				if(area != null) {
-					Circle c = area.getCircle(0);
-					if (c != null) {
-						Point p = c.getPoint();
-						if (p != null) {
-							lat = df.format(p.getLatitude());
-							lng = df.format(p.getLongitude());
-							rdf.append("\t\t<sc:hasArea rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
-							points_rdf.append("\t<rdf:Description rdf:about=\"&sc;" + lat + "_" + lng + "\">\n");
-							points_rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Point\"/>\n");
-							points_rdf.append("\t\t<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + lat + "</sc:hasLatitude>\n");
-							points_rdf.append("\t\t<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + lng + "</sc:hasLongitude>\n");
-							points_rdf.append("\t</rdf:Description>\n\n");
-						}
-					}
-					rdf.append("\t\t<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + area.getAreaDesc() + "</sc:hasAreaDescription>\n");
-				}
-				rdf.append("\t</rdf:Description>\n\n");
 			}
+			String desc = infoItem.getDescription();
+			if (desc != null) {
+				rdf.append("\t\t<sc:hasDescription rdf:datatype=\"&xsd;string\">"
+						+ desc + "</sc:hasDescription>\n");
+			}
+			if(area != null) {
+				Circle c = area.getCircle(0);
+				if (c != null) {
+					Point p = c.getPoint();
+					if (p != null) {
+						lat = df.format(p.getLatitude());
+						lng = df.format(p.getLongitude());
+						rdf.append("\t\t<sc:hasArea rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
+						points_rdf.append("\t<rdf:Description rdf:about=\"&sc;" + lat + "_" + lng + "\">\n");
+						points_rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Point\"/>\n");
+						points_rdf.append("\t\t<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + lat + "</sc:hasLatitude>\n");
+						points_rdf.append("\t\t<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + lng + "</sc:hasLongitude>\n");
+						points_rdf.append("\t</rdf:Description>\n\n");
+					}
+				}
+				rdf.append("\t\t<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + area.getAreaDesc() + "</sc:hasAreaDescription>\n");
+			}
+			rdf.append("\t</rdf:Description>\n\n");
 		} catch (Exception e) {
-			throw new AlertConversionException("Unable to convert earthquake alert", e.getCause());
+			throw new AlertConversionException("Unable to convert earthquake alert: " + e.getMessage(), e);
 		}
 		rdf.append(points_rdf);
 		return rdf.toString();
@@ -119,42 +118,40 @@ public class AlertToRDF {
 			rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Weather\"/>\n");
 
 			Info infoItem = alert.getInfo(0);
-			if (infoItem != null) {
-				rdf.append("\t\t<sc:hasSeverity rdf:datatype=\"&xsd;string\">" + infoItem.getSeverity() + "</sc:hasSeverity>\n");
-				try {
-					Date date = iso_format.parse(infoItem.getEffective());
-					rdf.append("\t\t<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">"
-							+ new_formatter.format(date)
-							+ "</sc:atTime>\n");
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-					throw new AlertConversionException(e.getMessage());
-				}
-				String desc = infoItem.getDescription();
-				rdf.append("\t\t<sc:hasDescription rdf:datatype=\"&xsd;string\">"
-							+ desc + "</sc:hasDescription>\n");
-				Area area = infoItem.getArea(0);
-				if(area != null) {
-					polygons = area.getPolygonList();
-					for(Polygon poly: polygons) {
-						for(Point p: poly.getPointList()) {
-							String lat = df.format(p.getLatitude());
-							String lng = df.format(p.getLongitude());
-							rdf.append("\t\t<sc:hasArea rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
-							points_rdf.append("\t<rdf:Description rdf:about=\"&sc;" + lat + "_"+ lng + "\">\n");
-							points_rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Point\"/>\n");
-							points_rdf.append("\t\t<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + lat + "</sc:hasLatitude>\n");
-							points_rdf.append("\t\t<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + lng + "</sc:hasLongitude>\n");
-							points_rdf.append("\t</rdf:Description>\n\n");
-						}
-					}
-					rdf.append("\t\t<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + area.getAreaDesc() + "</sc:hasAreaDescription>\n");
-				}
-				rdf.append("\t</rdf:Description>\n\n");
+			rdf.append("\t\t<sc:hasSeverity rdf:datatype=\"&xsd;string\">" + infoItem.getSeverity() + "</sc:hasSeverity>\n");
+			try {
+				Date date = iso_format.parse(infoItem.getEffective());
+				rdf.append("\t\t<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">"
+						+ new_formatter.format(date)
+						+ "</sc:atTime>\n");
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				throw new AlertConversionException(e.getMessage());
 			}
+			String desc = infoItem.getDescription().toLowerCase().replaceAll("\\.\\.\\.", " ").replaceAll("\\*", "");
+			rdf.append("\t\t<sc:hasDescription rdf:datatype=\"&xsd;string\">"
+						+ desc + "</sc:hasDescription>\n");
+			Area area = infoItem.getArea(0);
+			if(area != null) {
+				polygons = area.getPolygonList();
+				for(Polygon poly: polygons) {
+					for(Point p: poly.getPointList()) {
+						String lat = df.format(p.getLatitude());
+						String lng = df.format(p.getLongitude());
+						rdf.append("\t\t<sc:hasArea rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
+						points_rdf.append("\t<rdf:Description rdf:about=\"&sc;" + lat + "_"+ lng + "\">\n");
+						points_rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Point\"/>\n");
+						points_rdf.append("\t\t<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + lat + "</sc:hasLatitude>\n");
+						points_rdf.append("\t\t<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + lng + "</sc:hasLongitude>\n");
+						points_rdf.append("\t</rdf:Description>\n\n");
+					}
+				}
+				rdf.append("\t\t<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + area.getAreaDesc() + "</sc:hasAreaDescription>\n");
+			}
+			rdf.append("\t</rdf:Description>\n\n");
 		} catch (Exception e) {
-			throw new AlertConversionException("Unable to convert weather alert", e.getCause());
+			throw new AlertConversionException("Unable to convert weather alert: " + e.getMessage(), e);
 		}
 		rdf.append(points_rdf);
 		return rdf.toString();
