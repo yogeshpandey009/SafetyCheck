@@ -46,7 +46,7 @@ public class PuSHhandler extends AbstractHandler {
 		System.out.println(feed.getTitle());
 		List<Alert> alerts = new ArrayList<Alert>();
 		for (SyndEntry entry : entries) {
-			System.out.println(entry.getTitle());
+			//System.out.println(entry.getTitle());
 			try {
 				List<SyndLinkImpl> links = entry.getLinks();
 				String capLink = "";

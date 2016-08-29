@@ -6,10 +6,12 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.jetty.util.log.Log;
+
 public class Weather {
 
-	private SimpleDateFormat formatter = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	private String[] formatStrings = {"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+	"yyyy-MM-dd'T'HH:mm:ss'Z'"};
 	private static SimpleDateFormat iso_format = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ssXXX");
 
@@ -50,15 +52,20 @@ public class Weather {
 
 	private Date parseTime(String time) {
 		// 2015-11-12T00:22:32.520Z
-		Date date = null;
-		try {
-			date = formatter.parse(time);
-			// System.out.println(date.getTime());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// 2016-08-28T15:37:00Z
+		for (String formatString : formatStrings) {
+			try {
+				return new SimpleDateFormat(formatString).parse(time);
+				// System.out.println(date.getTime());
+			} catch (ParseException e) {
+				Log.debug(e.getMessage());
+				// e.printStackTrace();
+			}
 		}
-		return date;
+		System.out.println("Couldn't parse:" + time);
+		Log.warn("Couldn't parse:" + time);
+		return null;
+
 	}
 
 	public String getId() {
@@ -68,7 +75,7 @@ public class Weather {
 		this.id = id;
 	}
 	public String getTimeAsFormat() {
-		return formatter.format(time);
+		return new SimpleDateFormat(formatStrings[0]).format(time);
 	}
 	public Date getTime() {
 		return time;

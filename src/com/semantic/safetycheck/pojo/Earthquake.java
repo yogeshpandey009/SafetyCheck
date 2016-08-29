@@ -59,8 +59,9 @@ public class Earthquake {
 				// e.printStackTrace();
 			}
 		}
+		System.out.println("Couldn't parse:" + time);
 		Log.warn("Couldn't parse:" + time);
-		return new Date();
+		return null;
 	}
 
 	public String getId() {

@@ -39,7 +39,7 @@ public class AlertToRDF {
 					rdf.append(convertWeatherAlert(alert));
 				}
 			} catch (AlertConversionException e) {
-				System.out.println(e.getCause().getMessage());
+				System.out.println(e.getMessage());
 				//Log.warn(e.getCause().getMessage());
 			}
 		}
@@ -120,7 +120,7 @@ public class AlertToRDF {
 
 			Info infoItem = alert.getInfo(0);
 			if (infoItem != null) {
-				rdf.append("\t\t<sc:hasSeverity rdf:datatype=\"&xsd;float\">" + infoItem.getSeverity() + "</sc:hasSeverity>\n");
+				rdf.append("\t\t<sc:hasSeverity rdf:datatype=\"&xsd;string\">" + infoItem.getSeverity() + "</sc:hasSeverity>\n");
 				try {
 					Date date = iso_format.parse(infoItem.getEffective());
 					rdf.append("\t\t<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">"
