@@ -19,7 +19,7 @@ public class RDFGenerator {
 
 	public String createRDF() {
 		ArrayList<ArrayList<String>> rowCols = CSVManager.loadCSV();
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		rdf.append("<?xml version=\"1.0\"?>\n");
 		rdf.append("<!DOCTYPE rdf:RDF [\n");
 		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
@@ -54,7 +54,7 @@ public class RDFGenerator {
 	 */
 	private String populateEarthquake(ArrayList<ArrayList<String>> rowCols) {
 		DecimalFormat df = new DecimalFormat("#.00"); 
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		for (int x = 1; x < rowCols.size(); x++) {
 			ArrayList<String> row = rowCols.get(x);
 			rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + x + "\">\n");
@@ -77,7 +77,7 @@ public class RDFGenerator {
 	
 	public static String singleEarthquakeRDF(Earthquake eq) {
 		DecimalFormat df = new DecimalFormat("#.00"); 
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		String lat = df.format(Double.parseDouble(eq.getLatitude()+""));
 		String lng = df.format(Double.parseDouble(eq.getLongitude()+""));
 		rdf.append("<?xml version=\"1.0\"?>\n");
@@ -114,7 +114,7 @@ public class RDFGenerator {
 	}
 	
 	public static String singleWeatherRDF(Weather w) {
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		rdf.append("<?xml version=\"1.0\"?>\n");
 		rdf.append("<!DOCTYPE rdf:RDF [\n");
 		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");
@@ -130,22 +130,31 @@ public class RDFGenerator {
 		rdf.append("	xmlns:sc=\"http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#\" \n");
 		rdf.append("	xmlns:foaf=\"http://xmlns.com/foaf/0.1/\">\n\n");
 
+		StringBuilder points_str = new StringBuilder();
 		for(Point p: w.getPoints()) {
 			rdf.append("	<rdf:Description rdf:about=\"&sc;" + p.getLatitude() + "_"+ p.getLongitude() + "\">\n");
 			rdf.append("		<rdf:type rdf:resource=\"&sc;Point\"/>\n");
 			rdf.append("		<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + p.getLatitude() + "</sc:hasLatitude>\n");
 			rdf.append("		<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + p.getLongitude()  + "</sc:hasLongitude>\n");
 			rdf.append("	</rdf:Description>\n\n");
+			points_str.append(p.getLatitude() + "_"+ p.getLongitude()).append(",");
 		}
+		points_str.setLength(points_str.length()-1);
 
 		rdf.append("	<rdf:Description rdf:about=\"&sc;" + w.getId() + "\">\n");
 		rdf.append("		<rdf:type rdf:resource=\"&sc;Weather\"/>\n");
 		rdf.append("		<sc:atTime rdf:datatype=\"&xsd;dateTimeStamp\">" + w.getTimeAsFormat()  + "</sc:atTime>\n");
-		rdf.append("		<sc:hasSeverity rdf:datatype=\"&xsd;string\">" + w.getSeverity() + "</sc:hasMagnitude>\n");
+		rdf.append("		<sc:hasSeverity rdf:datatype=\"&xsd;string\">" + w.getSeverity() + "</sc:hasSeverity>\n");
+		rdf.append("		<sc:hasArea>");
+		rdf.append("			<rdf:Bag>");
 		for(Point p: w.getPoints()) {
-			rdf.append("		<hasArea rdf:resource=\"&sc;" + p.getLatitude() + "_"+ p.getLongitude() + "\"/>");
+			rdf.append("			<rdf:li rdf:resource=\"&sc;" + p.getLatitude() + "_"+ p.getLongitude() + "\"/>\n");
 		}
+		rdf.append("			</rdf:Bag>");
+		rdf.append("		</sc:hasArea>");
+		rdf.append("		<sc:hasPolygon rdf:datatype=\"&xsd;string\">" + points_str.toString() + "</sc:hasPolygon>\n");
 		rdf.append("		<sc:hasDescription rdf:datatype=\"&xsd;string\">" + w.getDesc() + "</sc:hasDescription>\n");
+		rdf.append("		<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + w.getDesc() + "</sc:hasAreaDescription>\n");
 		rdf.append("	</rdf:Description>\n\n");
 
 		rdf.append("</rdf:RDF>");
@@ -154,7 +163,7 @@ public class RDFGenerator {
 	
 	private static String populateEarthquakes(List<Earthquake> eqList) {
 		DecimalFormat df = new DecimalFormat("#.00"); 
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		for(Earthquake eq: eqList) {
 			rdf.append("	<rdf:Description rdf:about=\"&sc;earthquake" + eq.getId() + "\">\n");
 			double mag = Double.parseDouble(eq.getMagnitude()+"");

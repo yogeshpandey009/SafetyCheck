@@ -5,6 +5,10 @@ public class Point {
 	private Float latitude;
 	private Float longitude;
 
+	public Point() {
+		super();
+	}
+
 	public Point(Float latitude, Float longitude) {
 		super();
 		this.latitude = latitude;

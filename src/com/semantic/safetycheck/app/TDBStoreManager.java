@@ -65,7 +65,7 @@ public class TDBStoreManager {
 
 	}
 
-	public void saveData() {
+	public synchronized void saveData() {
 		// dataset.begin(ReadWrite.WRITE);
 		base.add(ontModel);
 		Thread t1 = new Thread(new Runnable() {

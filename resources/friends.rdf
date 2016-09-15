@@ -21,7 +21,7 @@
 	 <rdf:Description rdf:about="&sc;person2">
 	 <rdf:type rdf:resource="&sc;Person"/>
 	 <sc:hasName rdf:datatype="&xsd;string">Rishabh Jain</sc:hasName>
-	 <sc:hasLocation rdf:datatype="&xsd;string">New York, New York</sc:hasLocation>
+	 <sc:hasLocation rdf:datatype="&xsd;string">Rochester, New York</sc:hasLocation>
      <sc:isFriendOf rdf:resource="&sc;person26"/>
 	 </rdf:Description>
 

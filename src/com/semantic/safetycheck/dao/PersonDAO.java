@@ -46,13 +46,13 @@ public class PersonDAO {
 		return persons;
 	}
 	
-	public List<Person> getPersonsImpacted(String earthquakeId) {
+	public List<Person> getPersonsImpacted(String alertId) {
 	
 		List<Person> persons = new ArrayList<Person>();
 		ResultSet rs = SafetyCheckQueryHelper.runQuery(
 				" select ?person ?name ?location ?region ?point ?lat ?lon "
 						+ " where { ?person sc:isImpactedBy <"
-						+ earthquakeId
+						+ alertId
 						+ ">. ?person sc:hasName ?name. ?person sc:hasLocation ?location."
 						+ " ?person sc:locatedAt ?region.  ?region sc:hasPoint ?point."
 						+ " ?point sc:hasLatitude ?lat. ?point sc:hasLongitude ?lon. }");
@@ -66,7 +66,7 @@ public class PersonDAO {
 				}
 		}
 		
-	return persons;
+		return persons;
 	}
 
 

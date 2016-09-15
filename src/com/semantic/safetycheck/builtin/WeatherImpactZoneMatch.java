@@ -22,11 +22,8 @@ public class WeatherImpactZoneMatch extends BaseBuiltin {
 	 * number is flexible.
 	 */
 	public int getArgLength() {
-		return 5;
+		return 3;
 	}
-
-	private List<Point> points = null;
-	private String weatherId = "";
 
 	/**
 	 * This method is invoked when the builtin is called in a rule body.
@@ -45,35 +42,26 @@ public class WeatherImpactZoneMatch extends BaseBuiltin {
 	public boolean bodyCall(Node[] args, int length, RuleContext context) {
 		checkArgs(length, context);
 		// BindingEnvironment env = context.getEnv();
-		Node wLatNode = getArg(0, args, context);
-		Node wLonNode = getArg(1, args, context);
-		Node rLatNode = getArg(2, args, context);
-		Node rLonNode = getArg(3, args, context);
-		Node wNode = getArg(4, args, context);
-		if (wLatNode.isLiteral() && wLonNode.isLiteral()
-				&& rLatNode.isLiteral() && rLonNode.isLiteral()) {
-			Object wLatObj = wLatNode.getLiteralValue();
-			Object wLonObj = wLonNode.getLiteralValue();
+		Node wpoly = getArg(0, args, context);
+		Node rLatNode = getArg(1, args, context);
+		Node rLonNode = getArg(2, args, context);
+		if (rLatNode.isLiteral() && rLonNode.isLiteral() && wpoly.isLiteral()) {
+			//List<Node> pointNodes = Util.convertList(wAreaNode, context);
+			String[] coordinates = ((String)wpoly.getLiteralValue()).split(",");
 			Object rLatObj = rLatNode.getLiteralValue();
 			Object rLonObj = rLonNode.getLiteralValue();
-			String wId = wNode.toString() + rLatObj.toString() + rLonObj.toString();
-			if (wLatObj instanceof Float && wLonObj instanceof Float
-					&& rLatObj instanceof Float && rLonObj instanceof Float) {
-				Float wLat = (Float) wLatObj;
-				Float wLon = (Float) wLonObj;
+			if (rLatObj instanceof Float && rLonObj instanceof Float) {
 				Float rLat = (Float) rLatObj;
 				Float rLon = (Float) rLonObj;
-				if (weatherId.equals(wId)) {
-					points.add(new Point(wLat, wLon));
-				} else {
-					weatherId = wId;
-					points = new ArrayList<Point>() {
-						{
-							add(new Point(wLat, wLon));
-						}
-					};
+				List<Point> points = new ArrayList<>();
+				for(String coordinate: coordinates) {
+					//pNode.getLiteral().toString();
+					String[] vals = coordinate.split("_");
+					//float wLat = 0;
+					//float wLon = 0;
+					points.add(new Point(Float.parseFloat(vals[0]), Float.parseFloat(vals[1])));
 				}
-				return contains(new Point(rLat, rLon));
+				return contains(points, new Point(rLat, rLon));
 			}
 		}
 
@@ -88,14 +76,14 @@ public class WeatherImpactZoneMatch extends BaseBuiltin {
      * @return true if the point is inside the boundary, false otherwise
      *
      */
-    public boolean contains(Point test) {
+    public boolean contains(List<Point> points, Point test) {
       int i;
       int j;
       boolean result = false;
       int size = points.size();
       for (i = 0, j = size - 1; i < size; j = i++) {
         if ((points.get(i).getLongitude() > test.getLongitude()) != (points.get(j).getLongitude() > test.getLongitude()) &&
-            (test.getLatitude() < (points.get(j).getLatitude() - points.get(i).getLatitude()) * (test.getLongitude() - points.get(i).getLongitude()) / (points.get(j).getLongitude()-points.get(i).getLongitude()) + points.get(i).getLatitude())) {
+            (test.getLatitude() < (points.get(j).getLatitude() - points.get(i).getLatitude()) * (test.getLongitude() - points.get(i).getLongitude()) / (points.get(j).getLongitude() - points.get(i).getLongitude()) + points.get(i).getLatitude())) {
           result = !result;
          }
       }

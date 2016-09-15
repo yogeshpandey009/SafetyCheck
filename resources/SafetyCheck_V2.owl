@@ -83,7 +83,6 @@
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#isFriendOf -->
 
     <owl:ObjectProperty rdf:about="&sc;isFriendOf">
-        <owl:equivalentProperty rdf:resource="&foaf;knows"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:domain rdf:resource="&sc;Person"/>
         <rdfs:range rdf:resource="&sc;Person"/>
@@ -216,6 +215,12 @@
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
+    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#hasPolygon -->
+
+    <owl:DatatypeProperty rdf:about="&sc;hasPolygon">
+        <rdfs:domain rdf:resource="&sc;Alert"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
 
 
     <!-- 
@@ -287,57 +292,20 @@
 
     <owl:NamedIndividual rdf:about="&sc;NOAA-NWS-ALERTS-AK1255F644C72C.BlizzardWarning.1255F66033E0AK.AFGWSWNSB.1bba64eff253629b166e7b5203f626e5">
         <rdf:type rdf:resource="&sc;Weather"/>
-        <hasDescription rdf:datatype="&xsd;string">the national weather service in fairbanks has issued blizzard warning which is in effect until 6 pm akdt thursday. visibility near zero at times in blowing snow. winds east 25 to 35 mph gusting to 45 mph. timing strong winds will continue through thursday afternoon. this will cause periods of very low visibility in blowing snow. winds are expected to decrease thursday evening causing conditions to improve then. impacts visibility will be very poor and snow will accumulate into drifts. whiteout conditions should be expected. travel and outdoor activities will be extremely difficult</hasDescription>
         <atTime rdf:datatype="&xsd;dateTimeStamp">2015-11-12T00:22:32.520Z</atTime>
         <hasAreaDescription rdf:datatype="&xsd;string">Central Beaufort Sea Coast</hasAreaDescription>
         <hasSeverity rdf:datatype="&xsd;string">Severe</hasSeverity>
-        <hasArea rdf:resource="&sc;31.14_-81.83"/>
-        <hasArea rdf:resource="&sc;31.14_-81.9"/>
-        <hasArea rdf:resource="&sc;31.28_-81.91"/>
+        <hasDescription rdf:datatype="&xsd;string">the national weather service in fairbanks has issued blizzard warning which is in effect until 6 pm akdt thursday. visibility near zero at times in blowing snow. winds east 25 to 35 mph gusting to 45 mph. timing strong winds will continue through thursday afternoon. this will cause periods of very low visibility in blowing snow. winds are expected to decrease thursday evening causing conditions to improve then. impacts visibility will be very poor and snow will accumulate into drifts. whiteout conditions should be expected. travel and outdoor activities will be extremely difficult</hasDescription>
+        <hasArea>
+            <rdf:Bag>
+                <rdf:li rdf:resource="&sc;31.14_-81.83"/>
+                <rdf:li rdf:resource="&sc;31.14_-81.9"/>
+                <rdf:li rdf:resource="&sc;31.28_-81.91"/>
+            </rdf:Bag>
+        </hasArea>
+        <hasPolygon rdf:datatype="&xsd;string">31.14_-81.83,31.14_-81.9,31.28_-81.91</hasPolygon>
     </owl:NamedIndividual>
     
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person1
-
-    <owl:NamedIndividual rdf:about="&sc;person1">
-        <rdf:type rdf:resource="&sc;Person"/>
-        <hasLocation rdf:datatype="&xsd;string">Tempe, Arizona</hasLocation>
-        <hasName rdf:datatype="&xsd;string">Yogesh Pandey</hasName>
-        <isFriendOf rdf:resource="&sc;person2"/>
-    </owl:NamedIndividual>
-     -->
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#person2 
-
-    <owl:NamedIndividual rdf:about="&sc;person2">
-        <rdf:type rdf:resource="&sc;Person"/>
-        <hasLocation rdf:datatype="&xsd;string">Bangalore</hasLocation>
-        <hasName rdf:datatype="&xsd;string">Raghavendra Karthik D</hasName>
-    </owl:NamedIndividual>
-    -->
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#region1
-
-    <owl:NamedIndividual rdf:about="&sc;region1">
-        <rdf:type rdf:resource="&sc;Region"/>
-        <hasPopulation rdf:datatype="&xsd;unsignedLong">5945523</hasPopulation>
-        <hasRegionName rdf:datatype="&xsd;string">Bangalore, India</hasRegionName>
-        <hasPoint rdf:resource="&sc;12.58_77.34"/>
-    </owl:NamedIndividual>
-     -->
-
-
-    <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#12.58_77.34
-
-    <owl:NamedIndividual rdf:about="&sc;12.58_77.34">
-        <rdf:type rdf:resource="&sc;Point"/>
-        <hasLatitude rdf:datatype="&xsd;float">12.58</hasLatitude>
-        <hasLongitude rdf:datatype="&xsd;float">77.34</hasLongitude>
-    </owl:NamedIndividual>
-    -->
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#20005hxx -->
@@ -350,7 +318,7 @@
         <hasDescription rdf:datatype="&xsd;string">An earthquake with magnitude 5.3 occurred near Petropavlovsk-Kamchatskiy, Russia at 03:06:11.00 UTC on Apr 14, 2016. (This event has been reviewed by a seismologist.)</hasDescription>
         <hasArea rdf:resource="&sc;53.78_160.77"/>
     </owl:NamedIndividual>
-
+    
 
 
     <!-- http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#31.14_-81.83 -->
@@ -387,8 +355,8 @@
 
     <owl:NamedIndividual rdf:about="&sc;53.78_160.77">
         <rdf:type rdf:resource="&sc;Point"/>
-        <hasLatitude rdf:datatype="&xsd;float">53.78</hasLatitude>
         <hasLongitude rdf:datatype="&xsd;float">160.77</hasLongitude>
+        <hasLatitude rdf:datatype="&xsd;float">53.78</hasLatitude>
     </owl:NamedIndividual>
     
 

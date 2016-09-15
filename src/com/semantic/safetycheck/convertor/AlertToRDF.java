@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.jetty.util.log.Log;
-
 import com.google.publicalerts.cap.Alert;
 import com.google.publicalerts.cap.Area;
 import com.google.publicalerts.cap.Circle;
@@ -111,6 +109,7 @@ public class AlertToRDF {
 		DecimalFormat df = new DecimalFormat("#.00");
 		StringBuffer rdf = new StringBuffer();
 		StringBuffer points_rdf = new StringBuffer();
+		StringBuffer points_str = new StringBuffer();
 		List<Polygon> polygons = null;
 		try {
 			rdf.append("\t<rdf:Description rdf:about=\"&sc;weather"
@@ -134,19 +133,27 @@ public class AlertToRDF {
 						+ desc + "</sc:hasDescription>\n");
 			Area area = infoItem.getArea(0);
 			if(area != null) {
+				rdf.append("\t\t<sc:hasArea>");
+				rdf.append("\t\t\t<rdf:Bag>");
 				polygons = area.getPolygonList();
+
 				for(Polygon poly: polygons) {
 					for(Point p: poly.getPointList()) {
 						String lat = df.format(p.getLatitude());
 						String lng = df.format(p.getLongitude());
-						rdf.append("\t\t<sc:hasArea rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
+						rdf.append("\t\t\t\t<rdf:li rdf:resource=\"&sc;"+ lat + "_"+ lng +"\"/>\n");
 						points_rdf.append("\t<rdf:Description rdf:about=\"&sc;" + lat + "_"+ lng + "\">\n");
 						points_rdf.append("\t\t<rdf:type rdf:resource=\"&sc;Point\"/>\n");
 						points_rdf.append("\t\t<sc:hasLatitude rdf:datatype=\"&xsd;float\">" + lat + "</sc:hasLatitude>\n");
 						points_rdf.append("\t\t<sc:hasLongitude rdf:datatype=\"&xsd;float\">" + lng + "</sc:hasLongitude>\n");
 						points_rdf.append("\t</rdf:Description>\n\n");
+						points_str.append(p.getLatitude() + "_"+ p.getLongitude()).append(",");
 					}
 				}
+				points_str.setLength(points_str.length()-1);
+				rdf.append("\t\t\t</rdf:Bag>");
+				rdf.append("\t\t</sc:hasArea>");
+				rdf.append("\t\t<sc:hasPolygon rdf:datatype=\"&xsd;string\">" + points_str.toString() + "</sc:hasPolygon>\n");
 				rdf.append("\t\t<sc:hasAreaDescription rdf:datatype=\"&xsd;string\">" + area.getAreaDesc() + "</sc:hasAreaDescription>\n");
 			}
 			rdf.append("\t</rdf:Description>\n\n");
@@ -158,7 +165,7 @@ public class AlertToRDF {
 	}
 
 	private static String generateRDFHeader() {
-		StringBuffer rdf = new StringBuffer();
+		StringBuilder rdf = new StringBuilder();
 		rdf.append("<?xml version=\"1.0\"?>\n");
 		rdf.append("<!DOCTYPE rdf:RDF [\n");
 		rdf.append("	<!ENTITY xsd \"http://www.w3.org/2001/XMLSchema#\" >\n");

@@ -20,7 +20,6 @@ Ext.define('SafetyCheck.view.WeatherView', {
         activeRecord: null,
         hidden: true,
         frame: true,
-        flex: 1,
         defaultType: 'textfield',
         bodyPadding: 5,
         jsonSubmit: true,
@@ -33,26 +32,26 @@ Ext.define('SafetyCheck.view.WeatherView', {
         items: [{
             xtype: 'textfield',
             fieldLabel: 'Severity',
-            name: 'Severity',
+            name: 'severity',
             value: "SEVERE",
             allowBlank: false
         }, {
             xtype: 'textfield',
-            fieldLabel: 'Latitude',
+            fieldLabel: 'Latitudes',
             name: 'latitude',
-            value: "33.5,",
+            value: "33,33.5,34",
             allowBlank: false
         }, {
             xtype: 'textfield',
-            fieldLabel: 'Longitude',
+            fieldLabel: 'Longitudes',
             name: 'longitude',
-            value: "-112,",
+            value: "-112,-111,-112",
             allowBlank: false
         }, {
             xtype: 'textarea',
             fieldLabel: 'Description',
             name: 'desc',
-            value: 'An weather with magnitude 4.3 occurred near Tempe, AZ (Note: dummy weather)',
+            value: 'A weather alert around Tempe, AZ (Note: dummy weather alert)',
             allowBlank: false
         }],
         dockedItems: [{

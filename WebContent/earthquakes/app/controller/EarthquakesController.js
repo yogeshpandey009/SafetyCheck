@@ -107,7 +107,7 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		        Ext.Msg.alert('Success', action.result.msg);
 		        me.loadEarthquakes(me.earthquakesUrl);
 		    },
-			fsuccess: function(form, action) {
+		    failure: function(form, action) {
 				Ext.Msg.alert('Error', action.result.msg);
 			}
 		});  
@@ -156,7 +156,7 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 	},
     onDoubleClick: function(grid, record) {
     	var id = record.get('id');
-    	var url = 'persons.html?earthquake=' + id.split('#')[1];
+    	var url = 'persons.html?alertId=' + id.split('#')[1];
     	window.location = url;
     }
 });

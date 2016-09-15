@@ -83,20 +83,8 @@ Ext.define('SafetyCheck.controller.WeatherController', {
 	},
 	create : function(form) {
 		//this.getWeatherGrid().getStore().insert(0, data);
-		/*Ext.Ajax.request({
-			url : 'api/weather',
-			method : 'POST',
-			params : {
-				data : Ext.JSON.encode(data)
-			},
-			success : function(response) {
-				// do something
-			},
-			failure : function(response) {
-				alert("Error: " - response.responseText);
-			}
-		});*/
 		var me = this;
+		/*
 		form.submit({ 
 		    url: 'api/weather', 
 		    method: 'POST',
@@ -107,10 +95,47 @@ Ext.define('SafetyCheck.controller.WeatherController', {
 		        Ext.Msg.alert('Success', action.result.msg);
 		        me.loadWeather(me.weatherUrl);
 		    },
-			fsuccess: function(form, action) {
+			failure: function(form, action) {
 				Ext.Msg.alert('Error', action.result.msg);
 			}
-		});  
+		});*/
+		var data = form.getForm().getValues();
+		var lats = data["latitude"].split(",");
+		var lons = data["longitude"].split(",");
+		var points = [];
+		for(var i in lats) {
+			points.push({
+				"latitude": lats[i],
+				"longitude" : lons[i]
+			});
+		}
+		data["points"] = points;
+		data["time"] = new Date().getTime();
+		delete data["latitude"];
+		delete data["longitude"];
+		Ext.Ajax.request({
+			url : me.weatherUrl,
+			method : 'POST',
+			//params : {
+			//	data : data//Ext.JSON.encode(data)
+			//},
+			jsonData: data,
+			headers: {	'Content-Type' : 'application/json' },
+			success : function(response) {
+				var response = Ext.decode(response.responseText)
+				var msg = response.msg;
+				var success = response.success;
+				if(success) {
+					Ext.Msg.alert('Success', msg);
+				} else {
+					Ext.Msg.alert('Error', msg);
+				}
+		        me.loadWeather(me.weatherUrl);
+			},
+			failure : function(response) {
+				Ext.Msg.alert('Error', response.responseText);
+			}
+		});
 	},
 	editWeather : function(gridView, rowIndex, colIndex, item, e) {
 		var selection = gridView.getStore().getAt(rowIndex);
@@ -156,7 +181,7 @@ Ext.define('SafetyCheck.controller.WeatherController', {
 	},
     onDoubleClick: function(grid, record) {
     	var id = record.get('id');
-    	var url = 'persons.html?weather=' + id.split('#')[1];
+    	var url = 'persons.html?alertId=' + id.split('#')[1];
     	window.location = url;
     }
 });

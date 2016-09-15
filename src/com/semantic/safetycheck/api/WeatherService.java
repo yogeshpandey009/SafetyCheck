@@ -28,7 +28,6 @@ public class WeatherService  extends SCService {
 
 	private WeatherDAO dao = new WeatherDAO();
 	private ObjectMapper mapper = new ObjectMapper();
-	private static int i = 0;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -70,10 +69,9 @@ public class WeatherService  extends SCService {
 			// Earthquake.class);
 			// Earthquake earthquakeObj = new Earthquake(3.0f,
 			// "2015-11-12T00:22:32.520Z", -10.0f, 10.0f);
-			weatherObj.setId(100000 + i++ + "");
+			weatherObj.setId("w" + System.currentTimeMillis());
 			String eq = RDFGenerator.singleWeatherRDF(weatherObj);
 			SafetyCheckServlet.addAlertRDF(eq);
-
 		} catch (IOException e) {
 			success = Boolean.FALSE;
 			msg = e.getMessage();

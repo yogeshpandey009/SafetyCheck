@@ -6,23 +6,45 @@ import java.util.List;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.semantic.safetycheck.app.SafetyCheckQueryHelper;
 import com.semantic.safetycheck.pojo.Point;
 import com.semantic.safetycheck.pojo.Weather;
 
 public class WeatherDAO {
 
+	/*
 	public List<Weather> getAllWeatherAlerts() {
 		ResultSet rs = SafetyCheckQueryHelper
 				.runQuery(" select ?weather ?areaDesc ?sev ?time ?desc"
 						+ " (GROUP_CONCAT(?lat) AS ?lats)"
 						+ " (GROUP_CONCAT(?lon) AS ?lons) where"
-						+ " { ?weather rdf:type sc:Weather. OPTIONAL { ?weather sc:hasSeverity ?sev."
+						+ " { ?weather rdf:type sc:Weather. ?weather sc:hasSeverity ?sev."
 						+ " ?weather sc:hasAreaDescription ?areaDesc. ?weather sc:hasArea ?area."
 						+ " ?area sc:hasLongitude ?lon. ?area sc:hasLatitude ?lat."
-						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc } }"
+						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
 						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
+
+		return computeWeatherResultSet(rs);
+	}
+	*/
+	public List<Weather> getAllWeatherAlerts() {
+		ResultSet rs = SafetyCheckQueryHelper
+				.runQuery(" select ?weather ?areaDesc ?sev ?time ?desc"
+						+ " (GROUP_CONCAT(?lat) AS ?lats)"
+						+ " (GROUP_CONCAT(?lon) AS ?lons) where"
+						+ " { ?weather rdf:type sc:Weather. ?weather sc:hasSeverity ?sev."
+						+ " ?weather sc:hasAreaDescription ?areaDesc. ?weather sc:hasArea ?area."
+						//+ " ?area ?t ?statement."
+						//+ " ?statement a ?type."
+						//+ " ?area rdf:rest* [ rdf:first ?point ] ."
+						+ " ?area rdfs:member ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
+						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
+						//+ " order by ?weather ?area");
 
 		return computeWeatherResultSet(rs);
 	}
@@ -34,10 +56,11 @@ public class WeatherDAO {
 						+ " (GROUP_CONCAT(?lon) AS ?lons) where { <"
 						+ personId
 						+ ">  sc:isImpactedBy ?weather."
-						+ "{ ?weather rdf:type sc:Weather. OPTIONAL { ?weather sc:hasSeverity ?sev."
+						+ "{ ?weather rdf:type sc:Weather. ?weather sc:hasSeverity ?sev."
 						+ " ?weather sc:hasAreaDescription ?areaDesc. ?weather sc:hasArea ?area. "
-						+ " ?area sc:hasLongitude ?lon. ?area sc:hasLatitude ?lat. "
-						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc } }"
+						+ " ?area rdfs:member ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
 						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
 
 		return computeWeatherResultSet(rs);
@@ -75,6 +98,13 @@ public class WeatherDAO {
 				if (timeLtr != null)
 					time = timeLtr.getString();
 
+				//Resource areaRes = soln.getResource("?area");
+				//RDFNode areaNode = soln.get("?area");
+				//List<RDFNode> areaList = soln.getResource("?area").asResource().as(RDFList.class).asJavaList();
+				//ExtendedIterator<RDFNode> items = rdfList.iterator();
+	            //while ( items.hasNext() ) {
+	            //	Resource item = items.next().asResource();
+	            //}
 				Literal latLtr = soln.getLiteral("?lats");
 				Literal lonLtr = soln.getLiteral("?lons");
 

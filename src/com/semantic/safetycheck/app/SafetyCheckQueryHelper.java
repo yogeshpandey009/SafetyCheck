@@ -21,6 +21,7 @@ public class SafetyCheckQueryHelper {
 				+ "http://www.w3.org/2000/01/rdf-schema#" + "> ");
 		queryStr.append("PREFIX rdf" + ": <"
 				+ "http://www.w3.org/1999/02/22-rdf-syntax-ns#" + "> ");
+		queryStr.append("PREFIX list: <http://jena.hpl.hp.com/ARQ/list#>");
 
 		// Now add query
 		queryStr.append(queryRequest);
