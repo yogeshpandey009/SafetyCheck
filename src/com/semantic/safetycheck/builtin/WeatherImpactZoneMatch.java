@@ -1,5 +1,6 @@
 package com.semantic.safetycheck.builtin;
 
+import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class WeatherImpactZoneMatch extends BaseBuiltin {
      * @return true if the point is inside the boundary, false otherwise
      *
      */
-    public boolean contains(List<Point> points, Point test) {
+	public boolean contains(List<Point> points, Point test) {
       int i;
       int j;
       boolean result = false;
@@ -89,4 +90,13 @@ public class WeatherImpactZoneMatch extends BaseBuiltin {
       }
       return result;
     }
+    /*
+	public boolean contains(List<Point> points, Point test) {
+		Polygon poly = new Polygon();
+		for(Point p : points) {
+			poly.addPoint((int)(p.getLatitude() * 100), (int)(p.getLongitude() * 100));
+		}
+		return poly.contains((int)(test.getLatitude() * 100), (int)(test.getLongitude() * 100));
+	}
+	*/
 }

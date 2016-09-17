@@ -45,7 +45,7 @@ Ext.define('SafetyCheck.view.WeatherView', {
             xtype: 'textfield',
             fieldLabel: 'Longitudes',
             name: 'longitude',
-            value: "-112,-111,-112",
+            value: "-113,-110,-113",
             allowBlank: false
         }, {
             xtype: 'textarea',
