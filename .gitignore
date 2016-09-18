@@ -1,4 +1,5 @@
 /bin/
 /target/
 /build/
+/data/tdb/
 .DS_Store

@@ -32,36 +32,36 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
             width: 300
         },
         items: [{
-        	xtype: 'numberfield',
-        	fieldLabel: 'Magnitude',
+            xtype: 'numberfield',
+            fieldLabel: 'Magnitude',
             name: 'magnitude',
-            value: 3,
+            value: 4.3,
             allowBlank: false
         }, /* {
-        	//xtype: 'timefield',
+            //xtype: 'timefield',
             fieldLabel: 'Time',
             name: 'time',
             //value: new Date().getTime(),
             value: '2015-11-12T00:22:32.520Z',
             allowBlank: false
         },*/ {
-        	xtype: 'numberfield',
-        	fieldLabel: 'Latitude',
+            xtype: 'numberfield',
+            fieldLabel: 'Latitude',
             name: 'latitude',
-            value: 33,
+            value: 33.5,
             allowBlank: false
         }, {
-        	xtype: 'numberfield',
-        	fieldLabel: 'Longitude',
+            xtype: 'numberfield',
+            fieldLabel: 'Longitude',
             name: 'longitude',
             value: -112,
             allowBlank: false
         }, {
-        	xtype: 'textarea',
-        	fieldLabel: 'Description',
-        	name: 'desc',
-        	value: 'An earthquake with magnitude 3 occurred near Tempe, AZ',
-        	allowBlank: false
+            xtype: 'textarea',
+            fieldLabel: 'Description',
+            name: 'desc',
+            value: 'An earthquake with magnitude 4.3 occurred near Tempe, AZ (Note: dummy earthquake)',
+            allowBlank: false
         }],
         dockedItems: [{
             xtype: 'toolbar',
@@ -75,7 +75,7 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
                 text: 'Add Earthquake',
                 itemId: 'create'
             }, {
-                text: 'Canel',
+                text: 'Cancel',
                 itemId: 'reset'
             }]
         }],
@@ -116,8 +116,8 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
     }, {
         xtype: 'splitter'
     }, {
-    	xtype: 'box',
-    	html: 'Double click an earthquake to show impacted persons'
+        xtype: 'box',
+        html: 'Double click an earthquake to show impacted persons'
     }, {
         xtype: 'splitter'
     }, {
@@ -128,12 +128,12 @@ Ext.define('SafetyCheck.view.EarthquakesView', {
         xtype: 'toolbar',
         dock: 'top',
         items: [{
-        	xtype: 'displayfield',
-        	itemId: 'onlineSyncMsg'
-        	},
+            xtype: 'displayfield',
+            itemId: 'onlineSyncMsg'
+            },
             '->', {
             xtype: 'button',
-    		text: '+ Add',
+            text: '+ Add',
             enableToggle: true,
             toggleHandler: function(btn, state) {
                 if (state) {

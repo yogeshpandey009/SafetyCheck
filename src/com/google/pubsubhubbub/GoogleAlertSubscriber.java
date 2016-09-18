@@ -6,11 +6,11 @@ public class GoogleAlertSubscriber {
 
 	private Web webserver;
 	private Subscriber sbcbr;
-	private String hostname = "http://" + "9be24611.ngrok.io";
+	private String hostname = "http://" + "f48a573d.ngrok.io";
 	private Integer webserverPort = 8181;
 	private String hub = "http://alert-hub.appspot.com/";
-	private String eq_hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
-	private String w_hub_topic = "http://alerts.weather.gov/cap/ga.php?x=0";
+	//private String eq_hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
+	//private String w_hub_topic = "https://alerts.weather.gov/cap/us.php?x=0";
 	private static GoogleAlertSubscriber instance = null;
 
 	private void startServer() {
@@ -57,8 +57,8 @@ public class GoogleAlertSubscriber {
 
 	private GoogleAlertSubscriber() {
 		startServer();
-		startSubscriber(eq_hub_topic);
-		//startSubscriber(w_hub_topic);
+		startSubscriber(TopicUrl.EARTHQUAKE.getUrl());
+		startSubscriber(TopicUrl.WEATHER.getUrl());
 	}
 
 }

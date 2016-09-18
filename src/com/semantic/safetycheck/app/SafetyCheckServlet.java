@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 
 import com.google.pubsubhubbub.GoogleAlertSubscriber;
 import com.hp.hpl.jena.reasoner.rulesys.BuiltinRegistry;
-import com.semantic.safetycheck.builtin.ImpactZoneMatch;
-import com.semantic.safetycheck.builtin.MatchLiteral;
+import com.semantic.safetycheck.builtin.EQImpactZoneMatch;
+import com.semantic.safetycheck.builtin.MatchRegion;
+import com.semantic.safetycheck.builtin.WeatherImpactZoneMatch;
 
 /**
  * Servlet implementation class SafetyCheckServlet
@@ -28,7 +29,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				registerCustomBuiltins();
+				registerCustomBuiltinRules();
 				store = new TDBStoreManager(context.getRealPath(File.separator));
 			}
 		});
@@ -49,15 +50,16 @@ public class SafetyCheckServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void registerCustomBuiltins() {
-		BuiltinRegistry.theRegistry.register(new MatchLiteral());
-		BuiltinRegistry.theRegistry.register(new ImpactZoneMatch());
+	public static void registerCustomBuiltinRules() {
+		BuiltinRegistry.theRegistry.register(new MatchRegion());
+		BuiltinRegistry.theRegistry.register(new EQImpactZoneMatch());
+		BuiltinRegistry.theRegistry.register(new WeatherImpactZoneMatch());
 	}
 
-	public static void addEarthquakeInstance(String eq) {
+	public static void addAlertRDF(String eq) {
 		InputStream is = new ByteArrayInputStream(eq.getBytes());
 		store.read(is, defaultNameSpace);
-		store.runReasoner();
+		store.saveData();
 	}
 
 }

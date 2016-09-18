@@ -32,6 +32,7 @@ Ext.define('SafetyCheck.view.Viewport', {
 				"						<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Services <span class=\"caret\"><\/span><\/a>"+
 				"						<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">"+
 				"							<li><a href=\"earthquakes.html\">Earthquakes<\/a><\/li>"+
+				"							<li><a href=\"weather.html\">Weather<\/a><\/li>"+
 				"							<li><a href=\"persons.html\">Persons<\/a><\/li>"+
 				"							<li><a href=\"regions.html\">Regions<\/a><\/li>"+
 				"						<\/ul>"+

@@ -19,7 +19,6 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import com.google.publicalerts.cap.Alert;
 import com.google.publicalerts.cap.CapXmlParser;
-import com.google.publicalerts.cap.Info;
 import com.semantic.safetycheck.app.SafetyCheckServlet;
 import com.semantic.safetycheck.convertor.AlertToRDF;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -47,7 +46,7 @@ public class PuSHhandler extends AbstractHandler {
 		System.out.println(feed.getTitle());
 		List<Alert> alerts = new ArrayList<Alert>();
 		for (SyndEntry entry : entries) {
-			System.out.println(entry.getTitle());
+			//System.out.println(entry.getTitle());
 			try {
 				List<SyndLinkImpl> links = entry.getLinks();
 				String capLink = "";
@@ -70,6 +69,7 @@ public class PuSHhandler extends AbstractHandler {
 					}
 					CapXmlParser parser = new CapXmlParser(false);
 					Alert alert = parser.parseFrom(sb.toString());
+					/*
 					System.out.println(alert.getStatus() + ":"
 							+ alert.getScope() + ":" + alert.getMsgType());
 					List<Info> infoList = alert.getInfoList();
@@ -88,16 +88,18 @@ public class PuSHhandler extends AbstractHandler {
 							System.out.println("\t\tArea affected: "
 									+ infoItem.getArea(i));
 						}
-					}
+					}*/
 					alerts.add(alert);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
-		String earthquakesRDF = AlertToRDF.earthquakeAlertstoRDF(alerts);
-		System.out.println(earthquakesRDF);
-		SafetyCheckServlet.addEarthquakeInstance(earthquakesRDF);
+		if(alerts.size() > 0) {
+			String alertsRDF = AlertToRDF.convertAlertstoRDF(alerts, hubtopic);
+			System.out.println(alertsRDF);
+			SafetyCheckServlet.addAlertRDF(alertsRDF);
+		}
 	}
 
 	public void handle(String target, Request baseRequest,

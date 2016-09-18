@@ -19,5 +19,9 @@ Ext.define('SafetyCheck.view.RegionGrid', {
         text: 'Co-ordinates',
         dataIndex: 'coordinates',
         flex: 1
+    }, {
+        text: 'Population',
+        dataIndex: 'population',
+        flex: 1
     }]
 });

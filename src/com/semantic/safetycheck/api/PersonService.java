@@ -27,10 +27,10 @@ public class PersonService extends SCService {
 		List<Person> person = null;
 		Boolean success = Boolean.TRUE;
 		String msg = "";
-		String earthquakeId = info.getQueryParameters().getFirst("earthquake");
+		String alertId = info.getQueryParameters().getFirst("alertId");
 		try{
-			if( null != earthquakeId && StringUtils.isNoneEmpty(earthquakeId)){
-				person = dao.getPersonsImpacted(SafetyCheckServlet.defaultNameSpace + earthquakeId);
+			if( null != alertId && StringUtils.isNoneEmpty(alertId)){
+				person = dao.getPersonsImpacted(SafetyCheckServlet.defaultNameSpace + alertId);
 				
 			}
 			else{

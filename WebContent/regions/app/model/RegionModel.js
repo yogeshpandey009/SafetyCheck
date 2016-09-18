@@ -14,6 +14,9 @@ Ext.define('SafetyCheck.model.RegionModel', {
 		name : 'longitude',
 		type : 'number'
 	}, {
+		name : 'population',
+		type : 'number'
+	}, {
 		name : 'coordinates',
 		type : 'string',
 		convert : function(v, rec) {

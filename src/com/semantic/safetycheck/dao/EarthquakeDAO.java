@@ -14,31 +14,28 @@ public class EarthquakeDAO {
 
 	public List<Earthquake> getAllEarthquakes() {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(" select ?earthquake ?lat ?lon ?mag ?time ?desc where "
-						+ "{ ?earthquake rdf:type sc:Earthquake. OPTIONAL { ?earthquake sc:hasMagnitude ?mag."
-						+ " ?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat."
-						+ " ?earthquake sc:hasTime ?time. ?earthquake sc:hasDesc ?desc } }");
-		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
-		while (rs.hasNext()) {
-			QuerySolution soln = rs.nextSolution();
-			Earthquake eq = solnToEarthquake(soln);
-			if (eq != null) {
-				earthquakes.add(eq);
-			}
-
-		}
-		return earthquakes;
+				.runQuery(" select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where "
+						+ "{ ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
+						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }");
+		return computeEarthquakeResultSet(rs);
 	}
 
 	public List<Earthquake> getImpactedByEarthquakes(String personId) {
 		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery("select ?earthquake ?lat ?lon ?mag ?time ?desc where { <"
+				.runQuery("select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where { <"
 						+ personId
 						+ ">  sc:isImpactedBy ?earthquake."
-						+ " ?earthquake rdf:type sc:Earthquake. OPTIONAL { ?earthquake sc:hasMagnitude ?mag."
-						+ " ?earthquake sc:atLongitude ?lon. ?earthquake sc:atLatitude ?lat."
-						+ " ?earthquake sc:hasTime ?time. ?earthquake sc:atDesc ?desc } }");
+						+ " ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
+						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
+						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
+						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }");
 
+		return computeEarthquakeResultSet(rs);
+	}
+
+	private List<Earthquake> computeEarthquakeResultSet(ResultSet rs) {
 		List<Earthquake> earthquakes = new ArrayList<Earthquake>();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
@@ -55,30 +52,34 @@ public class EarthquakeDAO {
 		RDFNode eqId = soln.get("?earthquake");
 		if (eqId != null) {
 			String id = eqId.toString();
-			 Float mag = null;
-			 String time = null;
-			 Float lat = null;
-			 Float lon = null;
-			 String desc = null;
+			Float mag = null;
+			String time = null;
+			Float lat = null;
+			Float lon = null;
+			String desc = null;
 
 			Literal magLtr = soln.getLiteral("?mag");
-			if(magLtr != null) mag = magLtr.getFloat();
+			if (magLtr != null)
+				mag = magLtr.getFloat();
 
 			Literal latLtr = soln.getLiteral("?lat");
-			if(latLtr != null) lat = latLtr.getFloat();
+			if (latLtr != null)
+				lat = latLtr.getFloat();
 
 			Literal lonLtr = soln.getLiteral("?lon");
-			if(lonLtr != null) lon = lonLtr.getFloat();
+			if (lonLtr != null)
+				lon = lonLtr.getFloat();
 
 			Literal timeLtr = soln.getLiteral("?time");
-			if(timeLtr != null) time = timeLtr.getString();
+			if (timeLtr != null)
+				time = timeLtr.getString();
 
 			Literal descLtr = soln.getLiteral("?desc");
-			if(descLtr != null) desc = descLtr.getString();
+			if (descLtr != null)
+				desc = descLtr.getString();
 
 			return new Earthquake(id, mag, time, lat, lon, desc);
 		}
 		return null;
 	}
-
 }

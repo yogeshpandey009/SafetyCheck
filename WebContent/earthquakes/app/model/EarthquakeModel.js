@@ -5,6 +5,9 @@ Ext.define('SafetyCheck.model.EarthquakeModel', {
 		name : 'id',
 		type : 'string'
 	}, {
+		name : 'desc',
+		type : 'string'
+	}, {
 		name : 'magnitude',
 		type : 'number'
 	}, {
