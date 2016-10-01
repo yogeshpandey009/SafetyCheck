@@ -1,14 +1,9 @@
 package com.semantic.safetycheck.api;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -16,7 +11,6 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.semantic.javaobjectstordf.JavaObjectRdfSerializer;
 import com.semantic.safetycheck.model.v2.Alert;
 import com.semantic.safetycheck.model.v2.Alert.Info;
 import com.semantic.safetycheck.model.v2.Alert.Info.Area;
@@ -93,30 +87,6 @@ public class EarthquakeClient {
 			ex.printStackTrace();
 		}
 		return alerts;
-	}
-
-	public static void main(String[] args) {
-		EarthquakeClient pc = new EarthquakeClient();
-		FileOutputStream outputStream;
-		try {
-			outputStream = new FileOutputStream("earthquakes.xml");
-			List<Alert> alerts = pc.fetchCapAlerts("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom");
-			JavaObjectRdfSerializer serializer = new JavaObjectRdfSerializer(
-					"http://www.weather.gov/weather#",
-					"http://www.weather.gov/ontology#", "RDF/XML",
-					"com.semantic.safetycheck");
-
-			Collection<Object> objects = new LinkedList<Object>();
-			objects.addAll(alerts);
-			serializer.serialize(objects, outputStream);
-			outputStream.close();
-			System.out.println("Success.");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 }
