@@ -14,6 +14,11 @@ Ext.define('SafetyCheck.view.EarthquakeGrid', {
         ptype: 'bufferedrenderer'
     },
     columns: [{
+        xtype: 'rownumberer',
+        text: '#',
+        width: 50,
+        resizable: true
+    }, {
         text: 'Magnitude',
         dataIndex: 'magnitude',
         flex: 1

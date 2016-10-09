@@ -14,6 +14,11 @@ Ext.define('SafetyCheck.view.WeatherGrid', {
         ptype: 'bufferedrenderer'
     },
     columns: [{
+        xtype: 'rownumberer',
+        text: '#',
+        width: 50,
+        resizable: true
+    }, {
         text: 'Severity',
         dataIndex: 'severity',
         flex: 1

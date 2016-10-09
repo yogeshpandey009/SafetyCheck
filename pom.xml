@@ -126,5 +126,12 @@
 			<artifactId>google-api-services-pubsub</artifactId>
 			<version>v1-rev8-1.21.0</version>
 		</dependency>
+		<dependency>
+			<groupId>cap_library</groupId>
+			<artifactId>cap_library</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/cap-library-r11.jar</systemPath>
+		</dependency>
 	</dependencies>
 </project>
