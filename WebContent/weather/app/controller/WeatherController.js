@@ -153,6 +153,7 @@ Ext.define('SafetyCheck.controller.WeatherController', {
 		weatherStore.filterBy(function(record, id) {
 			return (reg.test(record.get("id"))
 					|| reg.test(record.get("time"))
+					|| reg.test(record.get("desc"))
 					|| reg.test(record.get("points"))
 					|| reg.test(record.get("severity")));
 		}, this);

@@ -128,6 +128,7 @@ Ext.define('SafetyCheck.controller.EarthquakesController', {
 		earthquakeStore.filterBy(function(record, id) {
 			return (reg.test(record.get("id"))
 					|| reg.test(record.get("time"))
+					|| reg.test(record.get("desc"))
 					|| reg.test(record.get("coordinates")) || reg
 					.test(record.get("magnitude")));
 		}, this);
