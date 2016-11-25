@@ -4,13 +4,12 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
 
 public class SafetyCheckQueryHelper {
 
 	static String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
 
-	public static ResultSet runQuery(String queryRequest) {
+	public static QueryExecution buildQuery(String queryRequest) {
 
 		StringBuffer queryStr = new StringBuffer();
 
@@ -27,13 +26,14 @@ public class SafetyCheckQueryHelper {
 		queryStr.append(queryRequest);
 		Query query = QueryFactory.create(queryStr.toString());
 		QueryExecution qexec = QueryExecutionFactory.sparqlService("http://localhost:3030/sc/query", query);
+		return qexec;
+		/*
 		ResultSet response = null;
 		try {
 			response = qexec.execSelect();
 		} finally {
 			 //qexec.close();
 		}
-		/*
 		Dataset dataset = SafetyCheckServlet.store.dataset;
 		dataset.begin(ReadWrite.READ) ;
 		QueryExecution qexec = QueryExecutionFactory.create(query, dataset);
@@ -59,8 +59,8 @@ public class SafetyCheckQueryHelper {
 		} finally {
 			 qexec.close();
 		}
-		 */
 		return response;
+		 */
 	}
 
 }

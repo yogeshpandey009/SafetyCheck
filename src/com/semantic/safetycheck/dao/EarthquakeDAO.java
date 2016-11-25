@@ -3,6 +3,7 @@ package com.semantic.safetycheck.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Literal;
@@ -13,18 +14,20 @@ import com.semantic.safetycheck.pojo.Earthquake;
 public class EarthquakeDAO {
 
 	public List<Earthquake> getAllEarthquakes() {
-		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(" select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where "
+		QueryExecution qexec = SafetyCheckQueryHelper
+				.buildQuery(" select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where "
 						+ "{ ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
 						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
 						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
 						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }");
-		return computeEarthquakeResultSet(rs);
+		List<Earthquake> result = computeEarthquakeResultSet(qexec.execSelect());
+		qexec.close();
+		return result;
 	}
 
 	public List<Earthquake> getImpactedByEarthquakes(String personId) {
-		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery("select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where { <"
+		QueryExecution qexec = SafetyCheckQueryHelper
+				.buildQuery("select ?earthquake ?point ?lat ?lon ?mag ?time ?desc ?areaDesc where { <"
 						+ personId
 						+ ">  sc:isImpactedBy ?earthquake."
 						+ " ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
@@ -32,7 +35,9 @@ public class EarthquakeDAO {
 						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
 						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }");
 
-		return computeEarthquakeResultSet(rs);
+		List<Earthquake> result = computeEarthquakeResultSet(qexec.execSelect());
+		qexec.close();
+		return result;
 	}
 
 	private List<Earthquake> computeEarthquakeResultSet(ResultSet rs) {

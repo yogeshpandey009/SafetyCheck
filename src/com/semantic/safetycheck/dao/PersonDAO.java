@@ -3,6 +3,7 @@ package com.semantic.safetycheck.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -13,12 +14,13 @@ public class PersonDAO {
 	
 	public List<Person> getAllPersons() {
 		
-		ResultSet rs = SafetyCheckQueryHelper.runQuery(" select ?person ?name ?location ?region ?point ?lat ?lon where"
+		QueryExecution qexec = SafetyCheckQueryHelper.buildQuery(" select ?person ?name ?location ?region ?point ?lat ?lon where"
 		+ " { ?person rdf:type sc:Person. ?person sc:hasName ?name ."
 		+ " ?person sc:hasLocation ?location. OPTIONAL"
 		+ " { ?person sc:locatedAt ?region. ?region sc:hasPoint ?point."
 		+ " ?point sc:hasLatitude ?lat. ?point sc:hasLongitude ?lon.} }");
 		List<Person> persons = new ArrayList<Person>();
+		ResultSet rs = qexec.execSelect();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			String name ="";
@@ -41,21 +43,22 @@ public class PersonDAO {
 				persons.add(new Person(person.toString(), name, location, latitude,
 						longitude));
 			}
-
 		}
+		qexec.close();
 		return persons;
 	}
 	
 	public List<Person> getPersonsImpacted(String alertId) {
 	
 		List<Person> persons = new ArrayList<Person>();
-		ResultSet rs = SafetyCheckQueryHelper.runQuery(
+		QueryExecution qexec = SafetyCheckQueryHelper.buildQuery(
 				" select ?person ?name ?location ?region ?point ?lat ?lon "
 						+ " where { ?person sc:isImpactedBy <"
 						+ alertId
 						+ ">. ?person sc:hasName ?name. ?person sc:hasLocation ?location."
 						+ " ?person sc:locatedAt ?region.  ?region sc:hasPoint ?point."
 						+ " ?point sc:hasLatitude ?lat. ?point sc:hasLongitude ?lon. }");
+		ResultSet rs = qexec.execSelect();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode person = soln.get("?person");
@@ -65,7 +68,7 @@ public class PersonDAO {
 						soln.getLiteral("?lat").getFloat(), soln.getLiteral("?lon").getFloat() ));
 				}
 		}
-		
+		qexec.close();
 		return persons;
 	}
 

@@ -3,12 +3,11 @@ package com.semantic.safetycheck.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
 import com.semantic.safetycheck.app.SafetyCheckQueryHelper;
 import com.semantic.safetycheck.pojo.Point;
 import com.semantic.safetycheck.pojo.Weather;
@@ -31,8 +30,8 @@ public class WeatherDAO {
 	}
 	*/
 	public List<Weather> getAllWeatherAlerts() {
-		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(" select ?weather ?areaDesc ?sev ?time ?desc"
+		QueryExecution qexec = SafetyCheckQueryHelper
+				.buildQuery(" select ?weather ?areaDesc ?sev ?time ?desc"
 						+ " (GROUP_CONCAT(?lat) AS ?lats)"
 						+ " (GROUP_CONCAT(?lon) AS ?lons) where"
 						+ " { ?weather rdf:type sc:Weather. ?weather sc:hasSeverity ?sev."
@@ -45,13 +44,14 @@ public class WeatherDAO {
 						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
 						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
 						//+ " order by ?weather ?area");
-
-		return computeWeatherResultSet(rs);
+		List<Weather> result = computeWeatherResultSet(qexec.execSelect());
+		qexec.close();
+		return result;
 	}
 
 	public List<Weather> getImpactedByWeatherAlerts(String personId) {
-		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery("select ?weather ?areaDesc ?sev ?time ?desc"
+		QueryExecution qexec = SafetyCheckQueryHelper
+				.buildQuery("select ?weather ?areaDesc ?sev ?time ?desc"
 						+ " (GROUP_CONCAT(?lat) AS ?lats)"
 						+ " (GROUP_CONCAT(?lon) AS ?lons) where { <"
 						+ personId
@@ -63,7 +63,9 @@ public class WeatherDAO {
 						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
 						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
 
-		return computeWeatherResultSet(rs);
+		List<Weather> result = computeWeatherResultSet(qexec.execSelect());
+		qexec.close();
+		return result;
 	}
 
 	private List<Weather> computeWeatherResultSet(ResultSet rs) {

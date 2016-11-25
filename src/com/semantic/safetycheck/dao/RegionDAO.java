@@ -3,6 +3,7 @@ package com.semantic.safetycheck.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -13,13 +14,14 @@ public class RegionDAO {
 
 	public List<Region> getAllRegions() {
 
-		ResultSet rs = SafetyCheckQueryHelper
-				.runQuery(
+		QueryExecution qexec = SafetyCheckQueryHelper
+				.buildQuery(
 						" select ?region ?name ?point ?latitude ?longitude ?population"
 								+ " where { ?region rdf:type sc:Region. ?region sc:hasRegionName ?name."
 								+ " ?region sc:hasPoint ?point. ?region sc:hasPopulation ?population."
 								+ " ?point sc:hasLatitude ?latitude . ?point sc:hasLongitude ?longitude. }");
 		List<Region> regions = new ArrayList<Region>();
+		ResultSet rs = qexec.execSelect();
 		while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode region = soln.get("?region");
