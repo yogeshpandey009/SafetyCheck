@@ -3,6 +3,8 @@ package com.semantic.safetycheck.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
@@ -42,7 +44,9 @@ public class WeatherDAO {
 						+ " ?area rdfs:member ?point."
 						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
 						+ " ?weather sc:atTime ?time. ?weather sc:hasDescription ?desc }"
-						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc");
+						+ " GROUP BY ?weather ?areaDesc ?sev ?time ?desc"
+						+ " ORDER BY DESC(?time)"
+						+ " LIMIT 500");
 						//+ " order by ?weather ?area");
 		List<Weather> result = computeWeatherResultSet(qexec.execSelect());
 		qexec.close();
@@ -125,8 +129,10 @@ public class WeatherDAO {
 				}
 
 				Literal descLtr = soln.getLiteral("?desc");
-				if (descLtr != null)
-					desc = descLtr.getString();
+				if (descLtr != null) {
+					char[] delims = {'.'};
+					desc = WordUtils.capitalizeFully(descLtr.getString().trim(), delims).replaceAll("\\.", "\\. ");
+				}
 
 				Literal areaDescLtr = soln.getLiteral("?areaDesc");
 				if (areaDescLtr != null)

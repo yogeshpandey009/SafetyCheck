@@ -19,7 +19,10 @@ public class EarthquakeDAO {
 						+ "{ ?earthquake rdf:type sc:Earthquake. ?earthquake sc:hasMagnitude ?mag."
 						+ " ?earthquake sc:hasAreaDescription ?areaDesc. ?earthquake sc:hasArea ?point."
 						+ " ?point sc:hasLongitude ?lon. ?point sc:hasLatitude ?lat."
-						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }");
+						+ " ?earthquake sc:atTime ?time. ?earthquake sc:hasDescription ?desc }"
+						+ " ORDER BY DESC(?time)"
+						+ " LIMIT 500");
+
 		List<Earthquake> result = computeEarthquakeResultSet(qexec.execSelect());
 		qexec.close();
 		return result;
