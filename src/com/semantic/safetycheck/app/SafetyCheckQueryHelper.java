@@ -25,7 +25,7 @@ public class SafetyCheckQueryHelper {
 		// Now add query
 		queryStr.append(queryRequest);
 		Query query = QueryFactory.create(queryStr.toString());
-		QueryExecution qexec = QueryExecutionFactory.sparqlService("http://localhost:3030/sc/query", query);
+		QueryExecution qexec = QueryExecutionFactory.sparqlService("http://imod.poly.asu.edu:3030/sc/query", query);
 		return qexec;
 		/*
 		ResultSet response = null;
