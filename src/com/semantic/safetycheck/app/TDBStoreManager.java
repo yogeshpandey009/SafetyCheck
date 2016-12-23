@@ -19,7 +19,7 @@ public class TDBStoreManager {
 
 	// protected Dataset dataset = null;
 	// private final String dataDir = "./data/tdb";
-	String dataURI = "http://localhost:3030/sc/data";
+	String dataURI = "http://imod.poly.asu.edu:3030/sc";
 	private final String rulesPath = "WEB-INF/classes/rules.txt";
 	private String path = "";
 	protected OntModel ontModel = null;
