@@ -6,7 +6,7 @@ public class GoogleAlertSubscriber {
 
 	private Web webserver;
 	private Subscriber sbcbr;
-	private Integer webserverPort = 8081;
+	private Integer webserverPort = 8188;
 	private String hostname = "http://" + "imod.poly.asu.edu" + ":" + webserverPort;
 	private String hub = "http://alert-hub.appspot.com/";
 	//private String eq_hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
