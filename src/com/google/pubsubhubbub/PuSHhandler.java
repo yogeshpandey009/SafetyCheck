@@ -5,17 +5,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringUtils;
 //The Jetty webserver version used for this project is 7.0.1.v20091125
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.jdom.Element;
+import org.xml.sax.SAXException;
 
 import com.google.publicalerts.cap.Alert;
 import com.google.publicalerts.cap.CapXmlParser;
@@ -37,16 +45,18 @@ public class PuSHhandler extends AbstractHandler {
 	public PuSHhandler() {
 	}
 
+	private static SimpleDateFormat eqTimeFormatter = new SimpleDateFormat("yyyyMMdd'T'HHmmss.SSS'Z'");
+	private static SimpleDateFormat inputTimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+
 	@SuppressWarnings("unchecked")
 	private void processFeeds(String hubtopic, SyndFeed feed) {
 
 		// checks if the channel is already created
 		System.out.println("processFeed: " + feed.getTitle());
 		List<SyndEntry> entries = feed.getEntries();
-		System.out.println(feed.getTitle());
 		List<Alert> alerts = new ArrayList<Alert>();
 		for (SyndEntry entry : entries) {
-			//System.out.println(entry.getTitle());
+			System.out.println(entry.getTitle());
 			try {
 				List<SyndLinkImpl> links = entry.getLinks();
 				String capLink = "";
@@ -56,7 +66,7 @@ public class PuSHhandler extends AbstractHandler {
 						break;
 					}
 				}
-
+				String cap = "";
 				if (!capLink.isEmpty()) {
 					URL capUrl = new URL(capLink);
 					BufferedReader capBr = new BufferedReader(
@@ -67,31 +77,15 @@ public class PuSHhandler extends AbstractHandler {
 						sb.append(line);
 						line = capBr.readLine();
 					}
-					CapXmlParser parser = new CapXmlParser(false);
-					Alert alert = parser.parseFrom(sb.toString());
-					/*
-					System.out.println(alert.getStatus() + ":"
-							+ alert.getScope() + ":" + alert.getMsgType());
-					List<Info> infoList = alert.getInfoList();
-					for (Info infoItem : infoList) {
-						System.out.println("\t" + infoItem.getHeadline());
-						System.out.println("\t\tDescription: " + infoItem.getDescription());
-						for (int i = 0; i < infoItem.getCategoryCount(); i++) {
-							System.out.print("\t\tCategory: "
-									+ infoItem.getCategory(i));
-						}
-						System.out.println();
-						System.out.println("\t" + infoItem.getSeverity() + ":"
-								+ infoItem.getUrgency());
-						System.out.println("\t" + infoItem.getEvent());
-						for (int i = 0; i < infoItem.getAreaCount(); i++) {
-							System.out.println("\t\tArea affected: "
-									+ infoItem.getArea(i));
-						}
-					}*/
-					alerts.add(alert);
+					cap = sb.toString();
+				} else {
+					cap = getCapString(entry);
 				}
+				CapXmlParser parser = new CapXmlParser(false);
+				Alert alert = parser.parseFrom(cap);
+				alerts.add(alert);
 			} catch (Exception ex) {
+				System.out.println("Could not parse the alert");
 				ex.printStackTrace();
 			}
 		}
@@ -100,6 +94,76 @@ public class PuSHhandler extends AbstractHandler {
 			System.out.println(alertsRDF);
 			SafetyCheckServlet.addAlertRDF(alertsRDF);
 		}
+	}
+
+	private static String getCapString(SyndEntry entry) throws ParserConfigurationException, SAXException, IOException, ParseException {
+		String info = entry.getDescription().getValue();
+		String title = entry.getTitle();
+		String[] titleSplit = title.split("-");
+		Pattern tPattern = Pattern.compile("<dt>Time</dt><dd>(.*?)</dd>");
+		Matcher tMatcher = tPattern.matcher(info);
+		tMatcher.find();
+		String inputTime = tMatcher.group(1);
+		Pattern dPattern = Pattern.compile("<dt>Depth</dt><dd>(.*?)</dd>");
+		Matcher dMatcher = dPattern.matcher(info);
+		dMatcher.find();
+		String depth = dMatcher.group(1);
+		String epicenter = "";
+		String areaDesc = titleSplit[1].trim();
+		String mag = titleSplit[0].trim().substring(2);
+		List<Element> markups = (List<Element>) entry.getForeignMarkup();
+		Date eventTimeDate = inputTimeFormatter.parse(inputTime);
+		String eventTime = eqTimeFormatter.format(eventTimeDate);
+
+		for (Element markup : markups) {
+			if ("point".equals(markup.getName())) {
+				epicenter = markup.getText().replace(" ", ",");
+			}
+		}
+		String id = entry.getUri();
+		String[] splitId = id.split(":");
+		String eventId = "us" + splitId[splitId.length - 1];
+
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+				+ "<?xml-stylesheet href='http://www.weather.gov/alerts-beta/capatomproduct.xsl' type='text/xsl'?>"
+				+ "<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.1\">"
+				+ "  <identifier>" + id + "</identifier>"
+				+ "  <sender>http://earthquake.usgs.gov/research/monitoring/anss/neic/</sender>"
+				+ "  <sent>" + eventTime + "</sent>"
+				+ "  <status>Actual</status>"
+				+ "  <msgType>Alert</msgType>"
+				+ "  <scope>Public</scope>"
+				+ "  <info>"
+				+ "    <category>Geo</category>"
+				+ "    <event>Earthquake</event>"
+				+ "    <urgency>Past</urgency>"
+				+ "    <senderName>U.S. Geological Survey</senderName>"
+				+ "    <headline>" + title + "</headline>"
+				+ "    <description>" + title + " (This event has been reviewed by a seismologist.)</description>"
+				+ "    <web>" + entry.getLink() + "</web>"
+				+ "    <contact>http://earthquake.usgs.gov/research/monitoring/anss/neic/</contact>"
+				+ "    <parameter>"
+				+ "      <valueName>EventTime</valueName>"
+				+ "      <value>" + eventTime + "</value>"
+				+ "    </parameter>"
+				+ "    <parameter>"
+				+ "      <valueName>EventIDKey</valueName>"
+				+ "      <value>" + eventId + "</value>"
+				+ "    </parameter>"
+				+ "    <parameter>"
+				+ "      <valueName>Magnitude</valueName>"
+				+ "      <value>" + mag + "</value>"
+				+ "    </parameter>"
+				+ "    <parameter>"
+				+ "      <valueName>Depth</valueName>"
+				+ "      <value>" + depth + "</value>"
+				+ "    </parameter>"
+				+ "    <area>"
+				+ "      <areaDesc>" + areaDesc + "</areaDesc>"
+				+ "      <circle>" + epicenter + " 0.0</circle>"
+				+ "    </area>"
+				+ "  </info>"
+				+ "</alert>";
 	}
 
 	public void handle(String target, Request baseRequest,

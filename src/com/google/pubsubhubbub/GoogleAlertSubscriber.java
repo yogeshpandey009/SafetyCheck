@@ -6,7 +6,7 @@ public class GoogleAlertSubscriber {
 
 	private Web webserver;
 	private Subscriber sbcbr;
-	private Integer webserverPort = 8188;
+	private Integer webserverPort = 8084;
 	private String hostname = "http://" + "imod.poly.asu.edu" + ":" + webserverPort;
 	private String hub = "http://alert-hub.appspot.com/";
 	//private String eq_hub_topic = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.atom";
@@ -49,6 +49,21 @@ public class GoogleAlertSubscriber {
 		}
 	}
 
+	private void startUnsubscriber(String hub_topic) {
+		try {
+			int statusCode = sbcbr.unsubscribe(hub, hub_topic, hostname, null);
+			if (statusCode == 400) {
+				System.out
+						.println("the status code of the unsubscription is 400 (Bad Request)");
+			} else {
+				System.out.println("the status code of the unsubscription is:"
+						+ statusCode);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public synchronized static GoogleAlertSubscriber initiate() {
 		if (instance == null)
 			instance = new GoogleAlertSubscriber();
@@ -59,6 +74,17 @@ public class GoogleAlertSubscriber {
 		startServer();
 		startSubscriber(TopicUrl.EARTHQUAKE.getUrl());
 		startSubscriber(TopicUrl.WEATHER.getUrl());
+	}
+
+	public void shutdown() {
+		startUnsubscriber(TopicUrl.EARTHQUAKE.getUrl());
+		startUnsubscriber(TopicUrl.WEATHER.getUrl());
+		try {
+			webserver.shutdown();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("WebServer can not stop");
+		}
 	}
 
 }

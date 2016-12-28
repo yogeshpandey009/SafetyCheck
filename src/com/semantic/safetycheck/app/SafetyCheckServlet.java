@@ -20,7 +20,8 @@ import com.semantic.safetycheck.builtin.WeatherImpactZoneMatch;
 public class SafetyCheckServlet extends HttpServlet {
 
 	public static final String defaultNameSpace = "http://www.semanticweb.org/ontologies/2015/10/SafetyCheck#";
-	static ServletContext context = null;
+	ServletContext context = null;
+	GoogleAlertSubscriber alertSbscr = null;
 	static public TDBStoreManager store = null;
 
 	@Override
@@ -33,14 +34,21 @@ public class SafetyCheckServlet extends HttpServlet {
 				store = new TDBStoreManager(context.getRealPath(File.separator));
 			}
 		});
+		t1.start();
 		Thread t2 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				GoogleAlertSubscriber.initiate();
+				alertSbscr = GoogleAlertSubscriber.initiate();
 			}
 		});
-		t1.start();
 		t2.start();
+	}
+
+	@Override
+	public void destroy() {
+		if(alertSbscr != null) {
+			//alertSbscr.shutdown();
+		}
 	}
 
 	/**
@@ -50,7 +58,7 @@ public class SafetyCheckServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void registerCustomBuiltinRules() {
+	public void registerCustomBuiltinRules() {
 		BuiltinRegistry.theRegistry.register(new MatchRegion());
 		BuiltinRegistry.theRegistry.register(new EQImpactZoneMatch());
 		BuiltinRegistry.theRegistry.register(new WeatherImpactZoneMatch());

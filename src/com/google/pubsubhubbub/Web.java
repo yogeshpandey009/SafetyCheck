@@ -13,7 +13,7 @@ public class Web extends Thread {
 	static int port = 8080;
 	String contextPath = "/push";
 	Server server = null;
-	
+	ContextHandler context = null;
 	static ArrayList<String> approvedActions = new ArrayList<String>();
 
 	public Web(int port) {
@@ -57,7 +57,7 @@ public class Web extends Thread {
 		
 		server = new Server(port);
 		
-		ContextHandler context = new ContextHandler();
+		context = new ContextHandler();
 		//The server only respond to the following contextPath URI
 		context.setContextPath(contextPath);
 		context.setResourceBase(".");
@@ -66,7 +66,12 @@ public class Web extends Thread {
  
 		context.setHandler(new PuSHhandler());
 		server.start();
+		//server.join();
+	}
 
+	public void shutdown() throws Exception {
+		context.stop();
+		server.stop();
 	}
 
 	public void run() {
