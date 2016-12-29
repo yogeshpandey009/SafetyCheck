@@ -66,7 +66,6 @@ public class Web extends Thread {
  
 		context.setHandler(new PuSHhandler());
 		server.start();
-		//server.join();
 	}
 
 	public void shutdown() throws Exception {

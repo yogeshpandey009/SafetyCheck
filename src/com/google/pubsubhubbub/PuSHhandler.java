@@ -122,12 +122,12 @@ public class PuSHhandler extends AbstractHandler {
 		}
 		String id = entry.getUri();
 		String[] splitId = id.split(":");
-		String eventId = "us" + splitId[splitId.length - 1];
+		String eventId = splitId[splitId.length - 2] + splitId[splitId.length - 1];
 
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 				+ "<?xml-stylesheet href='http://www.weather.gov/alerts-beta/capatomproduct.xsl' type='text/xsl'?>"
 				+ "<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.1\">"
-				+ "  <identifier>" + id + "</identifier>"
+				+ "  <identifier>" + eventId + "</identifier>"
 				+ "  <sender>http://earthquake.usgs.gov/research/monitoring/anss/neic/</sender>"
 				+ "  <sent>" + eventTime + "</sent>"
 				+ "  <status>Actual</status>"
